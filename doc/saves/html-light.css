@@ -1,0 +1,45 @@
+h1, h2, h3 {
+  font-family: Georgia, serif;
+  color: #000000;
+  margin-top: 2rem;
+}
+
+p {
+  font-family: "Liberation Serif", serif;
+  color: #000000;
+  line-height: 1.5;
+}
+
+/* Zero margin work best for substiles */
+pre, code {
+  margin: 0px;
+  padding: 0px;
+}
+
+blockquote {
+  color: #0f4191;
+}
+
+.poem {
+  font-size: large;
+  color: #0f3706;
+}
+
+.bash, .output, .ansiout {
+  font-family: "Ubuntu Mono", "Liberation Mono", monospace;
+  font-size: 1rem;
+  margin: 18px 0px 18px 0px;
+  padding: 12px;
+}
+
+.output, .ansiout {
+  background-color: rgb(169, 180, 155);
+}
+
+.ansi1 { font-weight: bold; }
+.ansi31 { color: #aa0000; }
+
+.bash {
+  background-color: rgb(241, 246, 189);
+  padding-left: 5px; /* To anlign with similar styles */
+}

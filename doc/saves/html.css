@@ -1,0 +1,49 @@
+body {
+  background-color: #1e1e1e;
+  color: #dddddd;
+}
+
+h1, h2, h3 {
+  font-family: Georgia, serif;
+  color: #ffffff;
+  margin-top: 2rem;
+}
+
+p {
+  font-family: "Liberation Serif", serif;
+  color: #dddddd;
+  line-height: 1.5;
+}
+
+pre, code {
+  margin: 0px;
+  padding: 0px;
+}
+
+blockquote {
+  color: #80aaff;
+}
+
+.poem {
+  font-size: large;
+  color: #8fc98f;
+}
+
+.bash, .output, .ansiout {
+  font-family: "Ubuntu Mono", "Liberation Mono", monospace;
+  font-size: 1rem;
+  margin: 18px 0px;
+  padding: 12px;
+}
+
+.output, .ansiout {
+  background-color: rgb(50, 60, 45);
+}
+
+.ansi1 { font-weight: bold; }
+.ansi31 { color: #ff6b6b; }
+
+.bash {
+  background-color: rgb(80, 85, 40);
+  padding-left: 5px;
+}

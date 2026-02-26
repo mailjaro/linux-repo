@@ -1,0 +1,151 @@
+# MAKEFILE FOR PROSJEKT 'LINUX - ET STEG VIDERE'
+
+.PHONY: all epub html pdf open-epub open-html open-pdf spellcheck spellcheck-one add-word clean
+
+# ========== Variables ==========
+BOOKNAME := linux-book
+OUTDIR := drafts
+STYDIR := styles
+CFGDIR := config
+CHPDIR := chapter
+IMGDIR := images
+
+COMMON := $(CFGDIR)/common.yaml
+
+EPUB_DEF := $(CFGDIR)/epub.yaml
+EPUB_STY := $(STYDIR)/epub.css
+EPUB_LUA := $(CFGDIR)/epub.lua
+
+HTML_DEF := $(CFGDIR)/html.yaml
+HTML_STY_NAME := html.css
+HTML_STY := $(STYDIR)/$(HTML_STY_NAME)
+HTML_LUA := $(CFGDIR)/html.lua
+
+PDF_DEF := $(CFGDIR)/pdf.yaml
+PDF_STY := $(STYDIR)/	
+PDF_LUA := $(CFGDIR)/pdf.lua
+
+ODT_DEF := $(CFGDIR)/odt.yaml
+ODT_STY := $(STYDIR)/reference.odt
+ODT_LUA := $(CFGDIR)/odt.lua
+
+TEX_DEF := $(CFGDIR)/tex.yaml
+TEX_STY := $(STYDIR)/latex.tex
+TEX_LUA := $(CFGDIR)/tex.lua
+
+CHAPTERS := $(wildcard $(CHPDIR)/*.md)
+E_CHAPTERS := $(filter-out $(CHPDIR)/00-cover.md, $(wildcard $(CHPDIR)/*.md))
+
+EPUB_OUT := $(OUTDIR)/$(BOOKNAME).epub
+HTML_OUT := $(OUTDIR)/$(BOOKNAME).html
+PDF_OUT := $(OUTDIR)/$(BOOKNAME).pdf
+ODT_OUT := $(OUTDIR)/$(BOOKNAME).odt
+TEX_OUT := $(OUTDIR)/$(BOOKNAME).tex
+MD_OUT := $(OUTDIR)/$(BOOKNAME).md
+
+# ========== Output Targets ==========
+
+all: epub html odt pdf tex md
+
+epub: $(EPUB_OUT)
+
+html: $(HTML_OUT)
+
+odt: $(ODT_OUT)
+
+pdf: $(PDF_OUT)
+
+tex: $(TEX_OUT)
+
+md: $(MD_OUT)
+
+$(EPUB_OUT): $(E_CHAPTERS) $(EPUB_DEF) $(EPUB_STY) $(EPUB_LUA) $(COMMON)
+	$(info Building EPUB: $(EPUB_OUT))
+	@pandoc $(E_CHAPTERS) -o $@ \
+	--defaults=$(EPUB_DEF)
+
+$(HTML_OUT): $(CHAPTERS) $(HTML_DEF) $(HTML_STY) $(HTML_LUA) $(COMMON)
+	$(info Building HTML: $(HTML_OUT))
+	@cp $(IMGDIR)/* $(OUTDIR)/$(IMGDIR)
+	@cp $(HTML_STY) $(OUTDIR)/$(HTML_STY)
+	@pandoc $(CHAPTERS) -o $@ \
+		--defaults=$(HTML_DEF)
+
+$(ODT_OUT): $(CHAPTERS) $(REF_ODT) $(ODT_LUA) config/odt-blocks.lua $(COMMON)
+	$(info Building ODT: $(ODT_OUT)) 
+	@cp chapter/*.md chapter/odt
+	@sed -i 's|```|:::|' chapter/odt/*.md
+	@pandoc chapter/odt/*.md -o $(ODT_OUT) \
+		--lua-filter=$(ODT_LUA) \
+		--metadata-file=$(COMMON) \
+		--reference-doc=$(REF_ODT) \
+	@rm chapter/tmp/*.md
+
+$(PDF_OUT): $(CHAPTERS) $(PDF_DEF) $(PDF_TEX) $(COMMON)
+	$(info Building PDF (may be timecomsuming): $(PDF_OUT))
+	@pandoc $(CHAPTERS) -o $@ \
+		--defaults=$(PDF_DEF) \
+		--toc --toc-depth=3
+
+$(TEX_OUT): $(CHAPTERS) $(COMMON)
+	$(info Building TeX: $(TEX_OUT))
+	@pandoc $(CHAPTERS) -o $@ \
+		--standalone \
+		--metadata-file=$(COMMON) \
+
+$(MD_OUT): $(CHAPTERS) $(COMMON)
+	$(info Building MD: $(MD_OUT))
+	@pandoc chapter/*.md -o $@ \
+		--standalone \
+		--metadata-file=$(COMMON)
+
+# ========== Preview Commands ==========
+
+open-epub:
+	@xdg-open "$(EPUB_OUT)"
+
+open-html:
+	@xdg-open "$(HTML_OUT)"
+
+open-pdf:
+	@xdg-open "$(PDF_OUT)"
+
+open-odt:
+	@libreoffice "$(ODT_OUT)"
+
+open-tex:
+	@texmaker "$(TEX_OUT)"
+
+open-md:
+	@code "$(MD_OUT)"
+
+preview: open-epub open-html open-odt open-pdf open-tex open-md
+
+# ========== Spellcheck ==========
+
+spellcheck:
+	@hunspell -d nb_NO -p .hunspell_ignore -l chapter/*.md | sort | uniq
+
+spellcheck-one:
+ifndef file
+	$(error Usage: make spellcheck-one file=chapter/XX.md)
+endif
+	@hunspell -d nb_NO -p .hunspell_ignore -l $(file) | sort | uniq
+
+add-word:
+ifndef word
+	$(error Usage: make add-word word=someword)
+endif
+	@echo "$(word)" >> .hunspell_ignore
+	@sort -u .hunspell_ignore -o .hunspell_ignore
+
+# ========== Utilities ==========
+
+clean:
+	@rm -f $(EPUB_OUT) $(HTML_OUT) $(PDF_OUT) $(ODT_OUT) $(TEX_OUT) $(MD_OUT)
+	@echo "Linux - et steg videre in all formats removed from drafts/"
+
+backup:
+	@tar -czvf ~/backup/Linux-step-$(shell date +%d-%b-%g).tar.gz chapter config styles Makefile
+	@echo "	"
+	@echo "Done."

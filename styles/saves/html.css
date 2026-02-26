@@ -1,0 +1,55 @@
+body {
+  font-family: Georgia, serif;
+  background-color: #313131;
+  color: #e0e0e0;
+  line-height: 1.7;
+  margin: 2rem;
+}
+
+h1, h2, h3 {
+  font-family: "Segoe UI", sans-serif;
+  color: #ffa500;
+  margin-top: 2rem;
+}
+
+pre, code {
+  font-family: "DejaVu Sans Mono", monospace;
+  background-color: #000000;
+  color: #9cdcfe;
+  padding: 0.2rem 0.4rem;
+  border-radius: 5px;
+}
+
+pre {
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+blockquote {
+  border-left: 4px solid #555;
+  padding-left: 1rem;
+  color: #aaa;
+  margin: 1rem 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1rem auto;
+}
+
+.ansi2html-content {
+  /* display: inline; */
+  background-color: #000000;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.ansi1 { font-weight: bold; }
+.ansi31 { color: #aa0000; }
+
+.output {
+  padding: 0.5em;
+  margin: 1em 0;
+}

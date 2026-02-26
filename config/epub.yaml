@@ -1,0 +1,9 @@
+css: styles/epub.css
+highlight-style: pygments
+epub-cover-image: images/cover.png
+toc: false
+metadata-files:
+  - config/common.yaml
+filters:
+  - config/epub.lua
+standalone: true

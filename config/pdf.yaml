@@ -1,0 +1,26 @@
+from: markdown
+to: pdf
+
+pdf-engine:  xelatex
+standalone: true
+
+toc: true
+toc-depth: 3
+number-sections: true
+
+metadata-files:
+  - config/common.yaml
+
+include-in-header:
+  - styles/pdf-header.tex
+
+variables:
+  mainfont: "Liberation Serif"
+  monofont: "Liberation Mono"
+  fontsize: 11pt
+  geometry: margin=2.5cm
+
+filters:
+  - config/image-pdf.lua
+
+
