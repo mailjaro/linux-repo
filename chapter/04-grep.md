@@ -14,7 +14,7 @@ Anta vi har følgende fil **testfil.txt**:
 
 ```output
 Linux er et åpent unix-basert operativsystem.
-Ubuntu er en sebian-basert linux-variant.
+Ubuntu er en debian-basert linux-variant.
 Windows har ikke samme rikdom av kommandoer.
 ```
 
@@ -24,38 +24,34 @@ Kommandoen
 grep linux testfil.txt
 ```
 
-returnerer da følgende to linjer til skjermen:
+returnerer da følgende linje til skjermen:
 
-:::ansiout
-<pre class="ansi2html-content">
-<span class="ansi1 ansi31">Linux</span> er et Unix-basert operativsystem basert på åpen kildekodee.
-Ubuntu er en Debian-basert <span class="ansi1 ansi31">Linux</span>-variant.
-</pre>
-:::
-
-Opsjon `-i` sørger for man ikke skiller på små og store bokstaver, mens `-n` sørger for at linjenumre inkluderes i resultatet.
-
-```bash
-grep -in 'rt linux' testfil.txt
+```output
+Ubuntu er en debian-basert [linux]-variant.
 ```
 
-:::ansiout
-<pre class="ansi2html-content">
-<span class="ansi32">2</span><span class="ansi36">:</span>Ubuntu er en Debian-base<span class="ansi1 ansi31">rt Linux</span>-variant.
-</pre>
-:::
+**MERK:** Ord som matcher søkemønstert, dvs. **linux** her, blir fargemarkert i shell-output. Her vises matchende mønstre isteden gjennomgående inni klammeparenteser.
 
-Opsjonen `-v` gir komplementet og `-w` angir at mønstret må være et helt ord.
+Benytter man `-i`, skilles det ikke lenger på små og store bokstaver. Opsjoen `-n` sørger for at linjenumre i resultatet:
 
 ```bash
-grep -ivw "en" testfil.txt
+grep -in 'linux' testfil.txt
 ```
 
-:::ansiout
-<pre class="ansi2html-content">
-<span class="ansi32">2</span><span class="ansi36">:</span>Ubuntu er en Debian-base<span class="ansi1 ansi31">rt Linux</span>-variant.
-</pre>
-:::
+```output
+1:[Linux] er et åpent unix-basert operativsystem.
+2:Ubuntu er en debian-basert [linux]-variant.
+```
+
+Opsjonen `-v` gir komplementet, og `-w` angir at mønstret må være et helt ord.
+
+```bash
+grep -ivw "linux" testfil.txt
+```
+
+```output
+Windows har ikke samme rikdom av kommandoer
+```
 
 Man kan søke flere filer ved ganske enkelt å inkludere flere filer i søket, som f.eks.
 
@@ -63,7 +59,7 @@ Man kan søke flere filer ved ganske enkelt å inkludere flere filer i søket, s
 grep -c linux testfil-1.txt testfil-2.txt *.c *.py
 ```
 
-Her indikerer `-c` at man bare vil ha antallet linjer som matcher i (hver av) filene. Ønsker man å fortsette søk i alle underkataloger, kan man benytte `-r`. Den følger ikke symbolske linker (i motsetning til `-R`). Disse fungerer kanskje best med `*` eller `.` som filangivelse. Prøver man f.eks. ting som `*.py`, og ingen slike fins i gjeldende katalog, vil ikke `grep` gå ned i underkataloger ved bruk av `-r`.
+Her indikerer opsjonen `-c` at man bare vil ha antallet linjer som matcher i (hver av) filene. Ønsker man å fortsette søk i alle underkataloger, kan man benytte `-r`. Den følger ikke symbolske linker (i motsetning til `-R`). Disse fungerer kanskje best med `*` eller `.` som filangivelse. Prøver man f.eks. ting som `*.py`, og ingen slike fins i gjeldende katalog, vil ikke `grep` gå ned i underkataloger ved bruk av `-r`.
 
 Ønsker man bare å liste filene, kan man benytte `-l`. Følgende kommando lister navnet til alle filer i filtreet under gjeldende katalog som inneholder ordet **while**, med små eller store bokstaver.
 
@@ -77,15 +73,25 @@ grep -riwl 'while' *
 grep -Ein 'linux|windows' testfil.txt
 ```
 
-:::ansiout
-<pre class="ansi2html-content">
-<span class="ansi32">1</span><span class="ansi36">:</span><span class="ansi1 ansi31">Linux</span> er et Unix-basert operativsystem basert på åpen kildekodee.
-<span class="ansi32">2</span><span class="ansi36">:</span>Ubuntu er en Debian-basert <span class="ansi1 ansi31">Linux</span>-variant.
-<span class="ansi32">3</span><span class="ansi36">:</span><span class="ansi1 ansi31">Windows</span> mangler særlig samme rikdom av skallkommandoer.
-</pre>
-:::
+```output
+1:[Linux] er et åpent unix-basert operativsystem.
+2:Ubuntu er en debian-basert [linux]-variant.
+3:[Windows] har ikke samme rikdom av kommandoer.
+```
 
 Ønsker man å printe bare det som matcher, ikke hele linjen, kan man bruke opsjon `-o`.
+
+```bash
+grep -Eino 'linux|windows' testfil.txt
+```
+
+```output
+1:Linux
+2:linux
+3:Windows
+```
+
+hvor g dokumentets konvensjon med klammeparenteser for matchede mønstre er droppet.
 
 For strengt formaterte filer ønsker man kanskje å søke etter match for hele linjer. Da benyttes `-x`, som i:
 
@@ -100,13 +106,11 @@ grep -in -A1 -B1 'debian' testfil.txt
 grep -in -C1 'debian' testfil.txt
 ```
 
-:::ansiout
-<pre class="ansi2html-content">
-<span class="ansi32">1</span><span class="ansi36">-</span>Linux er et Unix-basert operativsystem basert på åpen kildekodee.
-<span class="ansi32">2</span><span class="ansi36">:</span>Ubuntu er en <span class="ansi1 ansi31">Debian</span>-basert Linux-variant.
-<span class="ansi32">3</span><span class="ansi36">-</span>Windows mangler særlig samme rikdom av skallkommandoer.
-</pre>
-:::
+```output
+1-Linux er et åpent unix-basert operativsystem.
+2:Ubuntu er en [debian]-basert linux-variant.
+3-Windows har ikke samme rikdom av kommandoer.
+```
 
 Søker vi spesielt etter noe på starten av en linje, benyttes tegnet `^`. Tilsvarende symbol for noe på slutten av en linje er `$`.
 
@@ -114,25 +118,21 @@ Søker vi spesielt etter noe på starten av en linje, benyttes tegnet `^`. Tilsv
 grep -i '^linux' testfil.txt
 ```
 
-:::ansiout
-<pre class="ansi2html-content">
-<span class="ansi1 ansi31">Linux</span> er et Unix-basert operativsystem basert på åpen kildekodee.
-</pre>
-:::
+```output
+[Linux] er et åpent unix-basert operativsystem.
+```
 
 ```bash
 grep -i 'e.$' testfil.txt
 ```
 
-:::ansiout
-<pre class="ansi2html-content">
-Linux er et Unix-basert operativsystem basert på åpen kildekode<span class="ansi1 ansi31">e.</span>
-</pre>
-:::
+```output
+Ubuntu er en debian-basert linux-varian[t.]
+```
 
-Dette er egentlig begge eksempler på såkalte regulære uttrykk (**`regex`**). Det er mye å si om dette, så vi skal se nærmere på dette i følgene underkapittel.
+Dette er egentlig begge eksempler på såkalte regulære uttrykk (**regex**). Det er mye å si om dette, så vi skal straks se nærmere på dette .
 
-`grep`-eksemplene vår har vært knyttet til søk i filer, men det er også vanlige å finne spesielle ting i output kommando fra kommandoer, f.eks.
+`grep`-eksemplene vår har vært knyttet til søk i filer, men det er også vanlige å finne spesielle ting i output kommando fra kommandoer, f.eks. her hvor søker gjennom en av kjørende prosesser for å finne noe som har med bluetooth å gjøre:
 
 ```bash
 ps -ef | grep -i bluetooth
@@ -142,7 +142,7 @@ ps -ef | grep -i bluetooth
 
 Til å begynne med, klarer man seg kanskje med eksemplene som er gitt. Men for å ta søkene til neste nivå, trenges **regex**.
 
-Det fins for det første flere standarder her, både POSIX- og Perl-baserte. For førstnevnte, som er av størst interesse for oss, fins det både BRE (*Basic Regular Expressions*) og ERE (*Extended Regular Expressions*). BRE er standard/inkludert i kommandoer som `grep`, `sed` og andre (hvilket vi kommer tilbake til), mens ERE inkluderes først ved bruk av opsjonen `-E`. Og siden datafolk ikke er glad i unødvendig skriving, er dette for grep tatt opp i kommandoen `egrep`. (Dvs. `egrep` er det samme som `grep -E`.) `egrep` er imidlertid utgående, og det anbefales å benytte `grep -E` med tanke på fremtidig kompatibilitet.
+Det fins for det første flere standarder her, både POSIX- og Perl-baserte. For førstnevnte, som er av størst interesse for oss, fins det både BRE (*Basic Regular Expressions*) og ERE (*Extended Regular Expressions*). BRE er standard/inkludert i kommandoer som `grep`, `sed` og andre (hvilket vi kommer tilbake til), mens ERE inkluderes først ved bruk av opsjonen `-E`. Og siden datafolk ikke er glad i unødvendig skriving, er dette for grep tatt opp i kommandoen `egrep` (dvs. `egrep` er det samme som `grep -E`.) `egrep` er imidlertid utgående, og det anbefales å benytte `grep -E` med tanke på fremtidig kompatibilitet.
 
 Forskjellen mellom vanlig og utvidet **regex** går i hovedsak på at man ofte slipper escape av metakarakterer i det utvidede tilfellet, hvilket kan være en fordel (se mer om dette lenger ned). Tegn som `?`, `+`, `{`, `}`, `|`, `(` og `)` brukes nemlig mye når man kombinerer mønstre, og disse behandles der som spesielle tegn. I vanlig **regex** må man ha benyttet mange escapes får å få til det samme, og koden blir vanskeligere å lese.
 
@@ -162,39 +162,33 @@ Regulære uttrykk baser seg uansett på følgende fem byggestener:
 
 La oss starte med metakarakterene.
 
-Punktum representerer altså alle karakterer, slik at f.eks. c.t matcher både **cat**, **cut** og **c-t**, men ikke **ct**. Dette bekreftes av:
+Punktum representerer altså alle karakterer, slik at f.eks. `c.t` matcher både **cat**, **cut** og **c-t**, men ikke **ct**. Dette bekreftes av:
 
 ```bash
-echo 'ascot cat cut cute cutter c-t c:t dog car ct' | grep 'c.t'
+echo 'as[cot] [cat] [cut] [cut]e [cut]ter [c-t] [c:t] car ct' | grep 'c.t'
 ```
 
-:::ansiout
-<pre class="ansi2html-content">
-as<span class="ansi1 ansi31">cot</span> <span class="ansi1 ansi31">cat</span> <span class="ansi1 ansi31">cut</span> <span class="ansi1 ansi31">cut</span>e <span class="ansi1 ansi31">cut</span>ter <span class="ansi1 ansi31">c-t</span> <span class="ansi1 ansi31">c:t</span> dog car ct
-</pre>
-:::
+```output
+echo 'ascot cat cut cute cutter c-t c:t car ct' | grep 'c.t'
+```
 
-`^mønster` representernoe på starten og `mønster$` noe på slutten av en linje:
+`^mønster` representer noe på starten og `mønster$` noe på slutten av en linje:
 
 ```bash
 echo 'err error' | grep '^e'
 ```
 
-:::ansiout
-<pre class="ansi2html-content">
-<span class="ansi1 ansi31">e</span>rr error
-</pre>
-:::
+```output
+[e]rr error
+```
 
 ```bash
 echo 'err error' | grep 'r$'
 ```
 
-:::ansiout
-<pre class="ansi2html-content">
-err erro<span class="ansi1 ansi31">r</span>
-</pre>
-:::
+```output
+err erro[r]
+```
 
 Dermed vi kan f.eks. finne filer med bestemte filendelser. Om vi har det følgende:
 
@@ -215,8 +209,8 @@ ls -1 *txt | grep '\.txt$'
 ```
 
 ```output
-kari.txt
-ola.txt
+kari[.txt]
+ola[.txt]
 ```
 
 Her måtte vi bruke backslash foran punktum for å få med **.txt**, men ikke **-txt**.
@@ -227,11 +221,9 @@ Stjerne (`*`) står for ingen eller flere av foregående tegn, slik at `o*h` mat
 echo 'h oh ooh o oo' | grep 'o*h'
 ```
 
-:::ansiout
-<pre class="ansi2html-content">
-<span class="ansi1 ansi31">h</span> <span class="ansi1 ansi31">oh</span> <span class="ansi1 ansi31">ooh</span> o oo
-</pre>
-:::
+```output
+[h] [oh] [ooh] o oo
+```
 
 Pluss (`+`) står for én eller flere forekomster av foregående tegn, slik at `do+g` matcher **dog** og **doog** osv, men ikke **dg**. Men for at det skal fungere, må man enten ta escape av plusstegnet eller bruke utvidet **`regex`**. For kontroll kan gjøre én av følgende (men for fremtiden, altså helst ikke den siste):
 
@@ -241,13 +233,11 @@ echo 'dg dog doog' | grep -E 'do+g'
 echo 'dg dog doog' | egrep 'do+g'
 ```
 
-:::ansiout
-<pre class="ansi2html-content">
-dg <span class="ansi1 ansi31">dog</span> <span class="ansi1 ansi31">doog</span>
-</pre>
-:::
+```output
+dg [dog] [doog]
+```
 
-Vi ser at itvidede regulære uttrykk (ERE) er mer lesbar og å foretrekke.
+Vi ser at utvidede regulære uttrykk (ERE) er mer lesbar og å foretrekke.
 
 **Merk**: I eksempelet med filendelse **.txt** lenger opp, må man benytte escape for punktum også med `grep -E`. Punktum behandles spesielt også i det utvidede tilfellet.
 
@@ -257,46 +247,82 @@ Vi ser at itvidede regulære uttrykk (ERE) er mer lesbar og å foretrekke.
 echo '911 9111 91111 911111 111' | grep -E '91{2}'
 ```
 
-:::ansiout
-<pre class="ansi2html-content">
-<span class="ansi1 ansi31">911</span> <span class="ansi1 ansi31">911</span>1 <span class="ansi1 ansi31">911</span>11 <span class="ansi1 ansi31">911</span>111 111
-</pre>
-:::
+```output
+[911] [911]1 [911]11 [911]111 111
+```
 
 ```bash
 echo '911 9111 91111 911111 111' | grep -E '91{2,}'
 ```
 
-:::ansiout
-<pre class="ansi2html-content">
-<span class="ansi1 ansi31">911</span> <span class="ansi1 ansi31">9111</span> <span class="ansi1 ansi31">91111</span> <span class="ansi1 ansi31">911111</span> 111
-</pre>
-:::
+```output
+[911] [9111] [91111] [911111] 111
+```
 
 ```bash
 echo '911 9111 91111 911111 111' | grep -E '91{2,3}'
 ```
 
-:::ansiout
-<pre class="ansi2html-content">
-<span class="ansi1 ansi31">911</span> <span class="ansi1 ansi31">9111</span> <span class="ansi1 ansi31">9111</span>1 <span class="ansi1 ansi31">9111</span>11 111
-</pre>
-:::
+```output
+[911] [9111] [9111]1 [9111]11 111
+```
 
-Her ser vi bruk av `\b`:
+Her ser vi bruk av `\b`, som står for ordgrense, altså enten begynnelsen eller slutten av et ord:
 
 ```bash
-echo cat bobcat | grep '\bcat'
+echo "cat scatter catalog scat" | grep -E '\bcat'
+```
+
+```output
+[cat] scatter [cat]alog scat
 ```
 
 ```bash
-echo cat catalog | grep '\bcat\b'
+echo "cat scatter catalog scat" | grep -E 'cat\b'
 ```
 
-Her ser vi bruk av både `\b`:
+```output
+[cat] scatter catalog s[cat]
+```
 
 ```bash
-echo 'err error' | grep -E '\b\w{3}\b'
+echo "cat scatter catalog scat" | grep -E '\bcat\b'
+```
+
+```output
+[cat] scatter catalog scat
+```
+
+`\w` er noe beslektet med `b`. Den representerer bokstaver, tall og underscore. Her er et par eksempler:
+
+```bash
+echo ":abc!" | grep -E '\w'
+```
+
+```output
+:[a][b][c]!
+```
+
+Det følgende er veldig likt, men vi legger til et `+` i etterkant, som alyså betyr én eller flere forekomster av foregående tegn:
+
+```bash
+echo ":abc!" | grep -E '\w+'
+```
+
+```output
+:[abc]!
+```
+
+og vi får en litt annen match på det samme (hvilket ikke synes ut fra fragekodingen).
+
+Det neste matcher ordlengder på 3 tegn:
+
+```bash
+echo 'er err error' | grep -E '\b\w{3}\b'
+```
+
+```output
+er [err] error
 ```
 
 Spørsmålstegn (`?`) betyr at tegnet foran er opsjonelt, slik at f.eks. `colou?r` matcher både det amerikanske **color** og det britiske **colour**.
@@ -306,11 +332,9 @@ echo 'color colour coloor' | grep 'colou\?r'
 echo 'color colour coloor' | grep -E 'colou?r'
 ```
 
-:::ansiout
-<pre class="ansi2html-content">
-<span class="ansi1 ansi31">color</span> <span class="ansi1 ansi31">colour</span> coloor
-</pre>
-:::
+```output
+[color] [colour] coloor
+```
 
 Pipe (`|`) benyttes for flere mønstre, som en eller-operator:
 
@@ -319,11 +343,9 @@ echo 'cat cats dog dogs ctdg' | grep 'cat\|dog'
 echo 'cat cats dog dogs ctdg' | grep -E 'cat|dog'
 ```
 
-:::ansiout
-<pre class="ansi2html-content">
-<span class="ansi1 ansi31">cat</span> <span class="ansi1 ansi31">cat</span>s <span class="ansi1 ansi31">dog</span> <span class="ansi1 ansi31">dog</span>s ctdg
-</pre>
-:::
+```output
+[cat] [cat]s [dog] [dog]s ctdg
+```
 
 Vi ser at utvidede uttrykk normalt er å foretrekke. (Og vi ser nå også hva som egentlig foregikk i det tidligere `linux|windows`-eksempelet vårt.)
 
@@ -333,11 +355,9 @@ Parenteser benyttes for gruppering. Her finne vi f.eks. alle forekomster av **se
 echo 'set sunset sunsunset' | grep -E '(sun)+set'
 ```
 
-:::ansiout
-<pre class="ansi2html-content">
-set <span class="ansi1 ansi31">sunset</span> <span class="ansi1 ansi31">sunsunset</span>
-</pre>
-:::
+```output
+set [sunset] [sunsunset]
+```
 
 Klassen `[abc]` representerer **a** eller **b** eller **c**, slik at `[LNT]ine` matcher både **Line**, **Nine** og **Tine**, men ikke **Katrine**.
 
@@ -345,11 +365,9 @@ Klassen `[abc]` representerer **a** eller **b** eller **c**, slik at `[LNT]ine` 
 echo 'Line Nine Tine Katrine' | grep '[LNT]ine'
 ```
 
-:::ansiout
-<pre class="ansi2html-content">
-<span class="ansi1 ansi31">Line</span> <span class="ansi1 ansi31">Nine</span> <span class="ansi1 ansi31">Tine</span> Katrine
-</pre>
-:::
+```output
+[Line] [Nine] [Tine] Katrine
+```
 
 `[^abc]` representerer det omvendte av `[abc]`, slik at `[^LNT]ine` matcher både **mine**, **sine**, **rine** og **fine**, men ikke lenger **Line** osv.
 
@@ -357,11 +375,9 @@ echo 'Line Nine Tine Katrine' | grep '[LNT]ine'
 echo 'Line Nine Tine Katrine' | grep '[^LNT]ine'
 ```
 
-:::ansiout
-<pre class="ansi2html-content">
-Line Nine Tine Kat<span class="ansi1 ansi31">rine</span>
-</pre>
-:::
+```output
+Line Nine Tine Kat[rine]
+```
 
 Klassen `[a-z]` representerer alfabetintervallet av alle små (engelske) bokstaver fra **a** til **z**, mens `[A-Z]` representerer de tilsvarende store. Om man vil, kan man se på begrensede intervaller, som f.eks. `[J-V]` osv. Norske bokstaver godtas ikke i intervaller, selv om **æ**, **ø** og **å** er søkbare tegn i **regex** ellers.
 
@@ -375,23 +391,20 @@ Under søkes det etter stor bokstav etter fulgt av liten, men ikke med forekomst
 echo 'Anne Beate Jan Tore' | grep '[A-K][a-m]'
 ```
 
-:::ansiout
-<pre class="ansi2html-content">
-Anne <span class="ansi1 ansi31">Be</span>ate <span class="ansi1 ansi31">Ja</span>n Tore
-</pre>
-:::
+```output
+Anne [Be]ate [Ja]n Tore
+```
 
 Det følgende søker etter alt som er bokstaver eller sifre. Og da matcher jo alt unntatt tegn som f.eks. pluss og minus:
 
 ```bash
-echo '+45 AB C3 python-3' | grep '[a-zA-Z0-9]'
+➜  echo '+++45 AB C3 python---3' | grepm '[a-zA-Z0-9]'
 ```
 
-:::ansiout
-<pre class="ansi2html-content">
-+<span class="ansi1 ansi31">4</span><span class="ansi1 ansi31">5</span> <span class="ansi1 ansi31">A</span><span class="ansi1 ansi31">B</span> <span class="ansi1 ansi31">C</span><span class="ansi1 ansi31">3</span> <span class="ansi1 ansi31">p</span><span class="ansi1 ansi31">y</span><span class="ansi1 ansi31">t</span><span class="ansi1 ansi31">h</span><span class="ansi1 ansi31">o</span><span class="ansi1 ansi31">n</span>-<span class="ansi1 ansi31">3</span>
-</pre>
-:::
+```output
+➜  echo '+++45 AB C3 python---3' | grepm '[a-zA-Z0-9]'
++++[4][5] [A][B] [C][3] [p][y][t][h][o][n]---[3]
+```
 
 Her derimot søkes det mer konkret etter en bokstav eller siffer etterfulgt av kolon:
 
@@ -399,11 +412,9 @@ Her derimot søkes det mer konkret etter en bokstav eller siffer etterfulgt av k
 echo '+: abc: 347: ---:' | grep '[a-zA-Z0-9]:'
 ```
 
-:::ansiout
-<pre class="ansi2html-content">
-+: ab<span class="ansi1 ansi31">c:</span> 34<span class="ansi1 ansi31">7:</span> ---:
-</pre>
-:::
+```utput
++: ab[c:] 34[7:] ---:
+```
 
 Under søker vi konkret etter siffer etterfulgt av stor bokstav etterfulgt av liten bokstav:
 
@@ -411,42 +422,34 @@ Under søker vi konkret etter siffer etterfulgt av stor bokstav etterfulgt av li
 echo 'AN3 Bn4 aX5 6vH 3Nr' | grep '[0-9][A-Z][a-z]'
 ```
 
-:::ansiout
-<pre class="ansi2html-content">
-AN3 Bn4 aX5 6vH <span class="ansi1 ansi31">3Nr</span>
-</pre>
-:::
+```output
+AN3 Bn4 aX5 6vH [3Nr]
+```
 
 Det er også mulig å legge inn flere tegn enn bokstaver å tall i klassen, f.eks. `[a-zA-Z0-9&_-]`. Dette inkluderer i tillegg til bokstaver og tall her ampersand, underscrore og minustegn.
 
-Eksemplene våre er illustrerende, men lite nyttige. La oss prøve et mer realistisk eksempel, f.eks. å sjekke om en e-post-adresse har lovlig format. Det følgende er langt fra perfekt, `[.a-zA-Z0-9_-]+@[.a-zA-Z]+`, men matcher i det minste adresser som: **jan_roger2.home@gmail.co.uk**, og **jan.roger-home@gmail.com** etc. Uttrykket godtar riktignok også adresser som **`.3---3...3___@.cm.`**, så det er et stykke igjen her. Men det illustrerer vel en del av funksjonaliteten av **regex** like fullt. Uttrykket vårt godtar mer spesifikt én eller flere klynger av bokstaver, tall og våre tre spesialtegn, etterfulgt av @ og en eller flere klynger av bokstaver og punktum. F.eks
+Eksemplene våre er illustrerende, men lite nyttige. La oss prøve et litt mer realistisk eksempel, f.eks. å sjekke om en e-post-adresse har lovlig format. Det følgende er langt fra perfekt, `[.a-zA-Z0-9_-]+@[.a-zA-Z]+`, men matcher i det minste adresser som: **jan_roger2.home@gmail.co.uk**, og **jan.roger-home@gmail.com** etc. Uttrykket godtar riktignok også adresser som **.3---3...3___@.cm.**, så det er et stykke igjen her. Men det illustrerer vel en del av funksjonaliteten av **regex** like fullt. Uttrykket vårt godtar mer spesifikt én eller flere klynger av bokstaver, tall og våre tre spesialtegn, etterfulgt av @ og en eller flere klynger av bokstaver og punktum. F.eks
 
 ```bash
 echo 'jan.roger-home@gmail.com' | grep -E '[.a-zA-Z0-9_-]+@[.a-zA-Z]+'
 ```
 
-:::ansiout
-<pre class="ansi2html-content">
-<span class="ansi1 ansi31">jan.roger-home@gmail.com</span>
-</pre>
-:::
+```output
+[jan.roger-home@gmail.com]
+```
 
 Om ikke annet ville uttrykket ha stoppet en adresse som **jan.roger@gmail2-com**.
 
 Men oppgaven var nok i vanskeligste laget, så la oss ta et annet. Her letes det fram produktnumre (kanskje) med et fast format og som slutter på **-333**. Det må være nøyaktig tre store bokstaver, bindestrek, tre sifre, bindestrek før 333.
 
 ```bash
-echo 'NOX-901-333 FOX-875-334' | grep -E '[A-Z]{3,3}\-[0-9]{3,3}\-3{3}'
+echo 'NOX-901-333 FOX-875-334' | grepm -E '[A-Z]{3,3}-[0-9]{3,3}-3{3}'
+
 ```
 
-:::ansiout
-<pre class="ansi2html-content">
-<span class="ansi1 ansi31">NOX-901-333</span> FOX-875-334
-</pre>
-:::
-
-Bindestrekene her trenger backslash foran seg selv ved bruk av `-E`.
-
+```output
+[NOX-901-333] FOX-875-334
+```
 
 ## 🔍 rg
 
@@ -462,11 +465,9 @@ med
 echo 'set sunset sunsunset' | rg '(sun)+set'
 ```
 
-:::ansiout
-<pre class="ansi2html-content">
-set <span class="ansi1 ansi31">sunset</span> <span class="ansi1 ansi31">sunsunset</span>
-</pre>
-:::
+```output
+set [sunset] [sunsunset]
+```
 
 osv. Men i tillegg til å være kjappere, har `rg` også noen brukervennlige tillegg, som søk i bestemte filtyper ved opsjonen `-t`, kortform for sifre (`\d`), alle mulige blanke (`\s`) mm. som er lette både å bruke og huske.
 
@@ -490,5 +491,16 @@ Følgende tabell oppsummerer metakarakterer i `rg` :
 
 Nå kan riktignok også `grep` utnytte `\b`, `\d` osv. ved `grep -P` (Perl mode), men for mindre erfarne brukere er det greit å ha slikt mer umiddelbart tilgjengelig.
 
-Regulære uttrykk benyttes også med andre kommandoer, særlig i `sed`, og skallskript, så vi kommer mer tilbake til dette.
+| Opsjon  | Matcher
+|--------:|:--------------------------------
+| `-s`    | Case-sensitivt søk 
+| `-s`    | Case-insensitivt søk 
+| `-t`    | Begrenser søk til angitt filtype
+| `-T`    | Eksluderer angitt filtype
+| `-n`    | Inkludere linjenumre
+| `-U`    | Multiline
+| `-w`	  | Mønstre omgitt av ordskiller
+| `-v`	  | Inverterer søkemønster
+| `-x`	  | Matche hele linjer
+| `-z`	  | Søk i zip-filer
 
