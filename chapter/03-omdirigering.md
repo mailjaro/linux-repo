@@ -43,7 +43,7 @@ doc/fil-1.tmp
 ./fil-2.tmp
 ```
 
-**rm**-kommandoen vil imidlertid ikke kunne håndtere dette som input. Men `xargs` lager en argumentliste fra dette (en horisontal liste), og sørger for at det følgende utføres
+`rm`-kommandoen vil imidlertid ikke kunne håndtere dette som input. Men `xargs` lager en argumentliste fra dette (en horisontal liste), og sørger for at det følgende utføres
 
 ```bash
 rm doc/fil-1.tmp ./fil-2.tmp

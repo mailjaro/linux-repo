@@ -18,9 +18,9 @@ En distribusjon kan gjør ulike valg av kjerne (kort fortalt det som sørger for
 
 Distribusjonene kan grupperes i tre hovedvarianter (med mange undergrupperinger) ut fra innebygd pakkesystem. Hovedvariantene er vist under, og noen av de vanligste distribusjonene fra hver er angitt i parentes:
 
-* Debian-baserte (inklusive Ubuntu, Mint, Pop!_OS, Elementary OS, MX og Zorin OS)
-* Pacman-baserte (inklusive Arch, Manjaro og EndeavourOS)
-* RPM-baserte (inklusive Fedora og Red Hat)
+- Debian-baserte (inklusive Ubuntu, Mint, Pop!_OS, Elementary OS, MX og Zorin OS)
+- Pacman-baserte (inklusive Arch, Manjaro og EndeavourOS)
+- RPM-baserte (inklusive Fedora og Red Hat)
 
 Entusiaster og drevne brukere har gjerne sine egne favoritter. For nybegynnere er valgene færre, selv om man også her har flere alternativer. Ubuntu og Mint er ofte de som anbefales nybegynnere (men på ingen måte bare de). Jeg benytter begge, og har også eksperimentert en del med Fedora. Sistnevnte er kjent for å ligge i front på ny funksjonalitet, men må gjerne gjennom mer initiell konfigurering før oppsettet blir slik man ønsker.
 
@@ -52,7 +52,7 @@ Man har to hovedmåter å installere programmer på under Linux. Man kan install
 
 Distrospesifikke programmer tilbys av de som utgir og vedlikeholder distribusjonen. Disse består av vanlige binærfiler, biblioteker og konfigurasjonsfiler. De får en vanlig plass i systemet (på **/usr/bin** og liknende) og vil inngå i systemets pakkadatabase hvor avhengigheter, konflikter og versjoner kontrolleres. Programmene benytter systemets øvrige biblioteker, hvilket gjør dem raske, lette og effektive.
 
-De universelle programpakken er ment å kjøre på flere (helst alle) distribusjoner og er selvforsynte programpakker som inneholder alt det de måtte trenge av biblioteker og støtteprogrammer. De kjører typisk i et begrenset og kontrollert miljø (*sandboxing*) for økt sikkerhet og for å isolerer dem mest mulig fra systemet. De installeres gjerne til egne kataloger (som `/var/lib/flatpak` eller `/snap`). Slike generelle pakker kan være tilgjengelig i nyere versjoner, ettersom veien til utviklerne er kortere, men kan være noe tregere pga. nevnte overhead. Snaps tilbys f.eks. default via App Center, og flatpak-programmer tilbys via Flathub. Førstnevnte system er default på Ubuntu og Mint, mens sistnevnte er default på f.eks. Fedora.
+De universelle programpakken er ment å kjøre på flere (helst alle) distribusjoner og er selvforsynte programpakker som inneholder alt det de måtte trenge av biblioteker og støtteprogrammer. De kjører typisk i et begrenset og kontrollert miljø (*sandboxing*) for økt sikkerhet og for å isolerer dem mest mulig fra systemet. De installeres gjerne til egne kataloger (som **/var/lib/flatpak** eller **/snap**). Slike generelle pakker kan være tilgjengelig i nyere versjoner, ettersom veien til utviklerne er kortere, men kan være noe tregere pga. nevnte overhead. Snaps tilbys f.eks. default via App Center, og flatpak-programmer tilbys via Flathub. Førstnevnte system er default på Ubuntu og Mint, mens sistnevnte er default på f.eks. Fedora.
 
 Det fins også flere slike universelle pakkesystemer, som Homebrew, Appimage, Nix/Nixpkgs og andre, men igjen er dette sjelden noe nye brukere trenger å fokuserer særlig på. Men *om* f.eks. en Ubuntu-brukere ønsker å installere flatpak fra Flathub, kan dette gjøres ved:
 
@@ -96,11 +96,11 @@ Men det er også mulig å bytte grensesnittet for å få best mulige tilpasning 
 
 Det er tre begreper her: *Desktop Environment* (DE), *Window Manager* (WM) og underliggende grafisk protokoller.
 
-* DE er en samling av programmer og applikasjoner som får Linux til å fungere grafisk. Startmeny, oppgavelinje, filutforsker, widgets, påloggingsskjerm, system for å velge innstillinger, temaer, farger og utseende, terminal og mye mer inngår her. Ulike DE-er tilbyr forskjeller både i utseende og programløsninger. 
+- DE er en samling av programmer og applikasjoner som får Linux til å fungere grafisk. Startmeny, oppgavelinje, filutforsker, widgets, påloggingsskjerm, system for å velge innstillinger, temaer, farger og utseende, terminal og mye mer inngår her. Ulike DE-er tilbyr forskjeller både i utseende og programløsninger. 
 
-* Et WM har ansvaret for opprettelsen og plasseringer av vinduer på skjermen. Den kontroller hvordan de stabler og organiserer seg, gir hvert applikasjonsvindu en tittelbar, en ramme med muligheter for størrelsesendring, flytting, minimalisering og liknende. DE og WM distribueres gjerne samlet som et par, men det kan følge med visse valg om man foretar et bytte. Og avanserte brukere vil sikkert kunne utnytte et enda større mulighetsrom.
+- Et WM har ansvaret for opprettelsen og plasseringer av vinduer på skjermen. Den kontroller hvordan de stabler og organiserer seg, gir hvert applikasjonsvindu en tittelbar, en ramme med muligheter for størrelsesendring, flytting, minimalisering og liknende. DE og WM distribueres gjerne samlet som et par, men det kan følge med visse valg om man foretar et bytte. Og avanserte brukere vil sikkert kunne utnytte et enda større mulighetsrom.
 
-* Underliggende sett av grafiske protokoller vil i praksis si enten X11 eller Wayland. Førstnevnt har vært med oss siden 1980-tallet og er, etter utallige tilpasninger, fremdeles levende og i utstrakt bruk. Av effektivitetshensyn, sikkerhetsutfordringer og annet, har man lenge ønsket å erstatte X11, og Wayland er ment å være etterfølgeren. Det er imidlertid mye, på mange nivåer, som på skrives om, og en full overgang til Wayland vil ta tid. Per nå fins det både X11- og Wayland-baserte DE/WM-løsninger, som GNOME og Cinnamon. Det forventes en fortsatt gradvis og stadig overgang til Wayland generelt.
+- Underliggende sett av grafiske protokoller vil i praksis si enten X11 eller Wayland. Førstnevnt har vært med oss siden 1980-tallet og er, etter utallige tilpasninger, fremdeles levende og i utstrakt bruk. Av effektivitetshensyn, sikkerhetsutfordringer og annet, har man lenge ønsket å erstatte X11, og Wayland er ment å være etterfølgeren. Det er imidlertid mye, på mange nivåer, som på skrives om, og en full overgang til Wayland vil ta tid. Per nå fins det både X11- og Wayland-baserte DE/WM-løsninger, som GNOME og Cinnamon. Det forventes en fortsatt gradvis og stadig overgang til Wayland generelt.
 
 Det fins egne kommandoer for å se hvilket DE og WD man faktisk kjører. Men kanskje er det greiere å installere kommandolinjeprogrammet **fastfetch** (en moderne utgave av tidligere **neofetch**) som skriver ut viktig informasjon om maskin og system,, deriblant denne. Her ser man f.eks. det relevante utdraget for min Ubuntu-installasjon:
 

@@ -1,12 +1,12 @@
 # 🕛 cron
 
-**`cron`** kan starte prosesser regelmessig. Når og hvilke styres **crontab**. (Muligens må man først installere ved hjelp av **`sudo apt install cron`**.) Brukeren kommer så igang ved å skrive:
+`cron` kan starte prosesser regelmessig. Når og hvilke styres **crontab**. (Muligens må man først installere ved hjelp av `sudo apt install cron`.) Brukeren kommer så igang ved å skrive:
 
 ```bash
 crontab -e
 ```
 
-Da åpnes en konfigureringsfil for **`cron`** tilknyttet brukeren. (Alle linjer i filen er i utgangspunktet kommentert ut med **#**.) Innledningsvis står et forklarende tekst, før man kommer til følgende to linjer nederst i filen.  Den første av disse er forklarende. Man kan så fjerne kommentarsymbolet **#** og fylle inn tidsangivelser og kommando etter ønske i siste linje.
+Da åpnes en konfigureringsfil for `cron` tilknyttet brukeren. (Alle linjer i filen er i utgangspunktet kommentert ut med **#**.) Innledningsvis står et forklarende tekst, før man kommer til følgende to linjer nederst i filen.  Den første av disse er forklarende. Man kan så fjerne kommentarsymbolet **#** og fylle inn tidsangivelser og kommando etter ønske i siste linje.
 
 ```output
 # m   h  dom mon dow   command
@@ -42,7 +42,7 @@ og man editerer ikke egen **crontab-fil**, med **root**s.  Under ser vi et eksem
 30 0 * * * cd /home/jan; /home/jan/bin/backUpSkript; shutdown -H +2 "User system backed up. System will halt in 2 minutes"
 ```
 
-Her gir **`shutdown`** to minutters varsel. Husk at en **`shutdown`** kan kanselleres ved:
+Her gir `shutdown` to minutters varsel. Husk at en `shutdown` kan kanselleres ved:
 
 ```bash
 sudo shutdown -c
@@ -57,9 +57,9 @@ cat /var/log/syslog | grep cron
 eller mer spesifikt ved **journalctl**, som f.eks.
 
 ```bash
-journalctl -u cron --since "1 hour ago"**
+journalctl -u cron --since "1 hour ago"
 ```
 
-Merk: **root** kjører en **`cron`**-jobb, kanskje hvert femte minutt, for å samle systemstatistikk. Skriptet for dette heter **debian-sa1**, og fyller opp mye av loggen for **`cron`**.
+Merk: **root** kjører en `cron`-jobb, kanskje hvert femte minutt, for å samle systemstatistikk. Skriptet for dette heter **debian-sa1**, og fyller opp mye av loggen for `cron`.
 
-Verken **`atv`**- eller **`cron`**-jobber kjører hvis PC-en er av (eller de tilhørende demonene ikke kjører) ved angitte tidspunkter.
+Verken `atv`- eller `cron`-jobber kjører hvis PC-en er av (eller de tilhørende demonene ikke kjører) ved angitte tidspunkter.

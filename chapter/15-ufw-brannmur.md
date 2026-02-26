@@ -93,13 +93,13 @@ og der står den (gulmarkert for tydeliggjøring).
 
 MAC-adressen til ruteren står gjerne fysisk på boksen.
 
-**`ufw`** støtter følgende nivåer på loggingen:
+`ufw` støtter følgende nivåer på loggingen:
 
-* **off**: Ingen logging.
-* **low**: Logger blokkerte pakker (anbefalt i normale situasjoner).
-* **medium**: Inkluderer ugyldige pakker, nye forbindelser og såkalt rate limited logging.
-* **high**: Logger pakker med og uten rate limiting.
-* **full**: Som high, men uten rate limiting.
+- **off**: Ingen logging.
+- **low**: Logger blokkerte pakker (anbefalt i normale situasjoner).
+- **medium**: Inkluderer ugyldige pakker, nye forbindelser og såkalt rate limited logging.
+- **high**: Logger pakker med og uten rate limiting.
+- **full**: Som high, men uten rate limiting.
 
 *Rate limiting* i denne sammenheng en begrensing på antall forsøk som beskyttelse mot *denial of service*-angrep.
 	

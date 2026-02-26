@@ -1,6 +1,6 @@
 # ✏️ rename
 
-For å navnendre eller flytte en større mengde filer, kan man benytte **mv** i mer eller mindre smarte skripts – eller man kan benytte **rename** (som typisk må installeres ved **sudo apt install rename**). Den utnytter **sed**-aktige mønstre i erstatninger av filnavn.
+For å navnendre eller flytte en større mengde filer, kan man benytte `mv` i mer eller mindre smarte skripts – eller man kan benytte `rename` (som typisk må installeres ved `sudo apt install rename`). Den utnytter `sed`-aktige mønstre i erstatninger av filnavn.
 
 Det følgende endrer f.eks. alle filendelser **.jpeg** til .**jpg**:
 
@@ -49,9 +49,9 @@ Videre har man ofte overført noen filer fra Windows med æ-er, ø-er og å-er, 
 ’Stiftelse av aksjeselskap.pdf’
 ```
 
-Det kan for det første se ut som **'** er en del av disse filnavnene, men det er ikke tilfelle. Linux rapporterer bare filer med slike spesielle tegn i navnet på denne måten. Vi kan bl.a. søke etter filene på vanlig måte (uten å ta hensyn til **'**).
+Det kan for det første se ut som `'` er en del av disse filnavnene, men det er ikke tilfelle. Linux rapporterer bare filer med slike spesielle tegn i navnet på denne måten. Vi kan bl.a. søke etter filene på vanlig måte (uten å ta hensyn til apostrof).
 
-Men vi kan ønske å overføre disse navnene til vanlig Linux-filnavn. Følgende ordner dette for alle filer (og kataloger) på gjeldende katalog (**opsjon -v** informer underveis om hvilke filer som endrer):
+Men vi kan ønske å overføre disse navnene til vanlig Linux-filnavn. Følgende ordner dette for alle filer (og kataloger) på gjeldende katalog (`opsjon -v` informer underveis om hvilke filer som endrer):
 
 ```bash
 rename -v 's/æ/ae/' *		# Erstatter alle æ med ae
@@ -71,7 +71,7 @@ Stiftelse-av-aksjeselskap.pdf
 
 Hvilket i Linux ser mye bedre ut.
 
-Ønsker man å samle flere **rename**-kommandoer i én linje, kan man f.eks. fjerne både venstre og høyreparenteser ved:
+Ønsker man å samle flere `rename`-kommandoer i én linje, kan man f.eks. fjerne både venstre og høyreparenteser ved:
 
 ```bash
 rename -v 's/\(//; s/\)//' *

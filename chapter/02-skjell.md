@@ -18,7 +18,7 @@ viser hvilket skjell man kjører.
 
 Selv om det ikke er nødvendig, ønsker mange etter hvert å konfigurere terminalen sin. Vi har alle våre preferanser når det gjelder font, farger på bakgrunn, tekst, spesielle ord, opsjoner og annet. Noen liker mørke tema, andre lyse. Noen vil ha delvis gjennomsiktig bakgrunn, andre ikke. Noen ønsker seg et minimalistisk kommandoprompt som kanskje bare viser navnet på gjeldende katalog, mens andre vil ha ett med mye tilleggsinformasjon i bestemte farger, kanskje over en linje eller to osv. Dette er ikke bare jåleri, men bidrar også til effektivisering av arbeidet.
 
-**`starship`** er nok det vanligste programmet for konfigurering av kommandoprompt. De har bl.a. ferdige *presets* man kan ta utgangspunkt i på hjemmesidene sine.
+**starship** er nok det vanligste programmet for konfigurering av kommandoprompt. De har bl.a. ferdige *presets* man kan ta utgangspunkt i på hjemmesidene sine.
 
 I tillegg ønsker man gjerne ha mulighet til å vise flere terminalvinduer på en effektiv måte. Man vil sikkert ønske seg flere faner, men også mulighet for å dele opp vinduet horisontalt og vertikalt på en effektiv måte. Terminal-multiplexing, som vi egentlig snakker om her, kan være innebygd i terminaler på enkelte distribusjoner (ingen av de vi ser på), men generelt må noe installeres for å få dette til. Tidligere gjorde man dette med en egen kommando, `screen` (med noen tilhørende tastatursnarveier som var vanskelig å huske). Nå er mulighetene flere. `tmux` er et populært valg for mange, særlig fordi det kan tilpasses en effektiv bruk ved hjelp via en fleksible konfigurering. 
 
@@ -65,7 +65,7 @@ Linux-samfunnet er stort, levende og preget av stadig innovasjon. I de senere å
 Eksempler på slike nye og gamle kommandoer er:
 
 - `fd` for `find`
--`rg` for `grep`
+- `rg` for `grep`
 - `sd` for `sed`
 - `eza` for `ls`
 - `bat` for `cat`

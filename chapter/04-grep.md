@@ -144,7 +144,7 @@ Til å begynne med, klarer man seg kanskje med eksemplene som er gitt. Men for �
 
 Det fins for det første flere standarder her, både POSIX- og Perl-baserte. For førstnevnte, som er av størst interesse for oss, fins det både BRE (*Basic Regular Expressions*) og ERE (*Extended Regular Expressions*). BRE er standard/inkludert i kommandoer som `grep`, `sed` og andre (hvilket vi kommer tilbake til), mens ERE inkluderes først ved bruk av opsjonen `-E`. Og siden datafolk ikke er glad i unødvendig skriving, er dette for grep tatt opp i kommandoen `egrep`. (Dvs. `egrep` er det samme som `grep -E`.) `egrep` er imidlertid utgående, og det anbefales å benytte `grep -E` med tanke på fremtidig kompatibilitet.
 
-Forskjellen mellom vanlig og utvidet **`regex`** går i hovedsak på at man ofte slipper escape av metakarakterer i det utvidede tilfellet, hvilket kan være en fordel (se mer om dette lenger ned). Tegn som `?`, `+`, `{`, `}`, `|`, `(` og `)` brukes nemlig mye når man kombinerer mønstre, og disse behandles der som spesielle tegn. I vanlig **`regex`** må man ha benyttet mange escapes får å få til det samme, og koden blir vanskeligere å lese.
+Forskjellen mellom vanlig og utvidet **regex** går i hovedsak på at man ofte slipper escape av metakarakterer i det utvidede tilfellet, hvilket kan være en fordel (se mer om dette lenger ned). Tegn som `?`, `+`, `{`, `}`, `|`, `(` og `)` brukes nemlig mye når man kombinerer mønstre, og disse behandles der som spesielle tegn. I vanlig **regex** må man ha benyttet mange escapes får å få til det samme, og koden blir vanskeligere å lese.
 
 Det fins også en tilsvarende variant av `grep -F`, `fgrep`, som også er utgående. Men `fgrep -F` er nyttig i enkelte sammenhenger der man skal søke gjennom filer med mange metakarakter. Kommandoen ser på teksten som en fiksert samling linjer med tegn som det kan søkes i.
 
@@ -249,7 +249,7 @@ dg <span class="ansi1 ansi31">dog</span> <span class="ansi1 ansi31">doog</span>
 
 Vi ser at itvidede regulære uttrykk (ERE) er mer lesbar og å foretrekke.
 
-**Merk**: I eksempelet med filendelse **`.txt`** lenger opp, må man benytte escape for punktum også med `grep -E`. Punktum behandles spesielt også i det utvidede tilfellet.
+**Merk**: I eksempelet med filendelse **.txt** lenger opp, må man benytte escape for punktum også med `grep -E`. Punktum behandles spesielt også i det utvidede tilfellet.
 
 `{n}` står for `n` repetisjoner av foregående tegn, `{n,}` står for minst n repetisjoner, mens {n,m} står for minst **n** og høyst **m** repetisjoner av foregående tegn. Dvs at `91{2}` matcher **911**, og `91{2,}` matcher **911**, **9111**, **91111**, ..., mens `91{2,3}` matcher **911** og **9111**, men ikke **91111**. Krøllparentes må espapes i vanlige uttrykk, så her er det greit på benytte den utvidede varianten:
 
@@ -312,7 +312,7 @@ echo 'color colour coloor' | grep -E 'colou?r'
 </pre>
 :::
 
-Pipe (|) benyttes for flere mønstre, som en eller-operator:
+Pipe (`|`) benyttes for flere mønstre, som en eller-operator:
 
 ```bash
 echo 'cat cats dog dogs ctdg' | grep 'cat\|dog'
@@ -419,7 +419,7 @@ AN3 Bn4 aX5 6vH <span class="ansi1 ansi31">3Nr</span>
 
 Det er også mulig å legge inn flere tegn enn bokstaver å tall i klassen, f.eks. `[a-zA-Z0-9&_-]`. Dette inkluderer i tillegg til bokstaver og tall her ampersand, underscrore og minustegn.
 
-Eksemplene våre er illustrerende, men lite nyttige. La oss prøve et mer realistisk eksempel, f.eks. å sjekke om en e-post-adresse har lovlig format. Det følgende er langt fra perfekt, `[.a-zA-Z0-9_-]+@[.a-zA-Z]+`, men matcher i det minste adresser som: **jan_roger2.home@gmail.co.uk**, og **jan.roger-home@gmail.com** etc. Uttrykket godtar riktignok også adresser som **`.3---3...3___@.cm.`**, så det er et stykke igjen her. Men det illustrerer vel en del av funksjonaliteten av **`regex`** like fullt. Uttrykket vårt godtar mer spesifikt én eller flere klynger av bokstaver, tall og våre tre spesialtegn, etterfulgt av @ og en eller flere klynger av bokstaver og punktum. F.eks
+Eksemplene våre er illustrerende, men lite nyttige. La oss prøve et mer realistisk eksempel, f.eks. å sjekke om en e-post-adresse har lovlig format. Det følgende er langt fra perfekt, `[.a-zA-Z0-9_-]+@[.a-zA-Z]+`, men matcher i det minste adresser som: **jan_roger2.home@gmail.co.uk**, og **jan.roger-home@gmail.com** etc. Uttrykket godtar riktignok også adresser som **`.3---3...3___@.cm.`**, så det er et stykke igjen her. Men det illustrerer vel en del av funksjonaliteten av **regex** like fullt. Uttrykket vårt godtar mer spesifikt én eller flere klynger av bokstaver, tall og våre tre spesialtegn, etterfulgt av @ og en eller flere klynger av bokstaver og punktum. F.eks
 
 ```bash
 echo 'jan.roger-home@gmail.com' | grep -E '[.a-zA-Z0-9_-]+@[.a-zA-Z]+'
@@ -491,6 +491,4 @@ Følgende tabell oppsummerer metakarakterer i `rg` :
 Nå kan riktignok også `grep` utnytte `\b`, `\d` osv. ved `grep -P` (Perl mode), men for mindre erfarne brukere er det greit å ha slikt mer umiddelbart tilgjengelig.
 
 Regulære uttrykk benyttes også med andre kommandoer, særlig i `sed`, og skallskript, så vi kommer mer tilbake til dette.
-
-
 

@@ -1,6 +1,6 @@
 # 1️⃣ sort
 
-**`sort`** er en nyttig kommando som mest benyttes i kombinasjon med andre for sortering av output. Den grunnleggende **`sort`**-notasjonen er:
+`sort` er en nyttig kommando som mest benyttes i kombinasjon med andre for sortering av output. Den grunnleggende `sort`-notasjonen er:
 
 ```bash
 sort [options] [fil]
@@ -13,11 +13,11 @@ sort fil.txt  > sortert-fil.txt
 sort fil.txt -o sortert-fil.txt
 ```
 
-**`sort`** vil ikke skille på små og store bokstaver i de flest distribusjoner, men for å være sikker kan man inkludere opsjonen **`-f`**.
+`sort` vil ikke skille på små og store bokstaver i de flest distribusjoner, men for å være sikker kan man inkludere opsjonen `-f`.
 
-Skal man sortere etter numeriske verdier, benyttes opsjonen **`-n`**, evt. **`-h`** for tall i såkalt human readable form, hvor tall som f.eks. 999k og 1M kan sammenliknes.
+Skal man sortere etter numeriske verdier, benyttes opsjonen `-n`, evt. `-h` for tall i såkalt human readable form, hvor tall som f.eks. 999k og 1M kan sammenliknes.
 
-Ofte vil man sortere etter innhold i bestemte kolonner. Da benyttes opsjon **`-k`**, så hvis man f.eks. har denne filen **fil.txt**:
+Ofte vil man sortere etter innhold i bestemte kolonner. Da benyttes opsjon `-k`, så hvis man f.eks. har denne filen **fil.txt**:
 
 ```output
 1 bente 3k
@@ -33,9 +33,9 @@ sort -k2  fil.txt
 sort -hk3 fil.txt
 ```
 
-**Merk**: **`-h`** forstår at f.eks. 247 er mindre enn 1k, men ikke at 2000 er større enn 1k. Stort sett går det bra om vi sortere output fra en skallkommando (fordi den ville skrevet 2k istedenfor 2000 ved bruk av human readable form), men for egenlagde data, må man huske på å gjøre om alle tall (eller ingen) til formen. Man må også skrive 2M og ikke 2000k osv. for at sorteringen skal bli riktig.
+**Merk**: `-h` forstår at f.eks. 247 er mindre enn 1k, men ikke at 2000 er større enn 1k. Stort sett går det bra om vi sortere output fra en skallkommando (fordi den ville skrevet 2k istedenfor 2000 ved bruk av human readable form), men for egenlagde data, må man huske på å gjøre om alle tall (eller ingen) til formen. Man må også skrive 2M og ikke 2000k osv. for at sorteringen skal bli riktig.
 
-Opsjon **`-r`** reverserer sorteringen og **`-u`** fjerner duplikatlinjer. Følgende kommando sorterer en fillisting etter filstørrelse (5. kolonne) fra stor til liten:
+Opsjon `-r` reverserer sorteringen og `-u` fjerner duplikatlinjer. Følgende kommando sorterer en fillisting etter filstørrelse (5. kolonne) fra stor til liten:
 
 ```bash
 l -lh | sort -hrk5
@@ -59,7 +59,7 @@ telle antall linjer i filen for deg, hvilket vi sammen kan kombinere ved
 tail -n$(($(wc -l < fil.txt)-1)) fil.txt | sort -hk3
 ```
 
-Ved **awk**-kommandoen, som forklares senere, kan det hele enklere gjøres ved:
+Ved awk-kommandoen, som forklares senere, kan det hele enklere gjøres ved:
 
 ```bash
 awk 'NR!=1' < fil.txt | sort -hk3
@@ -74,4 +74,4 @@ awk 'NR!=1' < fil.txt | sort -hk3 >> sortert-fil.txt
 
 Dermed får man også vist styrken av omdirigering i Linux.
 
-Kolonner skilles fra hverandre ved blanke tegn. Om det er benyttet andre skilletegn, som komma eller kolon, benyttes opsjonen **`-t`** etterfulgt av tegnet, altså f.eks. **`-t,`**, eller **`-t:`   ** osv.
+Kolonner skilles fra hverandre ved blanke tegn. Om det er benyttet andre skilletegn, som komma eller kolon, benyttes opsjonen `-t` etterfulgt av tegnet, altså f.eks. `-t,`, eller `-t:`    osv.
