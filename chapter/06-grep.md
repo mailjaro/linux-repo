@@ -1,6 +1,6 @@
 # 👀 grep og rg
 
-**`grep`** (som står for *Global search for Regular Expression*) er en svært nyttig og velbrukt Linux-kommando. Den finner bestemte mønstre i filer og er naturlig inkludert i alle Linux-distribusjoner. Den har etterhvert fått sin moderne variant kalt **`rg`** (kort for **rip-grep**) som er kjappere og enklere i bruk. Vi skal se på begge, men la oss starte med **`grep`**.
+`grep` (som står for *Global search for Regular Expression*) er en svært nyttig og velbrukt Linux-kommando. Den finner bestemte mønstre i filer og er naturlig inkludert i alle Linux-distribusjoner. Den har etterhvert fått sin moderne variant kalt `rg` (kort for rip-grep) som er kjappere og enklere i bruk. Vi skal se på begge, men la oss starte med `grep`.
 
 ## 🔎 grep
 
@@ -33,7 +33,7 @@ Ubuntu er en Debian-basert <span class="ansi1 ansi31">Linux</span>-variant.
 </pre>
 :::
 
-Opsjon **`-i`** sørger for man ikke skiller på små og store bokstaver, mens **`-n`** sørger for at linjenumre inkluderes i resultatet.
+Opsjon `-i` sørger for man ikke skiller på små og store bokstaver, mens `-n` sørger for at linjenumre inkluderes i resultatet.
 
 ```bash
 grep -in 'rt linux' testfil.txt
@@ -45,7 +45,7 @@ grep -in 'rt linux' testfil.txt
 </pre>
 :::
 
-Opsjonen **`-v`** gir komplementet og **`-w`** angir at mønstret må være et helt ord.
+Opsjonen `-v` gir komplementet og `-w` angir at mønstret må være et helt ord.
 
 ```bash
 grep -ivw "en" testfil.txt
@@ -63,15 +63,15 @@ Man kan søke flere filer ved ganske enkelt å inkludere flere filer i søket, s
 grep -c linux testfil-1.txt testfil-2.txt *.c *.py
 ```
 
-Her indikerer **`-c`** at man bare vil ha antallet linjer som matcher i (hver av) filene. Ønsker man å fortsette søk i alle underkataloger, kan man benytte **`-r`**. Den følger ikke symbolske linker (i motsetning til **`-R`**). Disse fungerer kanskje best med **`*`** eller **`.`** som filangivelse. Prøver man f.eks. ting som **`*.py`**, og ingen slike fins i gjeldende katalog, vil ikke **`grep`** gå ned i underkataloger ved bruk av **`-r`**.
+Her indikerer `-c` at man bare vil ha antallet linjer som matcher i (hver av) filene. Ønsker man å fortsette søk i alle underkataloger, kan man benytte `-r`. Den følger ikke symbolske linker (i motsetning til `-R`). Disse fungerer kanskje best med `*` eller `.` som filangivelse. Prøver man f.eks. ting som `*.py`, og ingen slike fins i gjeldende katalog, vil ikke `grep` gå ned i underkataloger ved bruk av `-r`.
 
-Ønsker man bare å liste filene, kan man benytte **`-l`**. Følgende kommando lister navnet til alle filer i filtreet under gjeldende katalog som inneholder ordet **while**, med små eller store bokstaver.
+Ønsker man bare å liste filene, kan man benytte `-l`. Følgende kommando lister navnet til alle filer i filtreet under gjeldende katalog som inneholder ordet **while**, med små eller store bokstaver.
 
 ```bash
 grep -riwl 'while' *
 ```
 
-Ønsker vi å søke etter flere ordmønstre, benyttes **`-E`** (som også gir flere muligheter, se neste underkapittel). Bruken fremgår av følgende eksempel (som også ber om linjenumre og ikke-case-sensitivt søk):
+Ønsker vi å søke etter flere ordmønstre, benyttes `-E` (som også gir flere muligheter, se neste underkapittel). Bruken fremgår av følgende eksempel (som også ber om linjenumre og ikke-case-sensitivt søk):
 
 ```bash
 grep -Ein 'linux|windows' testfil.txt
@@ -85,15 +85,15 @@ grep -Ein 'linux|windows' testfil.txt
 </pre>
 :::
 
-Ønsker man å printe bare det som matcher, ikke hele linjen, kan man bruke opsjon **`-o`**.
+Ønsker man å printe bare det som matcher, ikke hele linjen, kan man bruke opsjon `-o`.
 
-For strengt formaterte filer ønsker man kanskje å søke etter match for hele linjer. Da benyttes **`-x`**, som i:
+For strengt formaterte filer ønsker man kanskje å søke etter match for hele linjer. Da benyttes `-x`, som i:
 
 ```bash
 grep -x '20-Jan--06 15:24:35' system.log
 ```
 
-Ønsker man mer kontekst rundt fillinjene man finner, kan man benytte **`-A`**,**`-B`** og **`-C`**. Eksempelvis sier **`-A3`** at man i tillegg vil printe ut 3 linjer etter (after), **`-B2`** at man vil printe ut 2 linjer før (before) og **`-C5`** at man vil printe ut 5 linjer både før og etter. De følgende to kommandoene har altså samme viste effekt.
+Ønsker man mer kontekst rundt fillinjene man finner, kan man benytte `-A`,`-B` og `-C`. Eksempelvis sier `-A3` at man i tillegg vil printe ut 3 linjer etter (after), `-B2` at man vil printe ut 2 linjer før (before) og `-C5` at man vil printe ut 5 linjer både før og etter. De følgende to kommandoene har altså samme viste effekt.
 
 ```bash
 grep -in -A1 -B1 'debian' testfil.txt
@@ -108,7 +108,7 @@ grep -in -C1 'debian' testfil.txt
 </pre>
 :::
 
-Søker vi spesielt etter noe på starten av en linje, benyttes tegnet **`^`**. Tilsvarende symbol for noe på slutten av en linje er **`$`**.
+Søker vi spesielt etter noe på starten av en linje, benyttes tegnet `^`. Tilsvarende symbol for noe på slutten av en linje er `$`.
 
 ```bash
 grep -i '^linux' testfil.txt
@@ -132,7 +132,7 @@ Linux er et Unix-basert operativsystem basert på åpen kildekode<span class="an
 
 Dette er egentlig begge eksempler på såkalte regulære uttrykk (**`regex`**). Det er mye å si om dette, så vi skal se nærmere på dette i følgene underkapittel.
 
-**`grep`**-eksemplene vår har vært knyttet til søk i filer, men det er også vanlige å finne spesielle ting i output kommando fra kommandoer, f.eks.
+`grep`-eksemplene vår har vært knyttet til søk i filer, men det er også vanlige å finne spesielle ting i output kommando fra kommandoer, f.eks.
 
 ```bash
 ps -ef | grep -i bluetooth
@@ -140,29 +140,29 @@ ps -ef | grep -i bluetooth
 
 ## Regulære uttrykk, regex og egrep
 
-Til å begynne med, klarer man seg kanskje med eksemplene som er gitt. Men for å ta søkene til neste nivå, trenges **`regex`**.
+Til å begynne med, klarer man seg kanskje med eksemplene som er gitt. Men for å ta søkene til neste nivå, trenges **regex**.
 
-Det fins for det første flere standarder her, både POSIX- og Perl-baserte. For førstnevnte, som er av størst interesse for oss, fins det både BRE (*Basic Regular Expressions*) og ERE (*Extended Regular Expressions*). BRE er standard/inkludert i kommandoer som **`grep`**, **`sed`** og andre (hvilket vi kommer tilbake til), mens ERE inkluderes først ved bruk av opsjonen **`-E`**. Og siden datafolk ikke er glad i unødvendig skriving, er dette for grep tatt opp i kommandoen **`egrep`**. (Dvs. **`egrep`** er det samme som **`grep -E`**.) **`egrep`** er imidlertid utgående, og det anbefales å benytte **`grep -E`** med tanke på fremtidig kompatibilitet.
+Det fins for det første flere standarder her, både POSIX- og Perl-baserte. For førstnevnte, som er av størst interesse for oss, fins det både BRE (*Basic Regular Expressions*) og ERE (*Extended Regular Expressions*). BRE er standard/inkludert i kommandoer som `grep`, `sed` og andre (hvilket vi kommer tilbake til), mens ERE inkluderes først ved bruk av opsjonen `-E`. Og siden datafolk ikke er glad i unødvendig skriving, er dette for grep tatt opp i kommandoen `egrep`. (Dvs. `egrep` er det samme som `grep -E`.) `egrep` er imidlertid utgående, og det anbefales å benytte `grep -E` med tanke på fremtidig kompatibilitet.
 
-Forskjellen mellom vanlig og utvidet **`regex`** går i hovedsak på at man ofte slipper escape av metakarakterer i det utvidede tilfellet, hvilket kan være en fordel (se mer om dette lenger ned). Tegn som **`?`**, **`+`**, **`{`**, **`}`**, **`|`**, **`(`** og **`)`** brukes nemlig mye når man kombinerer mønstre, og disse behandles der som spesielle tegn. I vanlig **`regex`** må man ha benyttet mange escapes får å få til det samme, og koden blir vanskeligere å lese.
+Forskjellen mellom vanlig og utvidet **`regex`** går i hovedsak på at man ofte slipper escape av metakarakterer i det utvidede tilfellet, hvilket kan være en fordel (se mer om dette lenger ned). Tegn som `?`, `+`, `{`, `}`, `|`, `(` og `)` brukes nemlig mye når man kombinerer mønstre, og disse behandles der som spesielle tegn. I vanlig **`regex`** må man ha benyttet mange escapes får å få til det samme, og koden blir vanskeligere å lese.
 
-Det fins også en tilsvarende variant av **`grep -F`**, **`fgrep`**, som også er utgående. Men **`fgrep -F`** er nyttig i enkelte sammenhenger der man skal søke gjennom filer med mange metakarakter. Kommandoen ser på teksten som en fiksert samling linjer med tegn som det kan søkes i.
+Det fins også en tilsvarende variant av `grep -F`, `fgrep`, som også er utgående. Men `fgrep -F` er nyttig i enkelte sammenhenger der man skal søke gjennom filer med mange metakarakter. Kommandoen ser på teksten som en fiksert samling linjer med tegn som det kan søkes i.
 
 Regulære uttrykk baser seg uansett på følgende fem byggestener:
 
 * Bokstavelighet: for søk etter tekst som matcher eksakt, bokstav for bokstav.
   
-* Metakarakterer: spesielle symboler som punktum (**`.`**), hatt (**`^`**), dollartegn (**`$`**), stjerne (**`*`**), pluss (**`+`**), spørsmålstegn (**`?`**), pipe (**`|`**), parenteser **`( )`** , krøllparenteser **`{}`** og backslash (**`\`**).
+* Metakarakterer: spesielle symboler som punktum (`.`), hatt (`^`), dollartegn (`$`), stjerne (`*`), pluss (`+`), spørsmålstegn (`?`), pipe (`|`), parenteser `( )` , krøllparenteser `{}` og backslash (`\`).
   
-* Gruppering og gjenbruk: bruk av parenteser for organisering av tekstbiter til tekstenheter, evt. med lagring av det som matcher for senere bruk. Og gjerne i kombinasjon med eller- operatoren **`|`**.
+* Gruppering og gjenbruk: bruk av parenteser for organisering av tekstbiter til tekstenheter, evt. med lagring av det som matcher for senere bruk. Og gjerne i kombinasjon med eller- operatoren `|`.
 
-* Karakterklasser: for søk etter grupper av karakterer, som **`[abc]`**, **`[^abc]`**, **`[a-z]`**, **`[A-Z]`**, **`[a-zA-Z]`**, **`[0-9]`** og **`[a-zA-Z0-9]`**
+* Karakterklasser: for søk etter grupper av karakterer, som `[abc]`, `[^abc]`, `[a-z]`, `[A-Z]`, `[a-zA-Z]`, `[0-9]` og `[a-zA-Z0-9]`
 
-* Escaping: bruk av **`\`** for at spesialtegn skal tolkes kun som tegnet, som f.eks. at spesialtegnet **`.`** (som matcher alle tegn) ved **`\.`** bare representerer punktum.
+* Escaping: bruk av `\` for at spesialtegn skal tolkes kun som tegnet, som f.eks. at spesialtegnet `.` (som matcher alle tegn) ved `\.` bare representerer punktum.
 
 La oss starte med metakarakterene.
 
-Punktum representerer altså alle karakterer, slik at f.eks. **c.t** matcher både **cat**, **cut** og **c-t**, men ikke **ct**. Dette bekreftes av:
+Punktum representerer altså alle karakterer, slik at f.eks. c.t matcher både **cat**, **cut** og **c-t**, men ikke **ct**. Dette bekreftes av:
 
 ```bash
 echo 'ascot cat cut cute cutter c-t c:t dog car ct' | grep 'c.t'
@@ -174,7 +174,7 @@ as<span class="ansi1 ansi31">cot</span> <span class="ansi1 ansi31">cat</span> <s
 </pre>
 :::
 
-**`^mønster`** representernoe på starten og **`mønster$`** noe på slutten av en linje:
+`^mønster` representernoe på starten og `mønster$` noe på slutten av en linje:
 
 ```bash
 echo 'err error' | grep '^e'
@@ -221,7 +221,7 @@ ola.txt
 
 Her måtte vi bruke backslash foran punktum for å få med **.txt**, men ikke **-txt**.
 
-Stjerne (**`*`**) står for ingen eller flere av foregående tegn, slik at **`o*h`** matcher **h**, **oh**, **ooh**, **oooh** osv, men ikke **o** eller **oo** f.eks.
+Stjerne (`*`) står for ingen eller flere av foregående tegn, slik at `o*h` matcher **h**, **oh**, **ooh**, **oooh** osv, men ikke **o** eller **oo** f.eks.
 
 ```bash
 echo 'h oh ooh o oo' | grep 'o*h'
@@ -233,7 +233,7 @@ echo 'h oh ooh o oo' | grep 'o*h'
 </pre>
 :::
 
-Pluss (**`+`**) står for én eller flere forekomster av foregående tegn, slik at **`do+g`** matcher **dog** og **doog** osv, men ikke **dg**. Men for at det skal fungere, må man enten ta escape av plusstegnet eller bruke utvidet **`regex`**. For kontroll kan gjøre én av følgende (men for fremtiden, altså helst ikke den siste):
+Pluss (`+`) står for én eller flere forekomster av foregående tegn, slik at `do+g` matcher **dog** og **doog** osv, men ikke **dg**. Men for at det skal fungere, må man enten ta escape av plusstegnet eller bruke utvidet **`regex`**. For kontroll kan gjøre én av følgende (men for fremtiden, altså helst ikke den siste):
 
 ```bash
 echo 'dg dog doog' | grep 'do\+g'
@@ -249,9 +249,9 @@ dg <span class="ansi1 ansi31">dog</span> <span class="ansi1 ansi31">doog</span>
 
 Vi ser at itvidede regulære uttrykk (ERE) er mer lesbar og å foretrekke.
 
-**Merk**: I eksempelet med filendelse **`.txt`** lenger opp, må man benytte escape for punktum også med **`grep -E`**. Punktum behandles spesielt også i det utvidede tilfellet.
+**Merk**: I eksempelet med filendelse **`.txt`** lenger opp, må man benytte escape for punktum også med `grep -E`. Punktum behandles spesielt også i det utvidede tilfellet.
 
-**`{n}`** står for **`n`** repetisjoner av foregående tegn, **`{n,}`** står for minst **n** repetisjoner, mens **{n,m}** står for minst **n** og høyst **m** repetisjoner av foregående tegn. Dvs at **`91{2}`** matcher **911**, og **`91{2,}`** matcher **911**, **9111**, **91111**, ..., mens **`91{2,3}`** matcher **911** og **9111**, men ikke **91111**. Krøllparentes må espapes i vanlige uttrykk, så her er det greit på benytte den utvidede varianten:
+`{n}` står for `n` repetisjoner av foregående tegn, `{n,}` står for minst n repetisjoner, mens {n,m} står for minst **n** og høyst **m** repetisjoner av foregående tegn. Dvs at `91{2}` matcher **911**, og `91{2,}` matcher **911**, **9111**, **91111**, ..., mens `91{2,3}` matcher **911** og **9111**, men ikke **91111**. Krøllparentes må espapes i vanlige uttrykk, så her er det greit på benytte den utvidede varianten:
 
 ```bash
 echo '911 9111 91111 911111 111' | grep -E '91{2}'
@@ -283,7 +283,7 @@ echo '911 9111 91111 911111 111' | grep -E '91{2,3}'
 </pre>
 :::
 
-Her ser vi bruk av **`\b`**:
+Her ser vi bruk av `\b`:
 
 ```bash
 echo cat bobcat | grep '\bcat'
@@ -293,13 +293,13 @@ echo cat bobcat | grep '\bcat'
 echo cat catalog | grep '\bcat\b'
 ```
 
-Her ser vi bruk av både **`\b`**:
+Her ser vi bruk av både `\b`:
 
 ```bash
 echo 'err error' | grep -E '\b\w{3}\b'
 ```
 
-Spørsmålstegn (**`?`**) betyr at tegnet foran er opsjonelt, slik at f.eks. **`colou?r`** matcher både det amerikanske **color** og det britiske **colour**.
+Spørsmålstegn (`?`) betyr at tegnet foran er opsjonelt, slik at f.eks. `colou?r` matcher både det amerikanske **color** og det britiske **colour**.
 
 ```bash
 echo 'color colour coloor' | grep 'colou\?r'
@@ -312,7 +312,7 @@ echo 'color colour coloor' | grep -E 'colou?r'
 </pre>
 :::
 
-Pipe (**|**) benyttes for flere mønstre, som en eller-operator:
+Pipe (|) benyttes for flere mønstre, som en eller-operator:
 
 ```bash
 echo 'cat cats dog dogs ctdg' | grep 'cat\|dog'
@@ -325,7 +325,7 @@ echo 'cat cats dog dogs ctdg' | grep -E 'cat|dog'
 </pre>
 :::
 
-Vi ser at utvidede uttrykk normalt er å foretrekke. (Og vi ser nå også hva som egentlig foregikk i det tidligere **`linux|windows`**-eksempelet vårt.)
+Vi ser at utvidede uttrykk normalt er å foretrekke. (Og vi ser nå også hva som egentlig foregikk i det tidligere `linux|windows`-eksempelet vårt.)
 
 Parenteser benyttes for gruppering. Her finne vi f.eks. alle forekomster av **set** prefikset med én eller flere **sun**:
 
@@ -339,7 +339,7 @@ set <span class="ansi1 ansi31">sunset</span> <span class="ansi1 ansi31">sunsunse
 </pre>
 :::
 
-Klassen **`[abc]`** representerer **a** eller **b** eller **c**, slik at **`[LNT]ine`** matcher både **Line**, **Nine** og **Tine**, men ikke **Katrine**.
+Klassen `[abc]` representerer **a** eller **b** eller **c**, slik at `[LNT]ine` matcher både **Line**, **Nine** og **Tine**, men ikke **Katrine**.
 
 ```bash
 echo 'Line Nine Tine Katrine' | grep '[LNT]ine'
@@ -351,7 +351,7 @@ echo 'Line Nine Tine Katrine' | grep '[LNT]ine'
 </pre>
 :::
 
-**`[^abc]`** representerer det omvendte av **`[abc]`**, slik at **`[^LNT]ine`** matcher både **mine**, **sine**, **rine** og **fine**, men ikke lenger **Line** osv.
+`[^abc]` representerer det omvendte av `[abc]`, slik at `[^LNT]ine` matcher både **mine**, **sine**, **rine** og **fine**, men ikke lenger **Line** osv.
 
 ```bash
 echo 'Line Nine Tine Katrine' | grep '[^LNT]ine'
@@ -363,11 +363,11 @@ Line Nine Tine Kat<span class="ansi1 ansi31">rine</span>
 </pre>
 :::
 
-Klassen **`[a-z]`** representerer alfabetintervallet av alle små (engelske) bokstaver fra **a** til **z**, mens **`[A-Z]`** representerer de tilsvarende store. Om man vil, kan man se på begrensede intervaller, som f.eks. **`[J-V]`** osv. Norske bokstaver godtas ikke i intervaller, selv om **æ**, **ø** og **å** er søkbare tegn i **regex** ellers.
+Klassen `[a-z]` representerer alfabetintervallet av alle små (engelske) bokstaver fra **a** til **z**, mens `[A-Z]` representerer de tilsvarende store. Om man vil, kan man se på begrensede intervaller, som f.eks. `[J-V]` osv. Norske bokstaver godtas ikke i intervaller, selv om **æ**, **ø** og **å** er søkbare tegn i **regex** ellers.
 
-Sifrene representeres av **`[0-9]`**, og man kan selvsagt velge sub-intervaller.
+Sifrene representeres av `[0-9]`, og man kan selvsagt velge sub-intervaller.
 
-**`[a-zA-Z]`** representer både store og små bokstaver, mens **`[a-zA-Z0-9]`** representerer både små bokstaver, store bokstaver og sifre. Rekkefølgen av disse har ingenting å si i matching. La oss se på eksempler.
+`[a-zA-Z]` representer både store og små bokstaver, mens `[a-zA-Z0-9]` representerer både små bokstaver, store bokstaver og sifre. Rekkefølgen av disse har ingenting å si i matching. La oss se på eksempler.
 
 Under søkes det etter stor bokstav etter fulgt av liten, men ikke med forekomster for sent i alfabetet:
 
@@ -417,9 +417,9 @@ AN3 Bn4 aX5 6vH <span class="ansi1 ansi31">3Nr</span>
 </pre>
 :::
 
-Det er også mulig å legge inn flere tegn enn bokstaver å tall i klassen, f.eks. **`[a-zA-Z0-9&_-]`**. Dette inkluderer i tillegg til bokstaver og tall her ampersand, underscrore og minustegn.
+Det er også mulig å legge inn flere tegn enn bokstaver å tall i klassen, f.eks. `[a-zA-Z0-9&_-]`. Dette inkluderer i tillegg til bokstaver og tall her ampersand, underscrore og minustegn.
 
-Eksemplene våre er illustrerende, men lite nyttige. La oss prøve et mer realistisk eksempel, f.eks. å sjekke om en e-post-adresse har lovlig format. Det følgende er langt fra perfekt, **`[.a-zA-Z0-9_-]+@[.a-zA-Z]+`**, men matcher i det minste adresser som: **jan_roger2.home@gmail.co.uk**, og **jan.roger-home@gmail.com** etc. Uttrykket godtar riktignok også adresser som **`.3---3...3___@.cm.`**, så det er et stykke igjen her. Men det illustrerer vel en del av funksjonaliteten av **`regex`** like fullt. Uttrykket vårt godtar mer spesifikt én eller flere klynger av bokstaver, tall og våre tre spesialtegn, etterfulgt av @ og en eller flere klynger av bokstaver og punktum. F.eks
+Eksemplene våre er illustrerende, men lite nyttige. La oss prøve et mer realistisk eksempel, f.eks. å sjekke om en e-post-adresse har lovlig format. Det følgende er langt fra perfekt, `[.a-zA-Z0-9_-]+@[.a-zA-Z]+`, men matcher i det minste adresser som: **jan_roger2.home@gmail.co.uk**, og **jan.roger-home@gmail.com** etc. Uttrykket godtar riktignok også adresser som **`.3---3...3___@.cm.`**, så det er et stykke igjen her. Men det illustrerer vel en del av funksjonaliteten av **`regex`** like fullt. Uttrykket vårt godtar mer spesifikt én eller flere klynger av bokstaver, tall og våre tre spesialtegn, etterfulgt av @ og en eller flere klynger av bokstaver og punktum. F.eks
 
 ```bash
 echo 'jan.roger-home@gmail.com' | grep -E '[.a-zA-Z0-9_-]+@[.a-zA-Z]+'
@@ -445,12 +445,12 @@ echo 'NOX-901-333 FOX-875-334' | grep -E '[A-Z]{3,3}\-[0-9]{3,3}\-3{3}'
 </pre>
 :::
 
-Bindestrekene her trenger backslash foran seg selv ved bruk av **`-E`**.
+Bindestrekene her trenger backslash foran seg selv ved bruk av `-E`.
 
 
 ## 🔍 rg
 
-La oss se på den moderne varianten **`rg`**. For det første vil den fungere uten videre for alle **grep**-eksemplene vist i boken. F.eks. kunne vi erstattet:
+La oss se på den moderne varianten `rg`. For det første vil den fungere uten videre for alle **grep**-eksemplene vist i boken. F.eks. kunne vi erstattet:
 
 ```bash
 echo 'set sunset sunsunset' | grep -E '(sun)+set'
@@ -468,9 +468,9 @@ set <span class="ansi1 ansi31">sunset</span> <span class="ansi1 ansi31">sunsunse
 </pre>
 :::
 
-osv. Men i tillegg til å være kjappere, har **`rg`** også noen brukervennlige tillegg, som søk i bestemte filtyper ved opsjonen **`-t`**, kortform for sifre (**`\d`**), alle mulige blanke (**`\s`**) mm. som er lette både å bruke og huske.
+osv. Men i tillegg til å være kjappere, har `rg` også noen brukervennlige tillegg, som søk i bestemte filtyper ved opsjonen `-t`, kortform for sifre (`\d`), alle mulige blanke (`\s`) mm. som er lette både å bruke og huske.
 
-Følgende tabell oppsummerer metakarakterer i **`rg`** :
+Følgende tabell oppsummerer metakarakterer i `rg` :
 
 | Mønster      | Matcher
 |-------------:|:------------------
@@ -488,9 +488,9 @@ Følgende tabell oppsummerer metakarakterer i **`rg`** :
 | `\w`         | Ordtegn (bokstav, siffer, underscore)
 | `\s`         | Blank (mellomrom, tab, ny linje) 
 
-Nå kan riktignok også **`grep`** utnytte **`\b`**, **`\d`** osv. ved **`grep -P`** (Perl mode), men for mindre erfarne brukere er det greit å ha slikt mer umiddelbart tilgjengelig.
+Nå kan riktignok også `grep` utnytte `\b`, `\d` osv. ved `grep -P` (Perl mode), men for mindre erfarne brukere er det greit å ha slikt mer umiddelbart tilgjengelig.
 
-Regulære uttrykk benyttes også med andre kommandoer, særlig i **`sed`**, og skallskript, så vi kommer mer tilbake til dette.
+Regulære uttrykk benyttes også med andre kommandoer, særlig i `sed`, og skallskript, så vi kommer mer tilbake til dette.
 
 
 
