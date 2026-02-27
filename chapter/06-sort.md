@@ -1,6 +1,6 @@
 # 1️⃣ sort
 
-`sort` er en nyttig kommando som mest benyttes i kombinasjon med andre for sortering av output. Den grunnleggende `sort`-notasjonen er:
+`sort` er en nyttig kommando som kanskje mest benyttes i kombinasjon med andre for sortering av output. Den grunnleggende `sort`-notasjonen er:
 
 ```bash
 sort [options] [fil]
@@ -15,9 +15,57 @@ sort fil.txt -o sortert-fil.txt
 
 `sort` vil ikke skille på små og store bokstaver i de flest distribusjoner, men for å være sikker kan man inkludere opsjonen `-f`.
 
-Skal man sortere etter numeriske verdier, benyttes opsjonen `-n`, evt. `-h` for tall i såkalt human readable form, hvor tall som f.eks. 999k og 1M kan sammenliknes.
+Skal man sortere etter numeriske verdier, benyttes opsjonen `-n`, evt. `-h` for tall i såkalt *human readable form*, hvor tall som f.eks. 999k og 1M kan sammenliknes. Opsjon `-r` reverserer sorteringen og `-u` fjerner eventuelle duplikatlinjer.
 
-Ofte vil man sortere etter innhold i bestemte kolonner. Da benyttes opsjon `-k`, så hvis man f.eks. har denne filen **fil.txt**:
+**MERK:** `sort` har en svakhet i tolking av tall på *human readable form*. Dersom den blandes med tall som ikke er omgjort, kan `sort` sortere feil. F.eks. gir
+
+```bash
+printf "4k\n8000\n1M" | sort -h -r
+```
+
+sorteringen
+
+```output
+1M
+4k
+8000
+```
+
+som jo er matematisk feil. Derimot gir
+
+```bash
+printf "4k\n8k\n1M" | sort -h -r
+```
+
+korrekt output:
+
+```output
+1M
+8k
+4k
+```
+
+Opsjonen `-M` sørger for månedssortering, altså sortering etter måneder og ikke alfabetisk. Vanlig sortering av
+
+```output
+mar
+feb
+jan
+```
+
+ville f.eks. gitt rekkefølgen **feb-jan-mar**. Men `-M`.opsjonen forstår flere (engelske) månedformater og ville gitt det riktige:
+
+```bash
+printf "mar\nfeb\njan\n" | sort -M
+```
+
+```output
+jan
+feb
+mar
+```
+
+Mange filer og flere kommando-outputs grupperer data i kolonner. For å sortere etter kolonner benyttes opsjon `-k` etterfulgt av kolonnenummer. Dvs, om man har denne filen **fil.txt**:
 
 ```output
 1 bente 3k
@@ -25,53 +73,116 @@ Ofte vil man sortere etter innhold i bestemte kolonner. Da benyttes opsjon `-k`,
 2 cathrine 2k
 ```
 
-kan man naturlig gjøre følgende tre sorteringer:
+kan man
+
+1 - sorterer alfabetisk etter andre kolonne ved:
+
 
 ```bash
-sort -nk1 fil.txt
 sort -k2  fil.txt
+```
+
+```output
+3 adam 4k
+1 bente 3k
+2 cathrine 2k
+```
+
+2 - sortere numerisk etter tredje kolonne ved: 
+
+```bash
 sort -hk3 fil.txt
 ```
 
-**Merk**: `-h` forstår at f.eks. 247 er mindre enn 1k, men ikke at 2000 er større enn 1k. Stort sett går det bra om vi sortere output fra en skallkommando (fordi den ville skrevet 2k istedenfor 2000 ved bruk av human readable form), men for egenlagde data, må man huske på å gjøre om alle tall (eller ingen) til formen. Man må også skrive 2M og ikke 2000k osv. for at sorteringen skal bli riktig.
-
-Opsjon `-r` reverserer sorteringen og `-u` fjerner duplikatlinjer. Følgende kommando sorterer en fillisting etter filstørrelse (5. kolonne) fra stor til liten:
-
-```bash
-l -lh | sort -hrk5
+```output
+2 cathrine 2k
+1 bente 3k
+3 adam 4k
 ```
 
-Dersom filen har en overskrift i første linje, vil vi gjerne ekskludere den i sorteringen. Det er flere måter å få til det på. Vet man hvor mange linjer filen har totalt (f.eks. 4), vil
+3 - sortere omvendt numerisk etter første kolonne ved:
 
 ```bash
-tail -n3 fil.txt | grep -hk3
+sort -nk1r fil.txt
 ```
 
-kunne benyttes. Evt. vil
+```output
+3 adam 4k
+2 cathrine 2k
+1 bente 3k
+```
+
+Kolonner skilles fra hverandre ved blanke tegn. Om det er benyttet andre skilletegn, som komma eller kolon, benyttes opsjonen `-t` etterfulgt av tegnet, altså f.eks. `-t,`, eller `-t:` osv.
+
+Sortering av output fra en shell-commando er som nevnt en mye brukt anvendelse. Den følgende sortere en full fillisting etter filstørrelse (5. kolonne) fra stor til liten:
 
 ```bash
-wc -l < fil.txt
+ls -lh | sort -k5 -h -r
 ```
 
-telle antall linjer i filen for deg, hvilket vi sammen kan kombinere ved
+**Merk:** Vi har tidligere nevnt at det er tryggeste å ikke slå sammen opsjoner, men å holde dem separat. I dette tilfellet ville  `-k5hr` faktisk *ikke* reversert sorteringen på tross av `-r`.
+
+Det tryggeste her ville vært å skrive
 
 ```bash
-tail -n$(($(wc -l < fil.txt)-1)) fil.txt | sort -hk3
+ls -lh | sort -k5,5h -h -r
 ```
 
-Ved awk-kommandoen, som forklares senere, kan det hele enklere gjøres ved:
+siden også `-k5,5h` kun sorterer etter 5. kolonne alene, mens `-k5 -h` egentlig sorterer fra 5. kolonne og ut linjen.
+
+Her er et annet eksempel som finner de første prosessene som er startet:
 
 ```bash
-awk 'NR!=1' < fil.txt | sort -hk3
+ps -ef | sort -k2 -n | head
 ```
 
-Ønsker man å lage seg en ny sortert fil, med samme overskrift øverst, kan man gjøre:
+```output
+UID     PID    PPID  C STIME TTY    TIME CMD
+root      1       0  0 Feb25 ?      00:00:11 ...
+root      2       0  0 Feb25 ?      00:00:00 ...
+root      3       2  0 Feb25 ?      00:00:00 ...
+root      4       2  0 Feb25 ?      00:00:00 ...
+root      5       2  0 Feb25 ?      00:00:00 ...
+root      6       2  0 Feb25 ?      00:00:00 ...
+root      7       2  0 Feb25 ?      00:00:00 ...
+root      8       2  0 Feb25 ?      00:00:00 ...
+root     10       2  0 Feb25 ?      00:00:00 ...
+```
+
+Ofte har filer og output (som ovennevte) en overskrift i første linje,som man normalt vil ekskludere i sorteringen. Det er flere måter å få til det på. Anta vi har følgende fil
+
+```output
+NR NAVN      VERDI
+1  bente     3k
+3  adam      4k
+2  cathrine  2k
+```
+
+og ønsker å sortere stigende etter verdi-kolonnen. Da kan vi gjøre:
 
 ```bash
-head -n1 fil.txt > sortert-fil.txt;
-awk 'NR!=1' < fil.txt | sort -hk3 >> sortert-fil.txt
+{ head -n1 fil.txt; tail -n +2 fil.txt | sort -k3,3h; }
 ```
 
-Dermed får man også vist styrken av omdirigering i Linux.
+```output
+NR NAVN      VERDI
+2  cathrine  2k
+1  bente     3k
+3  adam      4k
+```
 
-Kolonner skilles fra hverandre ved blanke tegn. Om det er benyttet andre skilletegn, som komma eller kolon, benyttes opsjonen `-t` etterfulgt av tegnet, altså f.eks. `-t,`, eller `-t:`    osv.
+Her gir`head -n1 fil.txt` overskriftsraden og `tail -n +2 fil.txt` resten av filen, og sistnevnte sorteres.
+
+En alternativ løsning er følgende, som utnytter `awk`-kommandoen vi skal komme tilbake til.
+
+```bash
+awk 'NR==1{print; next} {print | "sort -k3,3h"}' fil.txt
+```
+
+```output
+NR NAVN      VERDI
+2  cathrine  2k
+1  bente     3k
+3  adam      4k
+
+```
