@@ -2,23 +2,23 @@
 
 ## ✂️ sed
 
-**sed**, kort for *stream editor*, erstatter tekstmønstre i filer eller kommandostrømmer. Den er mye brukt.
+`sed`, kort for *stream editor*, erstatter tekstmønstre i filer eller kommandostrømmer. Den er mye brukt.
  
-I det første eksempelet erstattes (**s** for *substitute*) første forekomst av **linux** med **LINUX** i hver linje i en tekstfil:
+I det første eksempelet erstattes (`s` for *substitute*) første forekomst av **linux** med **LINUX** i hver linje i en tekstfil:
 
 ```bash
 sed 's/linux/LINUX/' tekstfil.txt
 ```
 
-Resultatet sendes til skjermen, og selve tekstfilen blir uforandret. Man kan endre originalfilen ved opsjon **-i**:
+Resultatet sendes til skjermen, og selve tekstfilen blir uforandret. Man kan endre originalfilen ved opsjon `-i`:
 
 ```bash
 sed -i 's|linux|LINUX|' tekstfil.txt
 ```
 
-Eksempelet viser også at vi ikke trenger å bruke **/** som skilletegn, men også **|** eller punktum går like bra. Det kan være nyttig hvis man f.eks. skal slette/bytte ut forekomster av skråstrek.
+Eksempelet viser også at vi ikke trenger å bruke `/` som skilletegn, men også `|` eller punktum går like bra. Det kan være nyttig hvis man f.eks. skal slette/bytte ut forekomster av skråstrek.
 
-Ønsker man dessuten å lage en backup før filendringen, kan man etterfølge **-i** med en ønsket filendelse, f.eks. **.bak**:
+Ønsker man dessuten å lage en backup før filendringen, kan man etterfølge `-i` med en ønsket filendelse, f.eks. **.bak**:
 
 ```bash
 sed -i.bak 's/linux/LINUX/' tekstfil.txt
@@ -26,7 +26,7 @@ sed -i.bak 's/linux/LINUX/' tekstfil.txt
 
 Da får man en fil **tekstfil.txt.bak**, med innhold altså lik det **tekstfil.txt** hadde før endringen.
 
-Bare første forekomst i hver linje erstattes i disse eksemplene. Ønsker man å erstatte alle forekomster i en linje, kan man ende mønsteret med **g**. Det følgende erstatter eksempelvis alle blanke med bindestrek:
+Bare første forekomst i hver linje erstattes i disse eksemplene. Ønsker man å erstatte alle forekomster i en linje, kan man ende mønsteret med `g`. Det følgende erstatter eksempelvis alle blanke med bindestrek:
 
 ```bash
 sed 's/ /-/g' tekstfil.txt
@@ -38,7 +38,7 @@ Om man har en fil med tabulatorer og ønsker å bytte ut dem med mellomrom, kan 
 sed 's/\t/ /g' tekstfil.txt
 ```
 
-Start av linje symboliseres i mønstre av **/^** og slutten med **$/**. Om innholdet av en **testfil.txt** er:
+Start av linje symboliseres i mønstre av `/^` og slutten med `$/`. Om innholdet av en **testfil.txt** er:
 
 ```output
 bin
@@ -77,13 +77,13 @@ De siste er eksempler med regulære uttrykk, og vi skal si mer om det straks.
 
 Men før det, må vi se på flere aksjoner/instruksjoner.
 
-Man kan slette linjer som inneholder et bestemt mønster ved **d** (*delete*). Følgende linje sletter alle linjer dermed som inneholder teksten tiger:
+Man kan slette linjer som inneholder et bestemt mønster ved `d` (*delete*). Følgende linje sletter alle linjer dermed som inneholder teksten tiger:
 
 ```bash
 sed '/tiger/d' testfil.txt
 ```
 
-Man kan reversere **mønsteret** ved **!**, sånn at f.eks. det følgende sletter alle linjer som ikke inneholder mønsteret **tiger**:
+Man kan reversere **mønsteret** ved `!`, sånn at f.eks. det følgende sletter alle linjer som ikke inneholder mønsteret **tiger**:
 
 ```bash
 sed '/tiger/!d' testfil.txt
@@ -100,14 +100,14 @@ eller linjene 2 til 4 ved
 sed '2,4d' testfil.txt
 ```
 
-Isteden for å slette eller erstatte mønstre, kan man printe dem ved opsjonen **-n** og instruksjonen **p**. Det er nyttig i en testfase. Det følgende eksemplifiserer:
+Isteden for å slette eller erstatte mønstre, kan man printe dem ved opsjonen `-n` og instruksjonen `p`. Det er nyttig i en testfase. Det følgende eksemplifiserer:
 
 ```bash
 sed -n ’/tiger/p’ testfil.txt
 sed -n '2,4p' testfil.txt
 ```
 
-Ønsker man å legge inn nye linjer, kan man benytte instruksjonen **i** (for *insert*). Følgende legger inn en ny linje før linjer med mønsteret **tiger**:
+Ønsker man å legge inn nye linjer, kan man benytte instruksjonen `i` (for *insert*). Følgende legger inn en ny linje før linjer med mønsteret **tiger**:
 
 ```bash
 sed '/tiger/i Ny linje' testfil.txt
@@ -129,7 +129,7 @@ Man kan også legge inn ny linje før et bestemt linjenummer, f.eks. linje 5, me
 sed '5i fox.png' testfil.txt
 ```
 
-Ønsker man å legge inn linjer etter isteden for før, bytter man bare ut **i** med **a** (*append*):
+Ønsker man å legge inn linjer etter isteden for før, bytter man bare ut `i` med `a` (*append*):
 
 ```bash
 sed '/tiger/a Ny linje' testfil.txt
@@ -151,7 +151,7 @@ tiger.jpg
 lion.jpg
 ```
 
-Ønsker man å utføre flere ting i samme kommando, f.eks. både en erstatning og en sletting, kan man benytte **-e** som følger:
+Ønsker man å utføre flere ting i samme kommando, f.eks. både en erstatning og en sletting, kan man benytte `-e` som følger:
 
 ```bash
 sed -e 's/d/D/g' -e '/jpg/d' testfil.txt
@@ -164,9 +164,9 @@ Documents
 DownloaDs
 ```
 
-Her slettet vi alle linjer som inneholdt **jpg** og erstattet alle **d** med **D**.
+Her slettet vi alle linjer som inneholdt **jpg** og erstattet alle `d` med `D`.
 
-La oss se nå nærmere på regulære uttrykk. Som **grep**, har også sed en opsjon **-E** for utvidede regulære uttrykk. Se beskrivelser om **regex** i **grep**-kapittelet.
+La oss se nå nærmere på regulære uttrykk. Som `grep`, har også sed en opsjon `-E` for utvidede regulære uttrykk. Se beskrivelser om **regex** i **grep**-kapittelet.
 
 Betydningen av punktum og stjerne er som beskrevet der. Det følgende erstatter dermed alt etter **ig** med **og** i testfilen vår:
 
@@ -208,7 +208,7 @@ echo '+47-914N' | sed -E 's/[^0-9]//g'
 47914
 ```
 
-Her vises bruk av repetisjoner (2 eller flere **t** byttes ut med **T**):
+Her vises bruk av repetisjoner (2 eller flere `t` byttes ut med `T`):
 
 ```bash
 echo hot hetttte hattte  | sed -E 's/t{2,}/T/g'
@@ -218,7 +218,8 @@ echo hot hetttte hattte  | sed -E 's/t{2,}/T/g'
 hot heTe haTe
 ```
 
-Grupperinger kan også brukes. Her søker det etter tre bokstavgrupper, og rekkefølgen av disse byttes om (med kolon imellom). Merk at første ordgruppe i slike grupperinger kan refereres med **\\1**, andre med **\\2** osv.
+Grupperinger kan også brukes. Her søker det etter tre bokstavgrupper, og rekkefølgen av disse byttes om (med kolon imellom). Merk at første ordgruppe i slike grupperinger kan refereres med \
+`\1`, andre med `\2` osv.
 
 ```bash
 echo 'Jan Roger Sandbakken' | sed -E 's/([A-Za-z]+) ([A-Za-z]+) ([A-Za-z]+)/\3:\1:\2/'
@@ -228,7 +229,7 @@ echo 'Jan Roger Sandbakken' | sed -E 's/([A-Za-z]+) ([A-Za-z]+) ([A-Za-z]+)/\3:\
 Sandbakken:Jan:Roger
 ```
 
-La oss avslutte med eksempel som viser styrken og fleksibiliteten med regulære uttrykk i **sed**. Dette gjør om tall som f.eks. 84500000 til 84,500,000:
+La oss avslutte med eksempel som viser styrken og fleksibiliteten med regulære uttrykk i `sed`. Dette gjør om tall som f.eks. 84500000 til 84,500,000:
 
 ```bash
 echo 84500000 | sed -E ':a;s/([0-9])([0-9]{3})(,|$)/\1,\2\3/;ta'
@@ -256,7 +257,7 @@ echo 84500000 | sed -E ':a;s/([0-9])([0-9]{3})( |$)/\1 \2\3/;ta'
 84 500 000
 ```
 
-Det er mye som foregår her. Starten **:a;** og slutten **;ta** sørger både navngir søket/erstatningen som **a**, og det itereres så lenge det kan gjøres erstatninger. Det søkes etter single tall før gruppe med tre sifre etterfulgt enten av komma eller slutt på linje. Deretter settes det inn et komma mellom det single tallet og gruppen av tre sifre. Dermed blir kommaer satt korrekt inn iterativt fra høyre til venstre.
+Det er mye som foregår her. Starten `:a;` og slutten `;ta` sørger både navngir søket/erstatningen som **a**, og det itereres så lenge det kan gjøres erstatninger. Det søkes etter single tall før gruppe med tre sifre etterfulgt enten av komma eller slutt på linje. Deretter settes det inn et komma mellom det single tallet og gruppen av tre sifre. Dermed blir kommaer satt korrekt inn iterativt fra høyre til venstre.
 
 La oss koste på oss en ekstra forklaring her. Første iterasjon blir:
 
@@ -268,11 +269,11 @@ echo 84500000 | sed -E 's/([0-9])([0-9]{3})(:|$)/\1:\2\3/'
 84500:000
 ```
 
-I starttallet 84500000 blir **\\3** slutt på linje, **\\2** den avsluttende siffergruppen 000, mens **\\1** blir sifferet før denne gruppen. Det legges inn et kolon mellom **\\1** og **\\2**, og vi får outputen over
+I starttallet 84500000 blir `\3` slutt på linje, `\2` den avsluttende siffergruppen 000, mens `\1` blir sifferet før denne gruppen. Det legges inn et kolon mellom `\1` og `\2`, og vi får outputen over
 
-I neste iterasjon går man løs på tallet 84500:000. Her blir **\\3** de avsluttende tre sifrene 000, mens \2 blir gruppe 500 og \1 sifferet foran det igjen. Det dyttes inn et kolon mellom de to sistnevnte, og vi får output som vist:
+I neste iterasjon går man løs på tallet 84500:000. Her blir `\3` de avsluttende tre sifrene 000, mens `\2` blir gruppe 500 og \1 sifferet foran det igjen. Det dyttes inn et kolon mellom de to sistnevnte, og vi får output som vist:
 
-I neste iterasjon går man løs på tallet 84500:000. Her blir **\\3** de avsluttende tre sifrene 000, mens **\\2** blir gruppe 500 og \1 sifferet foran det igjen. Det dyttes inn et kolon mellom de to sistnevnte, og vi får output som vist:
+I neste iterasjon går man løs på tallet 84500:000. Her blir `\3` de avsluttende tre sifrene 000, mens `\2` blir gruppe 500 og `\1` sifferet foran det igjen. Det dyttes inn et kolon mellom de to sistnevnte, og vi får output som vist:
 
 ```bash
 echo 84500:000 | sed -E 's/([0-9])([0-9]{3})(:|$)/\1:\2\3/'
@@ -286,7 +287,7 @@ Deretter får man ikke gjort flere erstatninger og iterasjonen stopper.
 
 ## ✂️ sd
 
-Den moderne rust-utgaven av **sed** heter **sd**, som er enklere både til grunnleggende bruk og til mer avansert bruk med regulære uttrykk. La oss starte med det grunnleggende.
+Den moderne rust-utgaven av `sed` heter `sd`, som er enklere både til grunnleggende bruk og til mer avansert bruk med regulære uttrykk. La oss starte med det grunnleggende.
 
 Hvis man f eks skal bytte ut alle forekomster av ordet *windows* med ordet *linux* i sett av filer, kan man gjøre:
 
@@ -294,9 +295,9 @@ Hvis man f eks skal bytte ut alle forekomster av ordet *windows* med ordet *linu
 sd 'windows' 'linux' *.txt
 ```
 
-❗**Merk:** **sd** bytter ut alle forekomster i filen, ikke bare første forekomst i hver linje som **sed** (med mindre **g**-endelsen inkluderes).
+❗**Merk:** `sd` bytter ut alle forekomster i filen, ikke bare første forekomst i hver linje som `sed` (med mindre **g**-endelsen inkluderes).
 
-Ønsker man bare å se sluttresultatet uten å endre filene, kan man benytte preview-opsjonen **-p**:
+Ønsker man bare å se sluttresultatet uten å endre filene, kan man benytte preview-opsjonen `-p`:
 
 ```bash
 sd  -p 'windows' 'linux' *.txt
@@ -304,7 +305,7 @@ sd  -p 'windows' 'linux' *.txt
 
 Den ferdige erstattede outputen printes til skjermen og fargekoder de nye mønstrene fint og oversiktlig.
 
-Opsjonen **-n** kan benyttes til å begrense antall substitusjoner. Andre opsjoner inkluderes som flag (REGEX-flagg). Dette inkluderer
+Opsjonen `-n` kan benyttes til å begrense antall substitusjoner. Andre opsjoner inkluderes som flag (**REGEX**-flagg). Dette inkluderer
 
 * c - det skilles mellom store og små bokstaver (default)
           
@@ -317,13 +318,13 @@ Opsjonen **-n** kan benyttes til å begrense antall substitusjoner. Andre opsjon
 * s - gjør at `.` matcher *newline*
           
 * w - match bare av hele ord
-Disse må etterfølge flaggopsjonen **-f**. Eksempelvis, for å ikke skille mellom små og store bokstaver (**-i**), samt bare matche hele ord (**-w**), kan man gjøre:
+Disse må etterfølge flaggopsjonen `-f`. Eksempelvis, for å ikke skille mellom små og store bokstaver (`-i`), samt bare matche hele ord (`-w`), kan man gjøre:
 
 ```bash
 sd -p -fiw 'windows' 'linux' *.txt
 ```
 
-(her også i preview-mode pga **-p**)
+(her også i preview-mode pga `-p`)
 
 ❗**Merk:** Eventuelle store bokstaver fra mønster nr. 1 blir her gjort om til små (siden mønster nr. 2 kun inneholder små bokstaver).
 
@@ -339,9 +340,9 @@ og denne punktum og dobbelblanke med punktum og singelblank:
 sd -p '\.  ' '. '
 ```
 
-❗**Merk:** Vi må benytte **\t** også i mønster 2 for å angi en tabulator i eksempel 1, men bare punktum for punktum i mønster 2 i det siste eksempelet.
+❗**Merk:** Vi må benytte `\t` også i mønster 2 for å angi en tabulator i eksempel 1, men bare punktum for punktum i mønster 2 i det siste eksempelet.
 
-Mye av den grunnleggende bruken er dekket med disse eksemplene. La oss se mer på bruk av regulære uttrykk. **sd** følger samme konvensjon som **rg**, forklart i kapittelet om **grep/rg**. 
+Mye av den grunnleggende bruken er dekket med disse eksemplene. La oss se mer på bruk av regulære uttrykk. `sd` følger samme konvensjon som `rg`, forklart i kapittelet om **grep/rg**. 
 
 Det følgende erstatter eventuelt dermed all forekomster av **at** og **AT** med **@** (**|** representerer **eller**):
 
@@ -353,7 +354,7 @@ echo 'meatdisney.com youATdisney.com' | sd 'at|AT' '@'
 me@disney.com you@disney.com
 ```
 
-``bash
+```bash
 echo 'a1c23e456' | sd '\d' ':'
 ```
 
@@ -361,9 +362,13 @@ echo 'a1c23e456' | sd '\d' ':'
 a:c::e:::
 ```
 
-sd '[LNT]ine' 'Kl'
+```bash
+echo 'Line Nine Tine Katrine' | sd '[LNT]' 'Kl'
+```
 
-echo 'Line Nine Tine Katrine'
+```output
+Kline Kline Kline Katrine
+```
 
 Anta vi har følgende tekstblokk i en fil **test.md**, og ønsker å erstatte innmaten (de tre linjene) ut kun ut fra kriteriet at de ligger mellom et hode **start** og en hale **end**.
 
@@ -395,9 +400,9 @@ start
 end
 ```
 
-Kommandoen utnytter flagget **`(?s)`**, som søker over flere linjer (dvs. *newline* ignoreres) fra ordet **start** (**`$1`**) via innmaten (**`$2`**) til ordet **end** (**`$3`**).
+Kommandoen utnytter flagget `(?s)`, som søker over flere linjer (dvs. *newline* ignoreres) fra ordet **start** (`$1`) via innmaten (`$2`) til ordet **end** (`$3`).
 
-**Merk**: Hadde vi droppet paranteser rundt det midtre mønsteret (innmaten) **`.*?`**, som vi kunne gjort, ville **end** blitt lageret som **`$2`**.
+**Merk**: Hadde vi droppet paranteser rundt det midtre mønsteret (innmaten) `.*?`, som vi kunne gjort, ville **end** blitt lageret som `$2`.
 
 Anta omvendt at man ønsker å bytte ut hodet **start** og halen **end** til denne tekstblokken. Da kan man gjøre
 
@@ -415,7 +420,7 @@ HODE
 HALE
 ```
 
-**Merk**: Hadde man skrevet **`HODE $2 HALE`** med mellomrom, hadde man introduert uønskede blanke tegn i filen. Og hadde man skrevet **`HODE$2HALE`** uten noe form for skille, ville man fått en feilmeling om flertydighet i input. Syntaksen  **`HODE${2}HALE`** er derfor korrekt i tilfeller som dette.
+**Merk**: Hadde man skrevet `HODE $2 HALE` med mellomrom, hadde man introduert uønskede blanke tegn i filen. Og hadde man skrevet `HODE$2HALE` uten noe form for skille, ville man fått en feilmeling om flertydighet i input. Syntaksen  `HODE${2}HALE` er derfor korrekt i tilfeller som dette.
 
 Det siste eksempelet er nyttig når man f.eks. ønsker å konvertere mellom ulike avsnittsstiler i et MD-dokument. I MD har man både kodeblokker og egedefinerte avsnittstiler som er tekst omsluttet av hode og hale som i eksemplene. De førstnevnte blokkene ser slik ut (men hvor backticks er erstattet av enkle anførselstegn for ikke å forvirre MD-editoren min):
 
@@ -440,7 +445,7 @@ Følgende kommando fungerer:
 ```bash
 sd '(?s)(```output)(.*?)(```)' ':::nyoutput${2}:::' test.md
 ```
-Den ser på input som tre ordgrupper (hode-innmat-hale, **`$1-$2-$3`**) og sørger for rett substituering.
+Den ser på input som tre ordgrupper (hode-innmat-hale, `$1-$2-$3`) og sørger for rett substituering.
 
 Output fra **ansi2html** er på formen (delvis forkortet av hensyn til lesbarhet):
 
@@ -480,7 +485,7 @@ Igjen kan man se på input bestående av ordrupper som går over flere linjer:
  [ </pre> ] - [ NOE ] - [ </HTML> ]"
 ```
 
-Her består den av seks ord, og man ønsker å beholde det andre, tredje og fjerde (**`$2 $3 $4`**). Om input er lagret i filen **test.html**, gir dermed følgende kommando ønsket output
+Her består den av seks ord, og man ønsker å beholde det andre, tredje og fjerde (`$2 $3 $4`). Om input er lagret i filen **test.html**, gir dermed følgende kommando ønsket output
 
 ```bash
 sd '(?s)(.*?)(<pre class)(.*?)(</pre>)(.*?)(</html>)' '$2$3$4' test.html
@@ -495,8 +500,10 @@ Eller om man vil gjøre alt i én kommando:
 
 og alt får endelig ønskede, fargekodene utseende:
 
+```output
 :::ansiout
 <pre class="ansi2html-content">
 e<span class="ansi1 ansi31">r</span><span class="ansi1 ansi31">r</span>o<span class="ansi1 ansi31">r</span>
 </pre>
 :::
+```

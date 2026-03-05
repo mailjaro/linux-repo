@@ -1,20 +1,20 @@
 # Ekstra filattributter
 
 Det fins to typer filattributter som kommer i tillegg til de vanlige. Vi
-har *extended file attributes* (**`xattrs`**) og *immutable file
+har *extended file attributes* (`xattrs`) og *immutable file
 attributes*. Førstnevnt er metadata som kan tilknyttes filer og
 kataloger, både for vanlige brukere til hjelp i filhåndtering og
 sikkerhetrelatert data som primært kan utnyttes i
 tilgangskontrollsystemer som **apparmor** (tilgjengelig på
-**Debian**-distribusjoner, se senere kapittel) og **SELinux**
-(tilgjengelig på **Red Hat**-beslektede distribusjoner). Sistnevnte
+Debian-distribusjoner, se senere kapittel) og SELinux
+(tilgjengelig på Red Hat-beslektede distribusjoner). Sistnevnte
 filattributter beskriver ett atrtributtsett som kan tillegges filer og
 kataloger for en ekstrabeskyttelse, at de ikke kan slettes ved uhell
 o.l. Vi skal si litt om begge.
 
 ## Extended file attributes: setfattr og getfattr
 
-**`xattrs`** innfører altså på metadata, og disse grupperes i fire
+`xattrs` innfører altså på metadata, og disse grupperes i fire
 hovedtyper:
 
 -   **user**: Kan defineres fritt av bruker
@@ -69,14 +69,14 @@ getfattr -n user.author Book-no-1.odt
 \# file: Book-no-1.odt\
 user.author=\"Jan R Sandbakken\"
 
-For å fjerne et metanavn, benytt -**x**:
+For å fjerne et metanavn, benytt `-x`:
 
 setfattr -x user.checksum.sha256sum Book-no-1.odt
 
 Det er klart at vi kan legge inn metanavn som forfatter i dokumenter fra
 flere applikasjoner, f.eks. i de fra **Libreoffice**. Men disse
 metanavnene lar seg ikke søke på. I utvidede attributter er de
-imidlertid søkbare. Som sagt, klarer ikke **find**-kommandoen dette i
+imidlertid søkbare. Som sagt, klarer ikke find-kommandoen dette i
 utgangspunkt, men vi kan får det jo til likevel. Anta f.eks. vi har
 bøker med ulike forfattere:
 
@@ -90,7 +90,7 @@ user.author=\"Henrik Ibsen\"
 
 \# file: Book-no-1.odt\
 user.author=\"Jan R Sandbakken\"\
-user.checksum.md5sum=\"dc2b210ad25b49abc52a805ff679b128\"
+user.checksum.md5sum=\"dc2b210ad25b49abc52a805ff679b128\"**
 ```
 
 Da kan vi søk etter bestemte metanavn, f.eks. etter bestemt forfatter:

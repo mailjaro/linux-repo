@@ -1,6 +1,6 @@
 # 🧱 ufw (brannmur)
 
-**`ufw`** står for *Uncomplicated Firewall* og gir en brannmur som kan startes, stoppes og modifiseres fra kommandolinjen. Den medfølger Ubuntu, og man kan sjekke om den kjører eller ei ved:
+`ufw` står for *Uncomplicated Firewall* og gir en brannmur som kan startes, stoppes og modifiseres fra kommandolinjen. Den medfølger Ubuntu, og man kan sjekke om den kjører eller ei ved:
 
 ```bash
 sudo ufw status
@@ -28,7 +28,7 @@ New profiles: skip
 
 Output her viser settinger som er godt egnet for privat bruk. Bare utgående trafikk tillates (dvs. trafikk initiert fra innsiden), mens forespørsler utenfra blokkeres. For de som setter opp vebbtjenere og annet, må mer åpnes opp, og konfigureringen kompliseres.
 
-De fleste rutere for hjemmenettverk har en brannmur med samme policy, så man kan vurdere å skru av **`ufw`** når man er hjemme.
+De fleste rutere for hjemmenettverk har en brannmur med samme policy, så man kan vurdere å skru av `ufw` når man er hjemme.
 
 For å sjekke loggene kan vi gjøre
 

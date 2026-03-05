@@ -1,6 +1,6 @@
 # 📚 git
 
-**`git`** (som også er laget av Linux-skaper Linus Torvalds) er en praktisk og mye brukt løsning for versjonskontroll av større programmerings- og skriveprosjekter. Jeg har skrevet et eget hefte om det, som inkluderer oppsett mot GitHub og jobbing fra flere PC-er. Derfor nevner vi bare det aller viktigste her.
+**`git`** (som også er laget av Linux-skaper Linus Torvalds) er en praktisk og mye brukt løsning for versjonskontroll av større programmerings- og skriveprosjekter. Jeg har skrevet et eget hefte om det, [Litt om Git](https://mailjaro.github.io/git-repo/), som inkluderer oppsett mot GitHub og jobbing fra flere PC-er. Derfor nevner vi bare det aller viktigste her.
 
 For å initiere Git (valgene blir globale på maskinen etter det), gjør man:
 
@@ -38,5 +38,3 @@ git log
 ```
 
 hhv. en status på hva som evt. ligger i den såkalte INDEKSEN, klar for neste *commit*, og en logg over de siste *committene*.
-
-Se heftet **Litt om Git** for mer info.

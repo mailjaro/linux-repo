@@ -72,13 +72,13 @@ La oss se på eksempler.
 
 ### Inkrementell backup
 
-Vi skal her få laget oss både en tar-fil (arkivet) og en snapshot-fil (med metadata) som ved konvensjon har filendelse **.snar**. Anta i fortsettelsen at disse skal legges på et sted refereres `$TARGET`. Dette vil være en stivariabel man kan sette tidlig i skallet eller skriptet, f.eks. slik:
+Vi skal her få laget oss både en **tar**-fil (arkivet) og en snapshot-fil (med metadata) som ved konvensjon har filendelse **.snar**. Anta i fortsettelsen at disse skal legges på et sted refereres `$TARGET`. Dette vil være en stivariabel man kan sette tidlig i skallet eller skriptet, f.eks. slik:
 
 ```bash
 TARGET=/home/jan/Backup
 ```
 
-Vi trenger også å bestemme navn på `tar`- og **snar**-filene. Nå er det sånn at i det inkrementelle tilfellet må `tar`-filnavnet endres hver gang, mens snar-filen overskives og bør ha samme navn. Det er derfor naturlig å inkludere et løpenummer på `tar`-filen, og velge løpenummer 0 på første. (Alternativt kunne man basert seg på dato.) Vi velger derfor å starte med **ink-arkiv-0.tar.gz** og **ink-arkiv.snar.gz** for arkiv og metafil. Og de neste `tar`-filene bør bli **ink-arkiv-1.tar.gz**, **ink-arkiv-2.tar.gz** osv. Anta videre at vi skal ta sikkerhetskopi av en katalog (og dens undertre) vi kan referere som `$SOURCE`, f.eks:
+Vi trenger også å bestemme navn på **tar**- og **snar**-filene. Nå er det sånn at i det inkrementelle tilfellet må **tar**-filnavnet endres hver gang, mens snar-filen overskives og bør ha samme navn. Det er derfor naturlig å inkludere et løpenummer på **tar**-filen, og velge løpenummer 0 på første. (Alternativt kunne man basert seg på dato.) Vi velger derfor å starte med **ink-arkiv-0.tar.gz** og **ink-arkiv.snar.gz** for arkiv og metafil. Og de neste **tar**-filene bør bli **ink-arkiv-1.tar.gz**, **ink-arkiv-2.tar.gz** osv. Anta videre at vi skal ta sikkerhetskopi av en katalog (og dens undertre) vi kan referere som `$SOURCE`, f.eks:
 
 ```bash
 SOURCE=/home/jan/Testkatalog
@@ -116,21 +116,7 @@ For å se innholdet av arkivet for et bestemt løpenummer, f.eks. den tilhørend
 tar -tvzg /dev/null -vzf $TARGET/ink-arkiv-2.tar.gz
 ```
 
-```output
-drwxrwxr-x jan/jan  37 2025-03-02 09:41 home/jan/Testkatalog/
-Y abel.txt
-Y photo-1.jpg
-Y photo-2.jpg
--rw-rw-r-- jan/jan   0 2025-03-02 09:41 home/jan/Testkatalog/abel.txt
--rw-rw-r-- jan/jan  17 2025-03-02 09:37 home/jan/Testkatalog/photo-1.jpg
--rw-rw-r-- jan/jan  18 2025-03-02 09:26 home/jan/Testkatalog/photo-2.jpg
-```
-
-I output nevnes katalogen øverst. Under det vises filer på den aktuelle katalogen med en bokstavkode foran som forteller om de er endret eller ei. (Bokstavene **Y** og **N** står for endret *yes* og *no*. Kataloger vil ha **D** foran seg.) Nederst vises en liste kun over filer som er endret (med katalog(er) over).
-
-**Merk**: Vi må sette opsjon **`-v`** på begge halvdeler for å se begge disse filoversiktene. Hvis bare én angis, vises bare nederste.
-
-Hvordan gjenskapes filene fra dette systemet? Man starter med å gjenskape nivå 0, deretter nivå 1, før nivå 2 osv. I eksempelet under vises dette, og det ønskes å gjenskape filene på sted referert med **`$NYTARGET`**. Det kan være samme sted som filene kom fra (altså **`$SOURCE`** over), gjeldende katalog eller et annet sted. Filer med samme navn som de gjenskapte på katalogen, blir uansett (naturlig nok) slettet underveis.
+Hvordan gjenskapes filene fra dette systemet? Man starter med å gjenskape nivå 0, deretter nivå 1, før nivå 2 osv. I eksempelet under vises dette, og det ønskes å gjenskape filene på sted referert med `$NYTARGET`. Det kan være samme sted som filene kom fra (altså `$SOURCE` over), gjeldende katalog eller et annet sted. Filer med samme navn som de gjenskapte på katalogen, blir uansett (naturlig nok) slettet underveis.
 
 Her velges det å gjenskape filene på opprinnelig sted, slik at det er satt:
 

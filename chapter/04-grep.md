@@ -32,7 +32,7 @@ Ubuntu er en debian-basert [linux]-variant.
 
 **MERK:** Ord som matcher søkemønstert, dvs. **linux** her, blir fargemarkert i shell-output. Her vises matchende mønstre isteden gjennomgående inni klammeparenteser.
 
-Benytter man `-i`, skilles det ikke lenger på små og store bokstaver. Opsjoen `-n` sørger for at linjenumre i resultatet:
+Benytter man `-i`, skilles det ikke lenger på små og store bokstaver. Opsjoen `-n` sørger for linjenumre i resultatet:
 
 ```bash
 grep -in 'linux' testfil.txt

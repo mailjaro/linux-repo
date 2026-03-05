@@ -366,7 +366,7 @@ Det følgende finner JPG-filer under mappen ~/Pictures:
 fd .jpg ~/Pictures
 ```
 
-Selv om dette gjerne fungerer i praksis, er det egentlig en liten forenkling her. Alt vi ber om er hhv. at .txt eller .jpg er inneholdt i navnet. Førstnevnte vil også matche filer som
+Selv om dette gjerne fungerer i praksis, er det egentlig en liten forenkling her. Alt vi ber om er hhv. at **.txt** eller **.jpg** er inneholdt i navnet. Førstnevnte vil også matche filer som
 
 ```output
 brev.txt.doc
@@ -555,7 +555,7 @@ som fant samme type filer, men eksluderte katalogene .vscode/ og .config/.
 
 `fd` har i følge man-siden også en opsjon `--prune`, med dels får jeg den ikke til å virke i min versjon, og dels kan den erstattes med den mer hendige `-E`-opsjonen (kort for `--exclude`). Det kan både repeteres og godtar glob-mønstre for spesifisering av kataloger.
 
-Det følgende finner PNG-filer, men ignorer katalogen tmp:
+Det følgende finner PNG-filer, men ignorer katalogen **tmp**:
 
 ```bash
 fd -E tmp .png
