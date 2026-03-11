@@ -4,7 +4,7 @@ A concise, practical guide to Linux for new users. This repository contains the 
 
 **Purpose:** ⚙️
 
-- Provide friendly, approachable explanations and examples for people moving beyond basic Linux usage.
+- Provide friendly, approachable explanations and examples for new starters moving beyond very basic Linux usage.
 
 **Audience:** 🎯
 
