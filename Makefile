@@ -1,151 +1,165 @@
-# MAKEFILE FOR PROSJEKT 'LINUX - ET STEG VIDERE'
+# ===================================================================
+# Makefile for LINUX project
+# ===================================================================
 
-.PHONY: all epub html pdf open-epub open-html open-pdf spellcheck spellcheck-one add-word clean
+# Default goal
+.DEFAULT_GOAL := all
 
-# ========== Variables ==========
-BOOKNAME := linux-book
-OUTDIR := drafts
-STYDIR := styles
-CFGDIR := config
-CHPDIR := chapter
-IMGDIR := images
+# Unknown or misprinted target:
+.DEFAULT:
+	@echo "Unknown target: $@"
+	@echo
+	@$(MAKE) --no-print-directory help
 
-COMMON := $(CFGDIR)/common.yaml
 
-EPUB_DEF := $(CFGDIR)/epub.yaml
-EPUB_STY := $(STYDIR)/epub.css
-EPUB_LUA := $(CFGDIR)/epub.lua
+# ===================================================================
+# Variabler
+# ===================================================================
 
-HTML_DEF := $(CFGDIR)/html.yaml
-HTML_STY_NAME := html.css
-HTML_STY := $(STYDIR)/$(HTML_STY_NAME)
-HTML_LUA := $(CFGDIR)/html.lua
+# CONFIGSuration
+CHAPTERS        :=  chapters
+BUILD           :=  builds
+STYLES          :=  styles
+CONFIGS         := configs
+IMAGES          :=  images
+MASTERHTML      :=  $(CONFIGS)/masterHTML.adoc
+MASTER_E_LIGHT  :=  $(CONFIGS)/masterEPUB-light.adoc
+MASTER_E_DARK   :=  $(CONFIGS)/masterEPUB-dark.adoc
+MASTERPDF       :=  $(CONFIGS)/masterPDF.adoc
+DARKPUB         :=  $(STYLES)/epub-dark.css
+LIGHTPUB        :=  $(STYLES)/epub-light.css
+COVER           :=  $(IMAGES)/cover.png
+COMMON          :=  $(CONFIGS)/common.yaml
 
-PDF_DEF := $(CFGDIR)/pdf.yaml
-PDF_STY := $(STYDIR)/	
-PDF_LUA := $(CFGDIR)/pdf.lua
+# Outputs
+EPUB_PAN_LIGHT := $(BUILD)/linux-pan-light.epub
+EPUB_PAN_DARK  := $(BUILD)/linux-pan-dark.epub
+EPUB_ASC_LIGHT := $(BUILD)/linux-asc-light.epub
+EPUB_ASC_DARK  := $(BUILD)/linux-asc-dark.epub
+HTML := $(BUILD)/linux.html
+PDF  := $(BUILD)/linux.pdf
 
-ODT_DEF := $(CFGDIR)/odt.yaml
-ODT_STY := $(STYDIR)/reference.odt
-ODT_LUA := $(CFGDIR)/odt.lua
 
-TEX_DEF := $(CFGDIR)/tex.yaml
-TEX_STY := $(STYDIR)/latex.tex
-TEX_LUA := $(CFGDIR)/tex.lua
+# ===================================================================
+# Rules
+# ===================================================================
 
-CHAPTERS := $(wildcard $(CHPDIR)/*.md)
-E_CHAPTERS := $(filter-out $(CHPDIR)/00-cover.md, $(wildcard $(CHPDIR)/*.md))
 
-EPUB_OUT := $(OUTDIR)/$(BOOKNAME).epub
-HTML_OUT := $(OUTDIR)/$(BOOKNAME).html
-PDF_OUT := $(OUTDIR)/$(BOOKNAME).pdf
-ODT_OUT := $(OUTDIR)/$(BOOKNAME).odt
-TEX_OUT := $(OUTDIR)/$(BOOKNAME).tex
-MD_OUT := $(OUTDIR)/$(BOOKNAME).md
+# Ensure build directory exists -------------------------------------
+$(BUILD):
+	@mkdir -p $@
+# -------------------------------------------------------------------
 
-# ========== Output Targets ==========
 
-all: epub html odt pdf tex md
+# --- Phony targets -----------------------------------------------------
+.PHONY: all clean html pdf ep_light ep_dark ea_light ea_dark help md2adoc
+#------------------------------------------------------------------------
 
-epub: $(EPUB_OUT)
 
-html: $(HTML_OUT)
+# --- Produce all formats ----------------------
+all: ep_light ep_dark ea_light ea_dark html pdf 
+# ----------------------------------------------
 
-odt: $(ODT_OUT)
 
-pdf: $(PDF_OUT)
+# --- Produce EPUBs fram MD with pandoc ------------------
 
-tex: $(TEX_OUT)
+# --- Light version -----
+ep_light: $(EPUB_PAN_LIGHT)   # Alias for langt navn
+$(EPUB_PAN_LIGHT): $(MD) | $(BUILD)
+# 	@pandoc $< --metadata-file=$(COMMON) \
+# 	       --css=$(LIGHTPUB) \
+# 		   --metadata cover-image=$(COVER) \
+# 	       -o $@
+# 	@echo "✅ Light EPUB successfully produced by pandoc."
 
-md: $(MD_OUT)
+# --- Dark version ----------------------------------------
+ep_dark: $(EPUB_PAN_DARK)   # Alias for langt navn
+$(EPUB_PAN_DARK): $(MD) | $(BUILD)
+# 	@pandoc $< --metadata-file=$(COMMON) \
+# 	       --css=$(DARKPUB) \
+# 		   --metadata cover-image=$(COVER) \
+# 	       -o $@
+# 	@echo "✅ Dark EPUB successfully produced by pandoc."
+# ---------------------------------------------------------
 
-$(EPUB_OUT): $(E_CHAPTERS) $(EPUB_DEF) $(EPUB_STY) $(EPUB_LUA) $(COMMON)
-	$(info Building EPUB: $(EPUB_OUT))
-	@pandoc $(E_CHAPTERS) -o $@ \
-	--defaults=$(EPUB_DEF)
 
-$(HTML_OUT): $(CHAPTERS) $(HTML_DEF) $(HTML_STY) $(HTML_LUA) $(COMMON)
-	$(info Building HTML: $(HTML_OUT))
-	@cp $(IMGDIR)/* $(OUTDIR)/$(IMGDIR)
-	@cp $(HTML_STY) $(OUTDIR)/$(HTML_STY)
-	@pandoc $(CHAPTERS) -o $@ \
-		--defaults=$(HTML_DEF)
+# ---- Produce ADOCs from MDs with pandoc ---
+md2adoc:
+	bash chapters/md-2-adoc.sh
+	echo "Done ADOCs"
+# --------------------------------------------
 
-$(ODT_OUT): $(CHAPTERS) $(REF_ODT) $(ODT_LUA) config/odt-blocks.lua $(COMMON)
-	$(info Building ODT: $(ODT_OUT)) 
-	@cp chapter/*.md chapter/odt
-	@sed -i 's|```|:::|' chapter/odt/*.md
-	@pandoc chapter/odt/*.md -o $(ODT_OUT) \
-		--lua-filter=$(ODT_LUA) \
-		--metadata-file=$(COMMON) \
-		--reference-doc=$(REF_ODT) \
-	@rm chapter/tmp/*.md
 
-$(PDF_OUT): $(CHAPTERS) $(PDF_DEF) $(PDF_TEX) $(COMMON)
-	$(info Building PDF (may be timecomsuming): $(PDF_OUT))
-	@pandoc $(CHAPTERS) -o $@ \
-		--defaults=$(PDF_DEF) \
-		--toc --toc-depth=3
+# --- Produce ADOC(2), +admonitions -emojis ------
+$(ADOC2): $(ADOC1)
+	@cp $< $@
+	@sd '❗' 'NOTE:' $@
+	@sd '‼️' 'CAUTION:' $@
+	@sd '🚩' 'WARNING:' $@
+	@sd '\p{Extended_Pictographic}\uFE0F? ' '' $@
+	@sd ' [1-7]️⃣' '' $@
+# ------------------------------------------------
 
-$(TEX_OUT): $(CHAPTERS) $(COMMON)
-	$(info Building TeX: $(TEX_OUT))
-	@pandoc $(CHAPTERS) -o $@ \
-		--standalone \
-		--metadata-file=$(COMMON) \
 
-$(MD_OUT): $(CHAPTERS) $(COMMON)
-	$(info Building MD: $(MD_OUT))
-	@pandoc chapter/*.md -o $@ \
-		--standalone \
-		--metadata-file=$(COMMON)
+# --- Produce ADOC(3), PDF-friendly version -------------------------
+$(ADOC3): $(ADOC2)
+	@cp $< $@
+	@sd '\[source,text\]' '[%unbreakable]\n[source,text]' $@
+	@sd '\[source,makefile\]' '[%unbreakable]\n[source,text]' $@
+	@sd '\[source,bash\]' '[%unbreakable]\n[source,bash]' $@
+#--------------------------------------------------------------------
 
-# ========== Preview Commands ==========
 
-open-epub:
-	@xdg-open "$(EPUB_OUT)"
+# --- Produce all main formats ------------------------------------------
 
-open-html:
-	@xdg-open "$(HTML_OUT)"
+# Note: These epubs use adoc3, not the usual adoc2. Check the masterfile
+ea_light: $(EPUB_ASC_LIGHT)   # Alias for langt navn
+$(EPUB_ASC_LIGHT): $(ADOC3) | $(BUILD)
+	@asciidoctor-epub3 $(MASTER_E_LIGHT) -R . -o $@
+	@echo "✅ Light EPUB successfully produced by asciidoctor."
 
-open-pdf:
-	@xdg-open "$(PDF_OUT)"
+ea_dark: $(EPUB_ASC_DARK)   # Alias for langt navn
+$(EPUB_ASC_DARK): $(ADOC3) | $(BUILD)
+	@asciidoctor-epub3 $(MASTER_E_DARK) -R . -o $@
+	@echo "✅ Dark EPUB successfully produced by asciidoctor."
 
-open-odt:
-	@libreoffice "$(ODT_OUT)"
+html: $(HTML)
+$(HTML): $(ADOC3) | $(BUILD) 
+	@asciidoctor $(MASTERHTML) -R . -a data-uri -o $@
+	@echo "✅ HTML successfully produced by asciidoctor."
 
-open-tex:
-	@texmaker "$(TEX_OUT)"
+pdf: $(PDF)
+$(PDF): $(ADOC3) | $(BUILD)
+	@asciidoctor-pdf $(MASTERPDF) -R . -o $@
+	@echo "✅ PDF successfully produced by asciidoctor."
+# ------------------------------------------------------------------------
 
-open-md:
-	@code "$(MD_OUT)"
 
-preview: open-epub open-html open-odt open-pdf open-tex open-md
-
-# ========== Spellcheck ==========
-
-spellcheck:
-	@hunspell -d nb_NO -p .hunspell_ignore -l chapter/*.md | sort | uniq
-
-spellcheck-one:
-ifndef file
-	$(error Usage: make spellcheck-one file=chapter/XX.md)
-endif
-	@hunspell -d nb_NO -p .hunspell_ignore -l $(file) | sort | uniq
-
-add-word:
-ifndef word
-	$(error Usage: make add-word word=someword)
-endif
-	@echo "$(word)" >> .hunspell_ignore
-	@sort -u .hunspell_ignore -o .hunspell_ignore
-
-# ========== Utilities ==========
-
+# Remove output-formats and intermediate files ----
 clean:
-	@rm -f $(EPUB_OUT) $(HTML_OUT) $(PDF_OUT) $(ODT_OUT) $(TEX_OUT) $(MD_OUT)
-	@echo "Linux - et steg videre in all formats removed from drafts/"
+	@rm -f $(BUILD)/*.* $(ADOC1) $(ADOC2) $(ADOC3)
+# Husk: Fjern adocs på chapters
+	@echo "✅ Cleaned build artifacts."
+#--------------------------------------------------
 
-backup:
-	@tar -czvf ~/backup/Linux-step-$(shell date +%d-%b-%g).tar.gz chapter config styles Makefile
-	@echo "	"
-	@echo "Done."
+
+# Help screen ----------------------------------------------------------
+help:
+	@echo "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖"
+	@echo "help                :produce this output"
+	@echo "make                :produce all formats"
+	@echo "make all            :produce all formats"
+	@echo "make html           :produce HTML format"
+	@echo "make pdf            :produce PDF format"
+	@echo "make ep_light       :produce light EPUB with pandoc"
+	@echo "make ep_dark        :produce dark  EPUB with pandoc"
+	@echo "make ea_light       :produce light EPUB with asciidoctor"
+	@echo "make ea_dark        :produce dark  EPUB with asciidoctor"
+	@echo "make makef-1.adoc   :produce ADOC(1) from MD"
+	@echo "make makef-2.adoc   :produce ADOC(2), no emojis"
+	@echo "make makef-3.adoc   :produce ADOC(3), PDF-friendly version"
+	@echo ""
+	@echo "To force evaluation use option -B."
+	@echo "For a dry run use option -n."
+	@echo "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖"
+	
