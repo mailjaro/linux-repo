@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.26">
+<meta name="generator" content="Asciidoctor 2.0.23">
 <meta name="description" content="Dette heftet gir en innføring i Linux">
 <meta name="author" content="Jan R Sandbakken">
 <title>Linux for hjemmebruk</title>
@@ -118,6 +118,7 @@ h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title str
 :not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
 pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
 pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
 pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
 em em{font-style:normal}
 strong strong{font-weight:400}
@@ -220,7 +221,6 @@ table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
 .literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
 .literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
 .listingblock>.content{position:relative}
-.listingblock pre>code{display:block}
 .listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
 .listingblock:hover code[data-lang]::before{display:block}
 .listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
@@ -783,8 +783,8 @@ parentes:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Debian-baserte (inklusive Ubuntu, Mint, Pop!_OS, Elementary OS, MX
-og Zorin OS)</p>
+<p>Debian-baserte (inklusive Ubuntu, Mint, Pop!_OS, Elementary OS, MX og
+Zorin OS)</p>
 </li>
 <li>
 <p>Pacman-baserte (inklusive Arch, Manjaro og EndeavourOS)</p>
@@ -1177,10 +1177,9 @@ programmerer eller skriver mye, kan dette være gode alternativer.</p>
 </div>
 <div class="paragraph">
 <p><strong>nano</strong> er langt enklere. Man trenger ingen innføring. Det er bare å
-opprette fil, skrive, editere, lagre (<code>ctrl&#43;s</code>) og avslutte
-(<code>ctrl&#43;x</code>) i vei. Men det kan være verdt å se på noen av
-snarveiene, ikke minst fordi tastekombinasjonene er så annerledes enn
-vanlig.</p>
+opprette fil, skrive, editere, lagre (<code>ctrl+s</code>) og avslutte (<code>ctrl+x</code>) i
+vei. Men det kan være verdt å se på noen av snarveiene, ikke minst fordi
+tastekombinasjonene er så annerledes enn vanlig.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1316,9 +1315,9 @@ har ulempen at de er vanskeligere å huske.</p>
 kombineres&#8201;&#8212;&#8201;med hverandre og med omgivelsene, ved såkalt omdirigering.</p>
 </div>
 <div class="paragraph">
-<p>Den kanskje viktigste er <code>|</code> (pipe) som tar output fra en kommando
-som input til ny kommando. Et enkelt eksempel er å pipe til <code>less</code> ved
-lang output (output vises da en skjerm ad gangen), f.eks:</p>
+<p>Den kanskje viktigste er <code>|</code> (pipe) som tar output fra en kommando som
+input til ny kommando. Et enkelt eksempel er å pipe til <code>less</code> ved lang
+output (output vises da en skjerm ad gangen), f.eks:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1326,9 +1325,9 @@ lang output (output vises da en skjerm ad gangen), f.eks:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Man kan sende output fra en kommando til ny fil med <code>&gt;</code>, til
-standard error ved <code>&gt;2</code> og til standard output og standard error ved
-<code>&gt;&amp;</code>. Man kan tilføye til fil ved <code>&gt;&gt;</code>, som f.eks:</p>
+<p>Man kan sende output fra en kommando til ny fil med <code>&gt;</code>, til standard
+error ved <code>&gt;2</code> og til standard output og standard error ved <code>&gt;&amp;</code>. Man
+kan tilføye til fil ved <code>&gt;&gt;</code>, som f.eks:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1341,8 +1340,8 @@ slutten av <strong><code>sylslog</code></strong>-filen (pga. <code>tail</code>) 
 ut til fil.</p>
 </div>
 <div class="paragraph">
-<p>Videre kan innholdet av en fil kan sendes til en kommando ved
-<code>cmd&lt;fil</code>. F.eks:</p>
+<p>Videre kan innholdet av en fil kan sendes til en kommando ved <code>cmd&lt;fil</code>.
+F.eks:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1400,9 +1399,9 @@ sørger for at det følgende utføres</p>
 <p>hvilket fungerer fint.</p>
 </div>
 <div class="paragraph">
-<p>Opsjonen <code>-n &lt;antall&gt;</code> til <code>xargs</code> kan være viktig å kjenne til.
-Den kontrollerer antall argumenter som videreføres til sluttkommandoen
-om gangen. Noen kommandoer, som <code>mkdir</code>, <code>rmdir</code> aksepterer bare ett
+<p>Opsjonen <code>-n &lt;antall&gt;</code> til <code>xargs</code> kan være viktig å kjenne til. Den
+kontrollerer antall argumenter som videreføres til sluttkommandoen om
+gangen. Noen kommandoer, som <code>mkdir</code>, <code>rmdir</code> aksepterer bare ett
 argument, så om de ønsker å utnytte <code>xargs</code> tilsvarende, må man
 inkludere <code>-n 1</code>, som f.eks. her:</p>
 </div>
@@ -1506,10 +1505,10 @@ søket, som f.eks.</p>
 <p>Her indikerer opsjonen <code>-c</code> at man bare vil ha antallet linjer som
 matcher i (hver av) filene. Ønsker man å fortsette søk i alle
 underkataloger, kan man benytte <code>-r</code>. Den følger ikke symbolske linker
-(i motsetning til <code>-R</code>). Disse fungerer kanskje best med <code>*</code> eller
-<code>.</code> som filangivelse. Prøver man f.eks. ting som <code>*.py</code>, og ingen
-slike fins i gjeldende katalog, vil ikke <code>grep</code> gå ned i underkataloger
-ved bruk av <code>-r</code>.</p>
+(i motsetning til <code>-R</code>). Disse fungerer kanskje best med <code><strong></code> eller <code>.</code>
+som filangivelse. Prøver man f.eks. ting som <code></strong>.py</code>, og ingen slike fins
+i gjeldende katalog, vil ikke <code>grep</code> gå ned i underkataloger ved bruk av
+<code>-r</code>.</p>
 </div>
 <div class="paragraph">
 <p>Ønsker man bare å liste filene, kan man benytte <code>-l</code>. Følgende kommando
@@ -1647,10 +1646,10 @@ anbefales å benytte <code>grep -E</code> med tanke på fremtidig kompatibilitet
 <div class="paragraph">
 <p>Forskjellen mellom vanlig og utvidet <strong>regex</strong> går i hovedsak på at man
 ofte slipper escape av metakarakterer i det utvidede tilfellet, hvilket
-kan være en fordel (se mer om dette lenger ned). Tegn som <code>?</code>, <code>&#43;</code>,
-<code>{</code>, <code>}</code>, <code>|</code>, <code>(</code> og <code>)</code> brukes nemlig mye når man kombinerer
-mønstre, og disse behandles der som spesielle tegn. I vanlig <strong>regex</strong> må
-man ha benyttet mange escapes får å få til det samme, og koden blir
+kan være en fordel (se mer om dette lenger ned). Tegn som <code>?</code>, <code>+</code>, <code>{</code>,
+<code>}</code>, <code>|</code>, <code>(</code> og <code>)</code> brukes nemlig mye når man kombinerer mønstre, og
+disse behandles der som spesielle tegn. I vanlig <strong>regex</strong> må man ha
+benyttet mange escapes får å få til det samme, og koden blir
 vanskeligere å lese.</p>
 </div>
 <div class="paragraph">
@@ -1670,9 +1669,8 @@ bokstav.</p>
 </li>
 <li>
 <p>Metakarakterer: spesielle symboler som punktum (<code>.</code>), hatt (<code>^</code>),
-dollartegn (<code>$</code>), stjerne (<code>*</code>), pluss (<code>&#43;</code>), spørsmålstegn
-(<code>?</code>), pipe (<code>|</code>), parenteser <code>( )</code> , krøllparenteser <code>{}</code> og
-backslash (<code>\</code>).</p>
+dollartegn (<code>$</code>), stjerne (<code>*</code>), pluss (<code>+</code>), spørsmålstegn (<code>?</code>), pipe
+(<code>|</code>), parenteser <code>( )</code> , krøllparenteser <code>{}</code> og backslash (<code>\</code>).</p>
 </li>
 <li>
 <p>Gruppering og gjenbruk: bruk av parenteser for organisering av
@@ -1680,14 +1678,13 @@ tekstbiter til tekstenheter, evt. med lagring av det som matcher for
 senere bruk. Og gjerne i kombinasjon med eller- operatoren <code>|</code>.</p>
 </li>
 <li>
-<p>Karakterklasser: for søk etter grupper av karakterer, som
-<code>[abc]</code>, <code>[^abc]</code>, <code>[a-z]</code>, <code>[A-Z]</code>,
-<code>[a-zA-Z]</code>, <code>[0-9]</code> og <code>[a-zA-Z0-9]</code></p>
+<p>Karakterklasser: for søk etter grupper av karakterer, som <code>[abc]</code>,
+<code>[^abc]</code>, <code>[a-z]</code>, <code>[A-Z]</code>, <code>[a-zA-Z]</code>, <code>[0-9]</code> og <code>[a-zA-Z0-9]</code></p>
 </li>
 <li>
-<p>Escaping: bruk av <code>\</code> for at spesialtegn skal tolkes kun som
-tegnet, som f.eks. at spesialtegnet <code>.</code> (som matcher alle tegn) ved
-<code>\.</code> bare representerer punktum.</p>
+<p>Escaping: bruk av <code>\</code> for at spesialtegn skal tolkes kun som tegnet,
+som f.eks. at spesialtegnet <code>.</code> (som matcher alle tegn) ved <code>\.</code> bare
+representerer punktum.</p>
 </li>
 </ul>
 </div>
@@ -1767,8 +1764,8 @@ ola[.txt]</code></pre>
 <strong>-txt</strong>.</p>
 </div>
 <div class="paragraph">
-<p>Stjerne (<code>*</code>) står for ingen eller flere av foregående tegn, slik at
-<code>o*h</code> matcher <strong>h</strong>, <strong>oh</strong>, <strong>ooh</strong>, <strong>oooh</strong> osv, men ikke <strong>o</strong> eller <strong>oo</strong>
+<p>Stjerne (<code><strong></code>) står for ingen eller flere av foregående tegn, slik at
+<code>o*h</code> matcher *h</strong>, <strong>oh</strong>, <strong>ooh</strong>, <strong>oooh</strong> osv, men ikke <strong>o</strong> eller <strong>oo</strong>
 f.eks.</p>
 </div>
 <div class="listingblock">
@@ -1782,11 +1779,11 @@ f.eks.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Pluss (<code>&#43;</code>) står for én eller flere forekomster av foregående tegn,
-slik at <code>do&#43;g</code> matcher <strong>dog</strong> og <strong>doog</strong> osv, men ikke <strong>dg</strong>. Men for
-at det skal fungere, må man enten ta escape av plusstegnet eller bruke
-utvidet <strong><code>regex</code></strong>. For kontroll kan gjøre én av følgende (men for
-fremtiden, altså helst ikke den siste):</p>
+<p>Pluss (<code>+</code>) står for én eller flere forekomster av foregående tegn, slik
+at <code>do+g</code> matcher <strong>dog</strong> og <strong>doog</strong> osv, men ikke <strong>dg</strong>. Men for at det
+skal fungere, må man enten ta escape av plusstegnet eller bruke utvidet
+<strong><code>regex</code></strong>. For kontroll kan gjøre én av følgende (men for fremtiden,
+altså helst ikke den siste):</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1809,12 +1806,12 @@ escape for punktum også med <code>grep -E</code>. Punktum behandles spesielt og
 det utvidede tilfellet.</p>
 </div>
 <div class="paragraph">
-<p><code>{n}</code> står for <code>n</code> repetisjoner av foregående tegn, <code>{n,}</code> står
-for minst n repetisjoner, mens {n,m} står for minst <strong>n</strong> og høyst <strong>m</strong>
+<p><code>{n}</code> står for <code>n</code> repetisjoner av foregående tegn, <code>{n,}</code> står for
+minst n repetisjoner, mens \{n,m} står for minst <strong>n</strong> og høyst <strong>m</strong>
 repetisjoner av foregående tegn. Dvs at <code>91{2}</code> matcher <strong>911</strong>, og
-<code>91{2,}</code> matcher <strong>911</strong>, <strong>9111</strong>, <strong>91111</strong>, &#8230;&#8203;, mens <code>91{2,3}</code>
-matcher <strong>911</strong> og <strong>9111</strong>, men ikke <strong>91111</strong>. Krøllparentes må espapes i
-vanlige uttrykk, så her er det greit på benytte den utvidede varianten:</p>
+<code>91{2,}</code> matcher <strong>911</strong>, <strong>9111</strong>, <strong>91111</strong>, &#8230;&#8203;, mens <code>91{2,3}</code> matcher
+<strong>911</strong> og <strong>9111</strong>, men ikke <strong>91111</strong>. Krøllparentes må espapes i vanlige
+uttrykk, så her er det greit på benytte den utvidede varianten:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1847,8 +1844,8 @@ vanlige uttrykk, så her er det greit på benytte den utvidede varianten:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Her ser vi bruk av <code>\b</code>, som står for ordgrense, altså enten
-begynnelsen eller slutten av et ord:</p>
+<p>Her ser vi bruk av <code>\b</code>, som står for ordgrense, altså enten begynnelsen
+eller slutten av et ord:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1895,8 +1892,8 @@ underscore. Her er et par eksempler:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Det følgende er veldig likt, men vi legger til et <code>&#43;</code> i etterkant,
-som alyså betyr én eller flere forekomster av foregående tegn:</p>
+<p>Det følgende er veldig likt, men vi legger til et <code>+</code> i etterkant, som
+alyså betyr én eller flere forekomster av foregående tegn:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1975,8 +1972,7 @@ av <strong>set</strong> prefikset med én eller flere <strong>sun</strong>:</p>
 </div>
 <div class="paragraph">
 <p>Klassen <code>[abc]</code> representerer <strong>a</strong> eller <strong>b</strong> eller <strong>c</strong>, slik at
-<code>[LNT]ine</code> matcher både <strong>Line</strong>, <strong>Nine</strong> og <strong>Tine</strong>, men ikke
-<strong>Katrine</strong>.</p>
+<code>[LNT]ine</code> matcher både <strong>Line</strong>, <strong>Nine</strong> og <strong>Tine</strong>, men ikke <strong>Katrine</strong>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1989,9 +1985,9 @@ av <strong>set</strong> prefikset med én eller flere <strong>sun</strong>:</p>
 </div>
 </div>
 <div class="paragraph">
-<p><code>[^abc]</code> representerer det omvendte av <code>[abc]</code>, slik at
-<code>[^LNT]ine</code> matcher både <strong>mine</strong>, <strong>sine</strong>, <strong>rine</strong> og <strong>fine</strong>, men
-ikke lenger <strong>Line</strong> osv.</p>
+<p><code>[^abc]</code> representerer det omvendte av <code>[abc]</code>, slik at <code>[^LNT]ine</code>
+matcher både <strong>mine</strong>, <strong>sine</strong>, <strong>rine</strong> og <strong>fine</strong>, men ikke lenger <strong>Line</strong>
+osv.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2004,21 +2000,20 @@ ikke lenger <strong>Line</strong> osv.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Klassen <code>[a-z]</code> representerer alfabetintervallet av alle små
-(engelske) bokstaver fra <strong>a</strong> til <strong>z</strong>, mens <code>[A-Z]</code> representerer
-de tilsvarende store. Om man vil, kan man se på begrensede intervaller,
-som f.eks. <code>[J-V]</code> osv. Norske bokstaver godtas ikke i
-intervaller, selv om <strong>æ</strong>, <strong>ø</strong> og <strong>å</strong> er søkbare tegn i <strong>regex</strong> ellers.</p>
+<p>Klassen <code>[a-z]</code> representerer alfabetintervallet av alle små (engelske)
+bokstaver fra <strong>a</strong> til <strong>z</strong>, mens <code>[A-Z]</code> representerer de tilsvarende
+store. Om man vil, kan man se på begrensede intervaller, som f.eks.
+<code>[J-V]</code> osv. Norske bokstaver godtas ikke i intervaller, selv om <strong>æ</strong>,
+<strong>ø</strong> og <strong>å</strong> er søkbare tegn i <strong>regex</strong> ellers.</p>
 </div>
 <div class="paragraph">
 <p>Sifrene representeres av <code>[0-9]</code>, og man kan selvsagt velge
 sub-intervaller.</p>
 </div>
 <div class="paragraph">
-<p><code>[a-zA-Z]</code> representer både store og små bokstaver, mens
-<code>[a-zA-Z0-9]</code> representerer både små bokstaver, store bokstaver
-og sifre. Rekkefølgen av disse har ingenting å si i matching. La oss se
-på eksempler.</p>
+<p><code>[a-zA-Z]</code> representer både store og små bokstaver, mens <code>[a-zA-Z0-9]</code>
+representerer både små bokstaver, store bokstaver og sifre. Rekkefølgen
+av disse har ingenting å si i matching. La oss se på eksempler.</p>
 </div>
 <div class="paragraph">
 <p>Under søkes det etter stor bokstav etter fulgt av liten, men ikke med
@@ -2079,21 +2074,20 @@ etterfulgt av liten bokstav:</p>
 </div>
 <div class="paragraph">
 <p>Det er også mulig å legge inn flere tegn enn bokstaver å tall i klassen,
-f.eks. <code>[a-zA-Z0-9&amp;_-]</code>. Dette inkluderer i tillegg til
-bokstaver og tall her ampersand, underscrore og minustegn.</p>
+f.eks. <code>[a-zA-Z0-9&amp;_-]</code>. Dette inkluderer i tillegg til bokstaver og
+tall her ampersand, underscrore og minustegn.</p>
 </div>
 <div class="paragraph">
 <p>Eksemplene våre er illustrerende, men lite nyttige. La oss prøve et litt
 mer realistisk eksempel, f.eks. å sjekke om en e-post-adresse har lovlig
-format. Det følgende er langt fra perfekt,
-<code>[.a-zA-Z0-9_-]&#43;@[.a-zA-Z]&#43;</code>, men matcher
-i det minste adresser som: <strong>jan_<a href="mailto:roger2.home@gmail.co.uk">roger2.home@gmail.co.uk</a></strong>, og
+format. Det følgende er langt fra perfekt, <code><span class="a-zA-Z0-9_-">@[.a-zA-Z]</span></code>,
+men matcher i det minste adresser som: <strong>jan_roger2.home@gmail.co.uk</strong>, og
 <strong>jan.roger-home@gmail.com</strong> etc. Uttrykket godtar riktignok også adresser
-som **.3---3&#8230;&#8203;3___@.cm.<strong>, så det er et stykke igjen her. Men
-det illustrerer vel en del av funksjonaliteten av </strong>regex** like
-fullt. Uttrykket vårt godtar mer spesifikt én eller flere klynger av
-bokstaver, tall og våre tre spesialtegn, etterfulgt av @ og en eller
-flere klynger av bokstaver og punktum. F.eks</p>
+som <strong>.3---3&#8230;&#8203;3___@.cm.</strong>, så det er et stykke igjen her. Men det
+illustrerer vel en del av funksjonaliteten av <strong>regex</strong> like fullt.
+Uttrykket vårt godtar mer spesifikt én eller flere klynger av bokstaver,
+tall og våre tre spesialtegn, etterfulgt av @ og en eller flere klynger
+av bokstaver og punktum. F.eks</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2154,8 +2148,8 @@ erstattet:</p>
 <div class="paragraph">
 <p>osv. Men i tillegg til å være kjappere, har <code>rg</code> også noen
 brukervennlige tillegg, som søk i bestemte filtyper ved opsjonen <code>-t</code>,
-kortform for sifre (<code>\d</code>), alle mulige blanke (<code>\s</code>) mm. som er
-lette både å bruke og huske.</p>
+kortform for sifre (<code>\d</code>), alle mulige blanke (<code>\s</code>) mm. som er lette
+både å bruke og huske.</p>
 </div>
 <div class="paragraph">
 <p>Følgende tabell oppsummerer metakarakterer i <code>rg</code> :</p>
@@ -2181,7 +2175,7 @@ lette både å bruke og huske.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Null eller flere av foregående tegn/gruppe</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><code>&#43;</code></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><code>+</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Én eller flere av foregående tegn/gruppe</p></td>
 </tr>
 <tr>
@@ -2197,7 +2191,7 @@ lette både å bruke og huske.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ethvert tegn unntatt a, b, eller c</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><code>(abc\|def)</code></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><code>(abc|def)</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">abc eler def</p></td>
 </tr>
 <tr>
@@ -2227,9 +2221,9 @@ lette både å bruke og huske.</p>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Nå kan riktignok også <code>grep</code> utnytte <code>\b</code>, <code>\d</code> osv. ved
-<code>grep -P</code> (Perl mode), men for mindre erfarne brukere er det greit å ha
-slikt mer umiddelbart tilgjengelig.</p>
+<p>Nå kan riktignok også <code>grep</code> utnytte <code>\b</code>, <code>\d</code> osv. ved <code>grep -P</code> (Perl
+mode), men for mindre erfarne brukere er det greit å ha slikt mer
+umiddelbart tilgjengelig.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -2337,12 +2331,11 @@ kataloger. Gjeldende katalog (.) er angitt som startsted for søket.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Merk: Uttrykket <code>*.png</code> tolkes som en tekststreng, og vi kunne godt
-ha skrevet både <code>'*.png'</code> og <code>"*.png"</code>. Begge typer
-anførselstegn omslutter strenger i Linux. Dette (og forskjellene) vil
-bli utbrodert i skall-kapittelet. Inntil videre kan vi si vi
-anførselstegn må inkluderes når en tekststreng omfatter flere
-ordgrupper.</p>
+<p>Merk: Uttrykket <code><strong>.png</code> tolkes som en tekststreng, og vi kunne godt ha
+skrevet både <code>'</strong>.png'</code> og <code>"*.png"</code>. Begge typer anførselstegn omslutter
+strenger i Linux. Dette (og forskjellene) vil bli utbrodert i
+skall-kapittelet. Inntil videre kan vi si vi anførselstegn må inkluderes
+når en tekststreng omfatter flere ordgrupper.</p>
 </div>
 <div class="paragraph">
 <p><code>-name</code> angir case-sensitivt søk. Ønsker man ikke å skille på små og
@@ -2419,12 +2412,11 @@ find <span class="nb">.</span> <span class="nt">-type</span> f <span class="nt">
 </div>
 <div class="paragraph">
 <p>finner filer modifisert for mindre enn hhv. 30 minutter og 2 dager siden
-(dvs. yngre enn dette). Hadde man skrevet &#43;30 og &#43;2, ville man
-fått returnert filer som sist var modifisert hhv. likt eller mer enn 30
+(dvs. yngre enn dette). Hadde man skrevet 30 og +2, ville man fått
+returnert filer som sist var modifisert hhv. likt eller mer enn 30
 minutter og 2 dager siden (dvs. eldre enn dette). Uten pluss og minus
 mener man nøyaktig tidsangivelse. Man kan også bytte om før (-) og etter
-(&#43;) med å inkludere <code>-not</code> eller <code>!</code>, altså det følgende er det
-samme:</p>
+() med å inkludere <code>-not</code> eller <code>!</code>, altså det følgende er det samme:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2607,8 +2599,8 @@ regulære uttrykk, som i <code>egrep</code>, må vi benytte notasjonen under.</p
 </div>
 </div>
 <div class="paragraph">
-<p>Under letes det etter filer med navn som inneholder *CV*pdf
-eller *CV*odt.</p>
+<p>Under letes det etter filer med navn som inneholder *CV*pdf eller
+*CV*odt.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2689,10 +2681,10 @@ find <span class="nb">.</span> <span class="nt">-name</span> <span class="k">*</
 <div class="paragraph">
 <p>Mer generelt kan man få til flere og mer generelle aksjoner ved et par
 varianter av <code>-exec</code> og <code>-ok</code>. En funnet fil vil da mates til en nærmere
-angitt skallkommando, og filen (current file) representeres der av
-<code>{}</code> i spesifiseringen. La oss se på et eksempel der skallkommandoen
-<code>ls -la</code> anvendes på de funnede filene. Merk at den samlede kommandoen
-fins i to varianter:</p>
+angitt skallkommando, og filen (current file) representeres der av <code>{}</code>
+i spesifiseringen. La oss se på et eksempel der skallkommandoen <code>ls -la</code>
+anvendes på de funnede filene. Merk at den samlede kommandoen fins i to
+varianter:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2897,11 +2889,10 @@ marilyn.jpg.zip</code></pre>
 </div>
 <div class="paragraph">
 <p><code>fd</code> benytter nemlig regulære uttrykk som default, og fordi mønstrene er
-uten anførselstegn, tolkes de egentlig som hhv. <code>'.*\.txt.*'</code> og
-<code>'.*\.jpg.*'</code> (altså tilsvarende glob-mønstrene
-<code>'*.txt*'</code> og <code>'*.jpg*'</code>). Dette trenger vi vanligvis
-ikke å bry oss om. Eksemplene fungerer som oftest i praksis og er
-hendige og kjappe i bruk.</p>
+uten anførselstegn, tolkes de egentlig som hhv. <code>'.<strong>\.txt.</strong>'</code> og
+<code>'.<strong>\.jpg.</strong>'</code> (altså tilsvarende glob-mønstrene <code>'<strong>.txt</strong>'</code> og
+<code>'<strong>.jpg</strong>'</code>). Dette trenger vi vanligvis ikke å bry oss om. Eksemplene
+fungerer som oftest i praksis og er hendige og kjappe i bruk.</p>
 </div>
 <div class="paragraph">
 <p>Av samme grunn tolkes også et enslig punktum <code>.</code> uten anførselstegn som
@@ -3025,10 +3016,9 @@ følgende:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Her blir første doc tolket som mønsteret <code>'.*doc.*'</code>, andre doc
-som en startkatalog <code>doc/</code> og brev som startkatalog <code>brev/</code>. For
-lesbarhetens skyld kan man inkludere <code>--</code> i forkant stedangivelsene
-slik:</p>
+<p>Her blir første doc tolket som mønsteret <code>'.<strong>doc.</strong>'</code>, andre doc som en
+startkatalog <code>doc/</code> og brev som startkatalog <code>brev/</code>. For lesbarhetens
+skyld kan man inkludere <code>--</code> i forkant stedangivelsene slik:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3632,7 +3622,7 @@ få til det på. Anta vi har følgende fil</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Her gir`head -n1 fil.txt` overskriftsraden og <code>tail -n &#43;2 fil.txt</code>
+<p>Her gir`head -n1 fil.txt` overskriftsraden og <code>tail -n +2 fil.txt</code>
 resten av filen, og sistnevnte sorteres.</p>
 </div>
 <div class="paragraph">
@@ -3681,10 +3671,10 @@ etterpå.</p>
 </div>
 <div class="paragraph">
 <p>Her lager vi (<code>-c</code>) en arkivfil (<code>-f</code>) med navnet <strong>arkiv.tar.gz</strong> fra
-alle filer som passer navnmønster <strong>fil*.tmp</strong>. Arkivfilen komprimeres
-så med <code>gzip</code> (pga. opsjonen <code>-z</code>). (Alternativ komprimeringsalgotitme
-kan velges ved opsjoner.) Ved konvensjon bør alle slike
-<code>gzip</code>-komprimerte arkivfiler ende på <strong>.tar.gz</strong> (evt. <strong>.tgz</strong>).</p>
+alle filer som passer navnmønster <strong>fil</strong>.tmp*. Arkivfilen komprimeres så
+med <code>gzip</code> (pga. opsjonen <code>-z</code>). (Alternativ komprimeringsalgotitme kan
+velges ved opsjoner.) Ved konvensjon bør alle slike <code>gzip</code>-komprimerte
+arkivfiler ende på <strong>.tar.gz</strong> (evt. <strong>.tgz</strong>).</p>
 </div>
 <div class="paragraph">
 <p>Ønsker man å liste filene i arkivet, gjøres det ved opsjonen <code>-t</code> (evt.
@@ -4001,8 +3991,8 @@ kan endre originalfilen ved opsjon <code>-i</code>:</p>
 </div>
 <div class="paragraph">
 <p>Eksempelet viser også at vi ikke trenger å bruke <code>/</code> som skilletegn, men
-også <code>|</code> eller punktum går like bra. Det kan være nyttig hvis man
-f.eks. skal slette/bytte ut forekomster av skråstrek.</p>
+også <code>|</code> eller punktum går like bra. Det kan være nyttig hvis man f.eks.
+skal slette/bytte ut forekomster av skråstrek.</p>
 </div>
 <div class="paragraph">
 <p>Ønsker man dessuten å lage en backup før filendringen, kan man
@@ -4363,22 +4353,21 @@ Dermed blir kommaer satt korrekt inn iterativt fra høyre til venstre.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>I starttallet 84500000 blir <code>\3</code> slutt på linje, <code>\2</code> den
-avsluttende siffergruppen 000, mens <code>\1</code> blir sifferet før denne
-gruppen. Det legges inn et kolon mellom <code>\1</code> og <code>\2</code>, og vi får
-outputen over</p>
+<p>I starttallet 84500000 blir <code>\3</code> slutt på linje, <code>\2</code> den avsluttende
+siffergruppen 000, mens <code>\1</code> blir sifferet før denne gruppen. Det legges
+inn et kolon mellom <code>\1</code> og <code>\2</code>, og vi får outputen over</p>
 </div>
 <div class="paragraph">
 <p>I neste iterasjon går man løs på tallet 84500:000. Her blir <code>\3</code> de
-avsluttende tre sifrene 000, mens <code>\2</code> blir gruppe 500 og \1
-sifferet foran det igjen. Det dyttes inn et kolon mellom de to
-sistnevnte, og vi får output som vist:</p>
+avsluttende tre sifrene 000, mens <code>\2</code> blir gruppe 500 og \1 sifferet
+foran det igjen. Det dyttes inn et kolon mellom de to sistnevnte, og vi
+får output som vist:</p>
 </div>
 <div class="paragraph">
 <p>I neste iterasjon går man løs på tallet 84500:000. Her blir <code>\3</code> de
-avsluttende tre sifrene 000, mens <code>\2</code> blir gruppe 500 og <code>\1</code>
-sifferet foran det igjen. Det dyttes inn et kolon mellom de to
-sistnevnte, og vi får output som vist:</p>
+avsluttende tre sifrene 000, mens <code>\2</code> blir gruppe 500 og <code>\1</code> sifferet
+foran det igjen. Det dyttes inn et kolon mellom de to sistnevnte, og vi
+får output som vist:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4484,9 +4473,9 @@ om til små (siden mønster nr. 2 kun inneholder små bokstaver).</p>
 </div>
 </div>
 <div class="paragraph">
-<p>NOTE:<strong>Merk:</strong> Vi må benytte <code>\t</code> også i mønster 2 for å angi en
-tabulator i eksempel 1, men bare punktum for punktum i mønster 2 i det
-siste eksempelet.</p>
+<p>NOTE:<strong>Merk:</strong> Vi må benytte <code>\t</code> også i mønster 2 for å angi en tabulator
+i eksempel 1, men bare punktum for punktum i mønster 2 i det siste
+eksempelet.</p>
 </div>
 <div class="paragraph">
 <p>Mye av den grunnleggende bruken er dekket med disse eksemplene. La oss
@@ -4495,7 +4484,7 @@ se mer på bruk av regulære uttrykk. <code>sd</code> følger samme konvensjon s
 </div>
 <div class="paragraph">
 <p>Det følgende erstatter eventuelt dermed all forekomster av <strong>at</strong> og <strong>AT</strong>
-med <strong>@** (</strong>|** representerer <strong>eller</strong>):</p>
+med <strong>@</strong> (<strong>|</strong> representerer <strong>eller</strong>):</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4572,7 +4561,7 @@ ordet <strong>end</strong> (<code>$3</code>).</p>
 </div>
 <div class="paragraph">
 <p><strong>Merk</strong>: Hadde vi droppet paranteser rundt det midtre mønsteret
-(innmaten) <code>.*?</code>, som vi kunne gjort, ville <strong>end</strong> blitt lageret som
+(innmaten) <code>.<strong>?</code>, som vi kunne gjort, ville *end</strong> blitt lageret som
 <code>$2</code>.</p>
 </div>
 <div class="paragraph">
@@ -4771,8 +4760,8 @@ fil3.txt</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Hvis vi ønsker å ende navnene til <strong>fil_001.txt</strong>, <strong>fil_002.txt</strong>
-og <strong>fil_003.txt</strong>, gjør:</p>
+<p>Hvis vi ønsker å ende navnene til <strong>fil_001.txt</strong>, <strong>fil_002.txt</strong> og
+<strong>fil_003.txt</strong>, gjør:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4857,9 +4846,9 @@ fjerne både venstre og høyreparenteser ved:</p>
 <p><code>awk</code> (navnet kommer fra etternavnene til opphavsmennene, bl.a.
 velkjente Kernighan) benyttes for å søke fram mønstre og ord i filer og
 kommado-otput, og utføre spesifiserte aksjoner. Den fokuserer på felter
-(dvs. karakterer omgitt av blanke tegn). En hel linje omtales som
-<code>\$0</code>, første felt som <code>\$1</code> osv. og antall felt (dvs. siste
-felt) som <code>$NF</code>. Disse kan benyttes som variable i kall.</p>
+(dvs. karakterer omgitt av blanke tegn). En hel linje omtales som <code>\$0</code>,
+første felt som <code>\$1</code> osv. og antall felt (dvs. siste felt) som <code>$NF</code>.
+Disse kan benyttes som variable i kall.</p>
 </div>
 <div class="paragraph">
 <p><code>awk</code> scanner en fil linje for linje, splitter hver linje i felter,
@@ -4945,8 +4934,8 @@ med <code>OFS</code>. Under har vi også lagt inn en <code>BEGIN</code>-regel.</
 </div>
 </div>
 <div class="paragraph">
-<p>I alle disse eksemplene inkluderte vi <code>NR&gt;1</code> for å ekskludere
-totalen i første linje i <code>ls -l</code>.</p>
+<p>I alle disse eksemplene inkluderte vi <code>NR&gt;1</code> for å ekskludere totalen i
+første linje i <code>ls -l</code>.</p>
 </div>
 <div class="paragraph">
 <p>Man kan også angi mønstre for feltene ved <code>/mønster/</code>. Eksempelet under
@@ -5101,17 +5090,16 @@ Ola Nordmann &lt;ola.nordmann@gmail.com&gt;</code></pre>
 (Som en del andre kommandoer, må den kanskje installeres først via
 <code>sudo apt</code>.) Ved enkleste bruk skriver man bare at og en tidsangivelse,
 så kommer inn i et <code>at</code>-skall. Så gir man bare linjevis kommandoer og
-avslutter med <code>ctrl&#43;D</code> (stor D). Det er flere måter å angi tider
-på, men <code>at now &#43;10 minutes</code>, <code>at 4pm</code>, <code>at 14:30</code>,
-<code>at 6am &#43; 3 days</code> er fire selvforklarende eksempler.</p>
+avslutter med <code>ctrl+D</code> (stor D). Det er flere måter å angi tider på, men
+<code>at now +10 minutes</code>, <code>at 4pm</code>, <code>at 14:30</code>, <code>at 6am + 3 days</code> er fire
+selvforklarende eksempler.</p>
 </div>
 <div class="paragraph">
 <p>Man kan liste <code>at</code>-køen ved <code>atq</code>. Hver jobb får sitt nummer, og man kan
 også slette dem, f.eks. jobb 4, ved <code>atrm 4</code>.</p>
 </div>
 <div class="paragraph">
-<p>Det er lurt å sende eventuell skjerm-output til fil ved <code>&gt;</code> og
-<code>&gt;&gt;</code>.</p>
+<p>Det er lurt å sende eventuell skjerm-output til fil ved <code>&gt;</code> og <code>&gt;&gt;</code>.</p>
 </div>
 <div class="paragraph">
 <p>Her sendes f.eks. en kommando direkte til at output legges i en fil
@@ -5634,7 +5622,7 @@ beskyttelse mot <em>denial of service</em>-angrep.</p>
 <div id="footer">
 <div id="footer-text">
 Version 1.0 2026-03-10<br>
-Last updated 2026-03-11 01:13:40 +0100
+Last updated 2026-03-11 12:54:39 +0100
 </div>
 </div>
 </body>

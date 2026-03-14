@@ -1,4 +1,5 @@
 .epub
 drafts/
+builds/
 chapters/*.adoc
 chapters/ADOCS
