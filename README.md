@@ -1,6 +1,6 @@
 # Linux — The Next Step 🚀
 
-A concise, practical guide to Linux for new users. This repository contains the source material (Markdown chapters and configuration) for the book "Linux — the next step" (Norwegian content).
+A concise, practical guide to Linux for new users. This repository contains the source material (Markdown chapters and configuration) for the book "Linux for home users" (Norwegian content).
 
 **Purpose:** ⚙️
 
@@ -10,6 +10,10 @@ A concise, practical guide to Linux for new users. This repository contains the 
 
 - New Linux users who want practical command-line skills, system tips, and reference material.
 
+NOTE: This is work in progress. Both the text and the production are not yet finished.
+
+Note: The pandoc HTML production now have a specific CSS and a separate production through the script `run_padoc.sh`. The all formats production script `runner.sh` (and the corresponding Makefile) may not be up to date
+
 **What’s in this repo:** 📦
 
 - **Chapters:** the `chapter/` directory contains individual Markdown files (one per chapter).
@@ -17,7 +21,7 @@ A concise, practical guide to Linux for new users. This repository contains the 
 - **Configuration and styles:** the `config/` and `styles/` directories hold pandoc defaults, Lua filters, and CSS/LaTeX styles.
 
 - **Quick build & preview** 🛠️
-- 
+
 - Requirements: `pandoc`, `make`, `hunspell` (for spellcheck), and a TeX distribution for PDF output. On Linux, also `xdg-open` and `libreoffice` are used by preview targets.
 - Build HTML: `make html`
 - Build EPUB: `make epub`
