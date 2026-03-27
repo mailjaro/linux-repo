@@ -398,12 +398,11 @@ Anne [Be]ate [Ja]n Tore
 Det følgende søker etter alt som er bokstaver eller sifre. Og da matcher jo alt unntatt tegn som f.eks. pluss og minus:
 
 ```bash
-➜  echo '+++45 AB C3 python---3' | grepm '[a-zA-Z0-9]'
+echo '+++45 AB C3 python---3' | grep '[a-zA-Z0-9]'
 ```
 
 ```output
-➜  echo '+++45 AB C3 python---3' | grepm '[a-zA-Z0-9]'
-+++[4][5] [A][B] [C][3] [p][y][t][h][o][n]---[3]
++++[45] [AB] [C3] [python]---[3]
 ```
 
 Her derimot søkes det mer konkret etter en bokstav eller siffer etterfulgt av kolon:
@@ -412,7 +411,7 @@ Her derimot søkes det mer konkret etter en bokstav eller siffer etterfulgt av k
 echo '+: abc: 347: ---:' | grep '[a-zA-Z0-9]:'
 ```
 
-```utput
+```output
 +: ab[c:] 34[7:] ---:
 ```
 

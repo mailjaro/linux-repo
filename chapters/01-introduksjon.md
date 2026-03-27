@@ -1,3 +1,5 @@
+<img src="images/cover.png" class="centerpict">
+
 # 📚 Introduksjon
 
 For personlig hjemmebruk bør Linux være et svært godt alternativ til Windows og MacOS for mange, og til flere enn de som faktisk brukere det i dag. Ikke bare er det gratis, men det er også brukervennlig, stabilt, ser moderne og stilig ut, og kan kjøres på alle maskiner, også på PC-er som ellers etter hvert begynner å bli ukurante. Mulighetene for hjelp og støtte er veldig gode, og ikke minst har man frihet til å konfigurere eller få utført ting nøyaktig som man måtte ønske. Begrensingene er få. Linux kan installeres ved siden av Windows eller alene. Man kan bytte grafisk brukergrensesnitt når det måtte være, og bare man ikke har dataskrekk, bør Linux i dag være velegnet også for alminnelig bruk.

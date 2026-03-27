@@ -235,8 +235,8 @@ La oss avslutte med eksempel som viser styrken og fleksibiliteten med regulære 
 ```bash
 echo 84500000 | sed -E ':a;s/([0-9])([0-9]{3})(,|$)/\1,\2\3/;ta'
 ```
-output
-```
+
+```output
 84,500,000
 ```
 
@@ -308,17 +308,13 @@ Den ferdige erstattede outputen printes til skjermen og fargekoder de nye mønst
 
 Opsjonen `-n` kan benyttes til å begrense antall substitusjoner. Andre opsjoner inkluderes som flag (**REGEX**-flagg). Dette inkluderer
 
-* c - det skilles mellom store og små bokstaver (default)
-          
-* e - match over flere linjer ikke mulig
-          
-* i - det skilles *ikke* mellom små og store bokstaver
-          
-* m - match over flere linjer mulig
-          
-* s - gjør at `.` matcher *newline*
-          
-* w - match bare av hele ord
+* `-c`: det skilles mellom store og små bokstaver (default)
+* `-e`: match over flere linjer ikke mulig
+* `-i`: det skilles *ikke* mellom små og store bokstaver
+* `-m`: match over flere linjer mulig
+* `-s`: gjør at `.` matcher *newline*
+* `-w`: match bare av hele ord
+
 Disse må etterfølge flaggopsjonen `-f`. Eksempelvis, for å ikke skille mellom små og store bokstaver (`-i`), samt bare matche hele ord (`-w`), kan man gjøre:
 
 ```bash
