@@ -91,7 +91,7 @@ grep -Eino 'linux|windows' testfil.txt
 3:Windows
 ```
 
-hvor g dokumentets konvensjon med klammeparenteser for matchede mønstre er droppet.
+hvor konvensjon med klammeparenteser for matchede mønstre er droppet.
 
 For strengt formaterte filer ønsker man kanskje å søke etter match for hele linjer. Da benyttes `-x`, som i:
 

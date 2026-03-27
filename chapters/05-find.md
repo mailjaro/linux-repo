@@ -18,7 +18,7 @@ Følgende finner f.eks. alle vanlige filer på gjeldende katalog og alle underka
 find . -type f -name *.pdf
 ```
 
-Uttrykket `-type f` etterspør regulære filer. Opsjon `-type d` ville søkt etter kataloger. Droppes typeangivelsen, returneres både filer og kataloger. Gjeldende katalog (.) er angitt som startsted for søket.
+Uttrykket `-type f` etterspør regulære filer. Opsjon `-type d` ville søkt etter kataloger. Droppes typeangivelsen, returneres både filer og kataloger. Gjeldende katalog (`.`) er angitt som startsted for søket.
 
 Det følgende søker etter PNG-filer på ~/Pictures:
 
