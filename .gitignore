@@ -1,0 +1,14 @@
+.epub
+.vscode/
+builds/
+chapters/
+configs/
+styles/
+images/
+doc/
+.hunspell_ignore
+ADOCS
+Makefile
+README.md
+run_pandoc.sh
+runner.sh
