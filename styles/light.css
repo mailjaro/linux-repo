@@ -1,0 +1,233 @@
+/* ------------------------------------------------------------
+   Light Mode CSS 
+------------------------------------------------------------ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    font-family: sans-serif;
+    background-color: #f8f9fa;
+    /* Lys gråhvit */
+    color: #212529;
+    /* Mørk tekst for lesbarhet */
+    overflow: hidden;
+}
+
+nav {
+    width: 250px;
+    background-color: #e9ecef;
+    /* Litt mørkere enn body for kontrast */
+    color: #495057;
+    padding: 20px;
+    overflow-y: auto;
+    flex-shrink: 0;
+    border-right: 1px solid #dee2e6;
+}
+
+main {
+    flex: 1;
+    background-color: #ffffff;
+    /* Rent hvit for hovedinnhold */
+    color: #333333;
+    padding: 40px;
+    overflow-y: auto;
+    font-size: 1.2em;
+    line-height: 1.5;
+}
+
+/* ------------------------------------------------------------
+   General
+------------------------------------------------------------ */
+ol,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 1.4em;
+    font-family: 'URW Bookman', serif;
+    color: #050820;
+    /* Beholder den dype blåfargen din som aksent */
+}
+
+p {
+    margin: 1em 0;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #dee2e6;
+    height: 1px;
+    margin: 1em 0;
+}
+
+a {
+    color: #0056b3;
+    /* Klassisk lenkeblå */
+    text-decoration: none;
+}
+
+a:visited {
+    color: #5a5a5a;
+}
+
+a:hover {
+    color: #d63384;
+    /* En frisk rosa-aktig hover */
+    text-decoration: underline;
+}
+
+/* ------------------------------------------------------------
+   Lists
+------------------------------------------------------------ */
+li {
+    color: #4a5568;
+    /* En behagelig mørk gråblå */
+}
+
+/* ------------------------------------------------------------
+   Tables
+------------------------------------------------------------ */
+tbody {
+    border-bottom: 1px solid #dee2e6;
+    color: #4a5568;
+}
+
+th {
+    border-top: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+    background-color: #f1f3f5;
+    color: #050820;
+}
+
+/* ------------------------------------------------------------
+   Code related styling - Light Edition
+------------------------------------------------------------ */
+blockquote {
+    margin: 1em 0 1em 1.7em;
+    padding-left: 1em;
+    border-left: 4px solid #00adb5;
+    /* Bruker din signaturfarge her */
+    color: #555;
+    background-color: #f8f9fa;
+}
+
+/* Inline code i tekst */
+p>code {
+    color: #d63384;
+    /* Rosa/Rød for kontrast mot hvit bakgrunn */
+    background-color: #f1f3f5;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+div.sourceCode {
+    margin: 2em 0;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+}
+
+.sourceCode.bash,
+.sourceCode.makefile {
+    background: #f8f9fa;
+    /* Lys bakgrunn i stedet for sort */
+    color: #212529;
+}
+
+.sourceCode.sourceCode.yaml,
+.sourceCode.css,
+.sourceCode.sourceCode.lua {
+    background: #ffffff;
+    color: #333;
+}
+
+/* ------------------------------------------------------------
+   Syntax highlighting - Justert for lys bakgrunn
+------------------------------------------------------------ */
+code span.at {
+    color: #8a6d3b;
+}
+
+/* Attributter */
+code span.bu {
+    color: #0056b3;
+    font-weight: bold;
+}
+
+/* BuiltIn */
+code span.cf {
+    color: #0056b3;
+    font-weight: bold;
+}
+
+/* Control Flow */
+code span.co {
+    color: #718096;
+    font-style: italic;
+}
+
+/* Comment */
+code span.st {
+    color: #2f855a;
+}
+
+/* String - Grønn */
+code span.va {
+    color: #c53030;
+}
+
+/* Variabel - Rødlig */
+code span.fu {
+    color: #2b6cb0;
+}
+
+/* Function */
+code span.kw {
+    color: #0056b3;
+    font-weight: bold;
+}
+
+/* Keyword */
+code span.op {
+    color: #4a5568;
+}
+
+
+/* ------------------------------------------------------------
+   For utskrift
+------------------------------------------------------------ */
+@media print {
+
+    /* 1. Fjern navigasjonsmenyen i PDF */
+    nav {
+        display: none !important;
+    }
+
+    /* 2. Nullstill body så den kan strekke seg over flere sider */
+    body {
+        display: block !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    /* 3. Gjør main-feltet synlig i sin helhet */
+    main {
+        position: static !important;
+        height: auto !important;
+        overflow: visible !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* 4. Tips: Sørg for at overskrifter starter på ny side i PDF */
+    h1 {
+        page-break-before: always;
+    }
+}

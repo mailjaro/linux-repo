@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+    <meta charset="UTF-8">
+    <title>$title$</title>
+
+    <meta name="author" content="$author$">
+    <meta name="email" content="$email$">
+    <meta name="github_url" content="$github_url$">
+    <meta name="date" content="$date$">
+    <meta name="version" content="$version$">
+    <meta name="status" content="$status$">
+
+    <link rel="stylesheet" href="$css-path$">
+</head>
+
+<body>
+
+    $if(show_toc)$
+    <nav>
+        <h2>Innhold</h2>
+        $toc$
+    </nav>
+    $endif$
+
+    <main>
+        $if(meta_hode)$
+        <h1>$title$</h1>
+        <p>Forfatter: $author$</p>
+        <p>Email: $email$</p>
+        <p>GitHub: <a href="$github_url$">$github_url$</a></p>
+        <p>Version: $version$</p>
+        <p>Dato: $date$</p>
+        <p>Status: $status$</p>
+        <br>
+        <hr>
+        <br>
+        $endif$
+        $body$
+    </main>
+
+</body>
+
+<!-- Et skript som fjerne emojis i nav: -->
+<script>
+    window.onload = function () {
+        const menyLenker = document.querySelectorAll('nav a');
+
+        menyLenker.forEach(function (lenke) {
+            // 1. Fjern tall-boksene (1️⃣, 2️⃣) og "variation selectors"
+            let renTekst = lenke.textContent.replace(/[\uFE0F\u20E3]/g, '');
+
+            // 2. Den utvidede vaskelisten:
+            // Vi legger til \u2B50 for stjernen og \u2600-\u26FF for eldre symboler
+            renTekst = renTekst.replace(/([\u2B50]|\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|\uD83E[\uDD00-\uDFFF]|[\u2600-\u27BF])/g, '');
+
+            // 3. Trim og rydd
+            lenke.textContent = renTekst.trim();
+        });
+    };
+</script>
+
+</html>

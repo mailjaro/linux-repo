@@ -1,0 +1,450 @@
+/* ------------------------------------------------------------
+   Dark Mode CSS 
+------------------------------------------------------------ */
+
+/* Nullstiller marginer så alt går helt ut i kanten */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    /* Aktiverer Flexbox på rot-nivå */
+    height: 100vh;
+    /* Gjør at den alltid er 100% av skjermhøyden */
+    font-family: sans-serif;
+    background-color: #2a1f31;
+    overflow: hidden;
+    /* Hindrer at hele "arket" scroller */
+}
+
+nav {
+    width: 250px;
+    /* Vi låser bredden på menyen */
+    background-color: #050820;
+    color: white;
+    padding: 20px;
+    overflow-y: auto;
+    /* Hvis TOC-en blir lengre enn skjermen, scroller den inni menyen */
+    flex-shrink: 0;
+    /* Stopper menyen fra å bli skvist */
+}
+
+main {
+    flex: 1;
+    /* Dette feltet "spiser" all ledig plass til høyre */
+    background-color: #070a24;
+    color: #d9edeb;
+    padding: 40px;
+    overflow-y: auto;
+    font-size: 1.2em;
+    line-height: 1.5;
+}
+
+
+/* ------------------------------------------------------------
+   General
+------------------------------------------------------------ */
+ol,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 1.4em;
+    font-family: 'URW Bookman';
+}
+
+p {
+    margin: 1em 0;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #1a1a1a;
+    height: 1px;
+    margin: 1em 0;
+}
+
+a {
+    color: #9a9a9a;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #9a9a9a;
+    text-decoration: none;
+}
+
+a:hover {
+    color: hwb(32 49% 6%);
+    text-decoration: underline;
+}
+
+
+/* ------------------------------------------------------------
+   Lists
+------------------------------------------------------------ */
+ol,
+ul {
+    padding-left: 1.7em;
+    margin-top: 1em;
+}
+
+li {
+    color: #829abc;
+    ;
+}
+
+/* ------------------------------------------------------------
+   Tables
+------------------------------------------------------------ */
+table {
+    margin-top: 2.0em;
+    margin-bottom: 2.5em;
+    border-collapse: collapse;
+    width: 100%;
+    overflow-x: auto;
+    display: block;
+    font-variant-numeric: lining-nums tabular-nums;
+}
+
+table caption {
+    margin-bottom: 0.75em;
+}
+
+tbody {
+    margin-top: 0.5em;
+    border-bottom: 1px solid #dcddea;
+    color: #829abc;
+    font-size: 0.95em;
+    font-family: sans-serif;
+}
+
+th {
+    border-top: 1px solid #dcddea;
+    border-bottom: 1px solid #dcddea;
+    padding: 0.25em 0.5em 0.25em 0.5em;
+    text-align: left;
+    color: #829abc;
+    font-size: 0.94em;
+    font-family: sans-serif;
+    padding: 0.25em 1em 0.25em 0.5em;
+}
+
+td {
+    padding: 0.125em 0.5em 0.25em 0.5em;
+}
+
+/* ------------------------------------------------------------
+   Images
+------------------------------------------------------------ */
+.centerpict {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
+.leftpict {
+    display: block;
+    margin-left: 0;
+    margin-right: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 300px;
+}
+
+svg {
+    height: auto;
+    max-width: 100%;
+}
+
+/* ------------------------------------------------------------
+   TOC
+------------------------------------------------------------ */
+#TOC ul {
+    padding-left: 1.3em;
+}
+
+#TOC>ul {
+    padding-left: 0;
+}
+
+#TOC a:not(:hover) {
+    text-decoration: none;
+}
+
+/* ------------------------------------------------------------
+   Code related styling
+------------------------------------------------------------ */
+.display.math {
+    display: block;
+    text-align: center;
+    margin: 0.5rem auto;
+}
+
+blockquote {
+    margin: 1em 0 1em 1.7em;
+    padding-left: 1em;
+    border-left: 2px solid #e6e6e6;
+    color: #606060;
+}
+
+code {
+    font-family: 'FiraCode Nerd Font Mono', Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+    font-size: 100%;
+    margin: 0;
+    hyphens: manual;
+    white-space: pre-wrap;
+}
+
+pre {
+    margin: 1em 0;
+    overflow: auto;
+}
+
+pre code {
+    padding: 0;
+    overflow: visible;
+    overflow-wrap: normal;
+
+    display: block;
+    white-space: pre;
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+pre>code.sourceCode {
+    white-space: pre;
+    position: relative;
+}
+
+pre>code.sourceCode>span {
+    display: inline-block;
+    line-height: 1.25;
+}
+
+pre>code.sourceCode>span:empty {
+    height: 1.2em;
+}
+
+pre.sourceCode {
+    margin: 0;
+}
+
+div.sourceCode {
+    margin: 2em 0;
+    border-color: #767676;
+    border-style: ridge;
+}
+
+/* ------------------------------------------------------------
+   Variants
+------------------------------------------------------------ */
+/* Inline code */
+p>code {
+    color: rgb(235, 248, 163);
+}
+
+/* Code input/output */
+.sourceCode.bash,
+.sourceCode.makefile,
+.sourceCode.css,
+.sourceCode.yaml,
+.sourceCode.lua,
+.sourceCode.latex,
+.sourceCode.default {
+    padding: 8px 4px 8px 8px;
+    line-height: 1.66em;
+    font-family: 'FiraCode Nerd Font Mono';
+}
+
+.sourceCode.bash,
+.sourceCode.makefile {
+    background: #000;
+}
+
+.sourceCode.sourceCode.yaml,
+.sourceCode.css,
+.sourceCode.sourceCode.lua,
+.sourceCode.latex,
+.sourceCode.default {
+    background: #251f2b;
+    color: #bdbfc0;
+}
+
+/* ------------------------------------------------------------
+   Syntax highlighting
+------------------------------------------------------------ */
+/* Alert: Unused */
+code span.al {
+    color: red;
+}
+
+/* Annotation: Unused */
+code span.an {
+    color: red;
+}
+
+/* Attribute: Opsjoner */
+code span.at {
+    color: #fdfda2;
+}
+
+/* BaseN: Unused */
+code span.bn {
+    color: red;
+}
+
+/* BuiltIn: set echo test */
+code span.bu {
+    color: #99bdfa;
+}
+
+/* Control flow (if else for while return) */
+code span.cf {
+    color: #99bdfa
+}
+
+/* Char: YAML true CSS : */
+code span.ch {
+    color: #fdfda2;
+}
+
+/* Constant: CSS Hex LUA Format */
+code span.cn {
+    color: rgb(119, 101, 188);
+}
+
+/* Comment */
+code span.co {
+    color: #425b40;
+    font-style: italic;
+}
+
+/* Documentation: Unused */
+code span.do {
+    color: red;
+}
+
+/* DataType: \*  */
+code span.dt {
+    color: #fdfda2
+}
+
+/* DecVal  */
+code span.dv {
+    color: #d4c8ba;
+}
+
+/* Error: ( */
+code span.er {
+    color: #f3fa6a;
+}
+
+/* Extension: end [ func-kall/-arg math count contains string switch */
+code span.ex {
+    color: #99bdfa
+}
+
+/* Float: Unused */
+code span.fl {
+    color: red
+}
+
+/* Function: func-name ls seq */
+code span.fu {
+    color: #99bdfa
+}
+
+/* Import: Unused */
+code span.im {
+    color: red;
+}
+
+/* Information: Unused */
+code span.in {
+    color: red;
+}
+
+/* Keywords (Function ;  )  |  in) */
+code span.kw {
+    color: #82aaef;
+}
+
+/* Operator: < > */
+code span.op {
+    color: #f9cf52;
+}
+
+/* Preprocessor: [ ] * */
+code span.pp {
+    color: #f9cf52;
+}
+
+/* Special character: LUA \\ */
+code span.sc {
+    color: rgb(244, 240, 129);
+}
+
+/* SpecialString: n og m i [n] [n..m] */
+code span.ss {
+    color: #d8cbbd;
+}
+
+/* String: "Streng" */
+code span.st {
+    color: #79b37b;
+}
+
+/* Variabel: $VAR */
+code span.va {
+    color: #fea3a3
+}
+
+/* VerbatimString: TEX sh kode */
+code span.vs {
+    color: rgb(162, 162, 175);
+}
+
+/* Warning: Unused */
+code span.wa {
+    color: red
+}
+
+
+/* ------------------------------------------------------------
+   For utskrift
+------------------------------------------------------------ */
+@media print {
+
+    /* 1. Fjern navigasjonsmenyen i PDF */
+    nav {
+        display: none !important;
+    }
+
+    /* 2. Nullstill body så den kan strekke seg over flere sider */
+    body {
+        display: block !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    /* 3. Gjør main-feltet synlig i sin helhet */
+    main {
+        position: static !important;
+        height: auto !important;
+        overflow: visible !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* 4. Tips: Sørg for at overskrifter starter på ny side i PDF */
+    h1 {
+        page-break-before: always;
+    }
+}

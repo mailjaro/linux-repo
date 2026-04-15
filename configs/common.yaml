@@ -1,8 +1,16 @@
+---
 title: "Linux for hjemmebruk"
 author: "Jan Roger Sandbakken"
+email: "mailjaro@gmail.com"
+github_url: "https://github.com/mailjaro"
 version: "1.0"
+status: "Draft"
 language: "no"
 date: "April 2025"
+meta_hode: true
+show_toc: true
+dark_theme: true 
+# Alt annet enn true gir light theme
 
 # Bibliography (for citations)
 # references: "references.bib"
