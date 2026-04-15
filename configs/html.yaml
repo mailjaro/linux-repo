@@ -1,9 +1,0 @@
-standalone: true
-css: styles/html.css
-highlight-style: pygments
-metadata-files:
-  - config/common.yaml
-filters:
-  - config/html.lua
-toc: true 
-toc-depth: 3

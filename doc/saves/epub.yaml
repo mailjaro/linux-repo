@@ -1,7 +1,0 @@
-standalone: true
-css: epub.css
-highlight-style: breezedark
-metadata-files:
-  - common.yaml
-filters:
-  - epub.lua
