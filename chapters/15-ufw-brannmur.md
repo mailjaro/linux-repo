@@ -121,3 +121,21 @@ evt å blokkere ved:
 sudo ufw deny log ssh
 sudo ufw deny log 22/tcp			# TCP-port 22 er for SSH
 ```
+
+HEFTET ER IKKE FERDIGSKREVET
+
+## 📚 Andre hefter i serien
+
+📘 [Litt om CSS](https://mailjaro.github.io/css-repo/)
+
+📘 [Litt om Git](https://mailjaro.github.io/git-repo/)
+
+📘 [Litt om VS Code](https://mailjaro.github.io/vscode-repo/)
+
+📘 [Litt om GPG](https://mailjaro.github.io/gpg-repo/)
+
+📘 [Litt om syntaksutheving](https://mailjaro.github.io/highlight-repo/)
+
+📘 [Litt om Makefile](https://mailjaro.github.io/makefile-repo/)
+
+📘 [Moderne AI: Virkemåte](https://mailjaro.github.io/ai-repo/)
