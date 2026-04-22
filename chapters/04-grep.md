@@ -162,14 +162,14 @@ Regulære uttrykk baser seg uansett på følgende fem byggestener:
 
 La oss starte med metakarakterene.
 
-Punktum representerer altså alle karakterer, slik at f.eks. `c.t` matcher både **cat**, **cut** og **c-t**, men ikke **ct**. Dette bekreftes av:
+Punktum representerer altså alle karakterer, slik at `c.t` matcher f.eks. både **cat**, **cut** og **c-t**, men ikke **ct**. Dette bekreftes av:
 
 ```bash
-echo 'as[cot] [cat] [cut] [cut]e [cut]ter [c-t] [c:t] car ct' | grep 'c.t'
+echo 'ascot cat cut cute cutter c-t c:t car ct' | grep 'c.t'
 ```
 
 ```output
-echo 'ascot cat cut cute cutter c-t c:t car ct' | grep 'c.t'
+as[cot] [cat] [cut] [cut]e [cut]ter[c-t] [c:t] car ct
 ```
 
 `^mønster` representer noe på starten og `mønster$` noe på slutten av en linje:

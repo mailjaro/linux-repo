@@ -1,6 +1,7 @@
 <img src="images/cover.png" class="centerpict">
 
 # 📚 Introduksjon
+Merk: Boken har status som draft og er ikke ferdig skrevet ennå.
 
 For personlig hjemmebruk bør Linux være et svært godt alternativ til Windows og MacOS for mange, og til flere enn de som faktisk brukere det i dag. Ikke bare er det gratis, men det er også brukervennlig, stabilt, ser moderne og stilig ut, og kan kjøres på alle maskiner, også på PC-er som ellers etter hvert begynner å bli ukurante. Mulighetene for hjelp og støtte er veldig gode, og ikke minst har man frihet til å konfigurere eller få utført ting nøyaktig som man måtte ønske. Begrensingene er få. Linux kan installeres ved siden av Windows eller alene. Man kan bytte grafisk brukergrensesnitt når det måtte være, og bare man ikke har dataskrekk, bør Linux i dag være velegnet også for alminnelig bruk.
 
@@ -10,7 +11,7 @@ Denne boken er for dem som ønsker å ta i bruk Linux på sin personlige hjemmem
 
 Vi kommer derfor ikke til å snakke om de vanligste, mest grunnleggende kommandoene som `cd`, `pwd`, `cp`, `ls`, `mkdir`, `rm`, `mv`, `man`, `echo`, `cat`, `tail`, `head`, `more` og `less`. Selv viktige opsjoner til disse (som at  `rm -i` ber om bekreftelse før sletting og at  `rm -r` sletter rekursivt) lar vi ligge. De grunnleggende kommandoene lærer man seg fort uansett. Derimot skal vi si mer om viktige, men kanskje mer brysomme kommandoer som `find`, `sed`, `grep`, `awk`, `tar` og mange andre. Om du har vært borte i disse, skader det kanskje ikke med en oppfriskning. Dessuten kommer man da gjerne fort i kontakt med såkalte regulære uttrykk (**regex**), som ved første øyekast kan se litt avskrekkende ut, og som gjerne er vanskelige å huske. Første halvdel vies derfor viktige Linux-kommandoer.
 
-Boken beskriver også nærmere funksjonalitet og muligheter som er nyttige, men som kanskje er mindre kjente, eksempelvis *extended file attributes* og *immutable file attributes* (to ulike utvidede filattributter). Vi skal videre se på skjellprogrammering og Makefiles (for mer sammensatte oppgaver), på **gpg** for kryptering og signering, på `at`, `cron`, `ufw` og mere til. Vi vil se også litt på praktiske administrative oppgaver, som logganalyse, nettverksinformasjon, systemvedlikehold og annet for vanlig, privat desktop-bruk. Systemadministrasjon av større systemer eller spesialiserte server-maskiner går utenfor denne boken. Litt vil bli nevnt om sikkerhet underveis, men boken kan ikke å behandle et så stort emne på en utfyllende måte.
+Boken beskriver også nærmere funksjonalitet og muligheter som er nyttige, men som kanskje er mindre kjente, eksempelvis *extended file attributes* og *immutable file attributes* (to ulike utvidede filattributter). Vi skal videre se på skjellprogrammering og Makefiles (for mer sammensatte oppgaver), på **gpg** for kryptering og signering, på `at`, `cron`, `ufw` og mere til. Når det gjelder temaer som sikkerhet og systemadministrasjon, blir dette for store temaer som ikke lar seg behandle utfyllende her. Litt kan bli nevnt underveis, der det er naturlig.
 
 ## 🐧 Linux-distribusjoner
 
